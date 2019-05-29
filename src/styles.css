@@ -1,0 +1,17 @@
+/*
+  Application-wide style definitions, based on Bootstrap
+  Implement the ALMA Web UI Guidelines
+*/
+
+@import "~bootstrap/dist/css/bootstrap.css";
+
+/* Make Lato 14px the default font */
+body {
+  font-family: Lato, sans-serif;
+  font-size: 14px;
+}
+
+.almacolor {
+  background: #25386f;
+  background: linear-gradient(to bottom, #25386f 0%, #0f4f87 100%);
+}

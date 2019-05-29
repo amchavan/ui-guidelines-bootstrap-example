@@ -1,0 +1,71 @@
+<!--
+     Page header
+     Implements a router-based tabset, plus some utility pulldown menus
+     on the right side
+-->
+
+<div class="container-fluid almacolor">
+  <div class="row">
+
+    <!-- Home tab -->
+    <a id="home-tab" class="tab-head" routerLink="/">
+      <img class="alma-logo" src='assets/img/almalogo.png'>
+      &nbsp;
+      <strong>Example Tool &middot; ALMA</strong>&nbsp;&nbsp;<span class="alma-sw-version">2019JUN</span>
+    </a>
+
+    <!-- Add tab -->
+    <a routerLink="/add" class="tab-head"
+       [ngClass]="{'active': (router.url.indexOf('/add') > -1) || (router.url == '/')}">
+      <i class="fas fa-user-plus"></i> Add/Remove
+    </a>
+
+    <!-- Manage tab -->
+    <a routerLink="/manage" class="tab-head"
+       [ngClass]="{'active': router.url.indexOf('/manage') > -1}">
+      <i class="fas fa-list"></i> Management
+    </a>
+
+    <!-- Booking tab -->
+    <a routerLink="/booking" class="tab-head"
+       [ngClass]="{'active': router.url.indexOf('/booking') > -1}">
+      <i class="fas fa-edit"></i> Booking
+    </a>
+
+    <!-- Filler, pushes the next items to the right -->
+    <span class="flex-md-fill"></span>
+
+    <!-- Help pulldown menu -->
+    <div ngbDropdown class="tab-head">
+      <a ngbDropdownToggle>
+        <i class="fas fa-question"></i> Help
+      </a>
+      <div ngbDropdownMenu>
+        <a href="assets/user-manual.html" ngbDropdownItem>
+          <i class="fas fa-question"></i> User Manual
+        </a>
+        <a href="mailto:usd-help@alma.cl?subject=Cool%20UI%20example!" ngbDropdownItem>
+          <i class="fas fa-envelope"></i> Send us your comments
+        </a>
+      </div>
+    </div>
+
+    <!-- Account pulldown menu -->
+    <div ngbDropdown class="tab-head">
+      <a ngbDropdownToggle>
+        <i class="fas fa-user"></i> Example User
+      </a>
+      <div ngbDropdownMenu>
+        <a href="http://asa.alma.cl/UserRegistration/secure/updateAccount.jsp" ngbDropdownItem>
+          <i class="fas fa-user-edit"></i> User profile
+        </a>
+        <button ngbDropdownItem (click)="logout()">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Invisible spacer -->
+<div style="padding-bottom: 5px">
