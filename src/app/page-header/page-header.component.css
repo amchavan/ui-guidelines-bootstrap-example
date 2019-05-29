@@ -20,7 +20,7 @@
 
 #home-tab {
   /* special padding for the home tab */
-  padding: 0 10px 0 0;
+  padding: 0 10px 0 15px;
 }
 
 .alma-sw-version {

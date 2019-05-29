@@ -1,3 +1,61 @@
-<p>
-  add works!
-</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-primary btn-sm"
+                    data-tooltip="Explanation of Primary Action goes here"
+                    data-position="bottom left">
+                <i class="fas fa-file-upload"></i> Primary action
+            </button>
+            <button  type="button" class="btn btn-secondary btn-sm">
+                <i class="fas fa-file-download"></i> Secondary action
+            </button>
+            <!-- <div class="ui basic tiny compact dropdown blue button" suiDropdown>
+                <div class="text">Edit</div>
+                <i class="dropdown icon"></i>
+                <div class="menu" suiDropdownMenu>
+                    <div class="item" (click)="f()">
+                        <i class="clone icon"></i> Duplicate
+                    </div>
+                    <div class="item" (click)="f()">
+                        <i class="copy icon"></i> Copy (CTRL+C)
+                    </div>
+                    <div class="item" (click)="f()">
+                        <i class="cut icon"></i> Cut (CTRL+X)
+                    </div>
+                </div>
+            </div>-->
+        </div>
+        </div>
+
+    <div class="col">
+        <button class="btn btn-primary btn-sm" (click)="open()">
+            <i class="add icon"></i>
+            Import
+        </button>
+    </div>
+    </div>
+</div>
+
+<ng-template let-context let-modal="modal" #modalDialog>
+
+    <div class="header">
+        <i class="upload icon"></i>
+        Import Target List
+    </div>
+    <div class="content">
+        <span>
+            Importing...
+<!--            <sui-progress [value]="37"></sui-progress>-->
+        </span>
+    </div>
+    <div class="actions">
+    <button class="ui blue basic button" (click)="modal.deny()">
+        Cancel
+    </button>
+    <button class="ui blue button" [disabled]="true"><i class="upload icon"></i>
+        Import
+    </button>
+    </div>
+
+</ng-template>
