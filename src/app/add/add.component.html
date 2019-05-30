@@ -5,11 +5,36 @@
             <button type="button" class="btn btn-primary btn-sm"
                     data-tooltip="Explanation of Primary Action goes here"
                     data-position="bottom left">
-                <i class="fas fa-file-upload"></i> Primary action
+                <i class="fas fa-file-upload has-text"></i>
+                Primary action
             </button>
             <button  type="button" class="btn btn-secondary btn-sm">
-                <i class="fas fa-file-download"></i> Secondary action
+                <i class="fas fa-file-download has-text"></i>
+                Secondary action
             </button>
+            <button  type="button" class="btn btn-secondary btn-sm">
+                <i class="fas fa-cogs has-text"></i>
+                Another secondary action
+            </button>
+            <button ngbDropdown class="btn btn-secondary btn-sm tab-head">
+                <a ngbDropdownToggle>
+                    <i class="fas fa-pencil has-text"></i> Edit
+                </a>
+                <div ngbDropdownMenu>
+                    <a (click)="f()" ngbDropdownItem>
+                        <i class="fas fa-copy has-text"></i> Copy
+                    </a>
+
+                    <a (click)="f()" ngbDropdownItem>
+                        <i class="fas fa-paste has-text"></i> Paste
+                    </a>
+
+                    <a (click)="f()" ngbDropdownItem>
+                        <i class="fas fa-cut has-text"></i> Cut
+                    </a>
+                </div>
+            </button>
+
             <!-- <div class="ui basic tiny compact dropdown blue button" suiDropdown>
                 <div class="text">Edit</div>
                 <i class="dropdown icon"></i>
@@ -23,14 +48,13 @@
                     <div class="item" (click)="f()">
                         <i class="cut icon"></i> Cut (CTRL+X)
                     </div>
-                </div>
-            </div>-->
-        </div>
+                </div>-->
+            </div>
         </div>
 
     <div class="col">
         <button class="btn btn-primary btn-sm" (click)="open()">
-            <i class="add icon"></i>
+            <i class="fas fa-file-import has-text"></i>
             Import
         </button>
     </div>

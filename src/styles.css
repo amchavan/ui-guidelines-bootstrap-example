@@ -5,7 +5,7 @@
 
 @import "~bootstrap/dist/css/bootstrap.css";
 
-/* Make Lato 14px the default font */
+/* Make Lato 14px the default font, everywhere */
 body {
   font-family: Lato, sans-serif;
   font-size: 14px;
@@ -15,16 +15,22 @@ button {
   font-family: Lato, sans-serif;
 }
 
+.dropdown-item {
+  font-size: 14px;
+}
+
+/* Primary buttons should be ALMA blue */
 .btn.btn-primary {
   background: #25386f;
   background: linear-gradient(to bottom, #25386f 0%, #0f4f87 100%);
 }
 
-.almacolor {
-  background: #25386f;
-  background: linear-gradient(to bottom, #25386f 0%, #0f4f87 100%);
+/* No ugly button shadow */
+.btn:focus,.btn:active {
+  box-shadow: none;
 }
 
+/* No padding and no margin for all containers */
 .container-fluid {
   padding: 0;
   margin: 0;
@@ -38,4 +44,15 @@ button {
 .col {
   padding: 0;
   margin: 0;
+}
+
+/* ALMA blue definition */
+.almacolor {
+  background: #25386f;
+  background: linear-gradient(to bottom, #25386f 0%, #0f4f87 100%);
+}
+
+/* Add some space between image and text when Font Awesome icons are used together with text labels  */
+i.has-text {
+  padding: 0 2px 0 0;
 }
