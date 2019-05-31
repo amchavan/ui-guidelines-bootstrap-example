@@ -10,7 +10,6 @@ import { PageHeaderComponent } from './page-header/page-header.component';
 import { AddComponent } from './add/add.component';
 import { ManageComponent } from './manage/manage.component';
 import { ModalProgressBarComponent } from './modal-progress-bar/modal-progress-bar.component';
-import { ModalAlertWindowComponent } from './modal-alert-window/modal-alert-window.component';
 
 @NgModule({
   declarations: [
@@ -18,8 +17,7 @@ import { ModalAlertWindowComponent } from './modal-alert-window/modal-alert-wind
     PageHeaderComponent,
     AddComponent,
     ManageComponent,
-    ModalProgressBarComponent,
-    ModalAlertWindowComponent
+    ModalProgressBarComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +27,8 @@ import { ModalAlertWindowComponent } from './modal-alert-window/modal-alert-wind
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [ModalProgressBarComponent]
+  entryComponents: [
+    ModalProgressBarComponent
+  ]
 })
 export class AppModule { }

@@ -22,15 +22,15 @@
                     </a>
                     <div ngbDropdownMenu>
                         <a (click)="msg('Copy')" ngbDropdownItem>
-                            <i class="fas fa-copy has-text"></i> Copy
+                            <i class="fas fa-copy has-text"></i> Copy (Ctrl-C)
                         </a>
 
                         <a (click)="msg('Paste')" ngbDropdownItem>
-                            <i class="fas fa-paste has-text"></i> Paste
+                            <i class="fas fa-paste has-text"></i> Paste (Ctrl-V)
                         </a>
 
                         <a (click)="msg('Cut')" ngbDropdownItem>
-                            <i class="fas fa-cut has-text"></i> Cut
+                            <i class="fas fa-cut has-text"></i> Cut (Ctrl-X)
                         </a>
                     </div>
                 </button>
@@ -45,18 +45,18 @@
         </div>
     </div>
 </div>
+&nbsp; <!-- quick and dirty, some vertical spacing -->
 
-<ng-template #content let-c="close" let-d="dismiss">
-    <div class="modal-header">
-        <h4 class="modal-title">Modal title</h4>
-        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-            <span aria-hidden="true">×</span>
-        </button>
+<!-- Display a warning if user canceled import operation -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm"></div>
+        <div class="col-sm">
+            <ngb-alert *ngIf="showAlert" type="warning" (close)="closeAlert()">
+                <i class="fas fa-exclamation has-text"></i>
+                {{ importCanceledAlertMessage }}
+            </ngb-alert>
+        </div>
+        <div class="col-sm"></div>
     </div>
-    <div class="modal-body">
-        <p>One fine body…</p>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
-    </div>
-</ng-template>
+</div>
