@@ -14,8 +14,8 @@ export class AddComponent implements OnInit {
   }
 
 
-  public open() {
-    console.log( ">>> open() called" )
+  public import() {
+    console.log( ">>> import() called" )
     // const config = new TemplateModalConfig<IContext, string, string>(this.modalDialog);
     //
     // config.closeResult = "closed!";
@@ -25,5 +25,9 @@ export class AddComponent implements OnInit {
     //     .open(config)
     //     .onApprove(result => {})
     //     .onDeny(result => {});
+  }
+
+  public msg(text) {
+    console.log( ">>> clicked on " + text )
   }
 }
