@@ -45,13 +45,13 @@
         </div>
     </div>
 </div>
-&nbsp; <!-- quick and dirty, some vertical spacing -->
 
 <!-- Display a warning if user canceled import operation -->
 <div class="container">
     <div class="row">
         <div class="col-sm"></div>
         <div class="col-sm">
+            &nbsp; <!-- quick and dirty, some vertical spacing -->
             <ngb-alert *ngIf="showAlert" type="warning" (close)="closeAlert()">
                 <i class="fas fa-exclamation has-text"></i>
                 {{ importCanceledAlertMessage }}
