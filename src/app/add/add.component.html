@@ -38,7 +38,7 @@
         </div>
 
         <div class="col">
-            <button class="btn btn-primary btn-sm" (click)="import()">
+            <button class="btn btn-primary btn-sm" (click)="openImportModal()">
                 <i class="fas fa-file-import has-text"></i>
                 Import
             </button>
@@ -46,25 +46,17 @@
     </div>
 </div>
 
-<ng-template let-context let-modal="modal" #modalDialog>
-
-    <div class="header">
-        <i class="upload icon"></i>
-        Import Target List
-    </div>
-    <div class="content">
-        <span>
-            Importing...
-            <!--            <sui-progress [value]="37"></sui-progress>-->
-        </span>
-    </div>
-    <div class="actions">
-        <button class="ui blue basic button" (click)="modal.deny()">
-            Cancel
-        </button>
-        <button class="ui blue button" [disabled]="true"><i class="upload icon"></i>
-            Import
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Modal title</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">×</span>
         </button>
     </div>
-
+    <div class="modal-body">
+        <p>One fine body…</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+    </div>
 </ng-template>

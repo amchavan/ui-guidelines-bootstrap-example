@@ -1,33 +1,37 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ModalDismissReasons, NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {ModalWindowComponent} from "../modal-window/modal-window.component";
 
 @Component({
-  selector: 'app-add',
-  templateUrl: './add.component.html',
-  styleUrls: ['./add.component.css']
+    selector: 'app-add',
+    templateUrl: './add.component.html',
+    styleUrls: ['./add.component.css']
 })
 export class AddComponent implements OnInit {
 
+    closeResult: string;
 
-  constructor() { }
+    constructor(private modalService: NgbModal) {
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+        // no-op
+    }
 
+    public openImportModal() {
+        console.log(">>> openImportModal() called")
+        this.modalService.open(ModalWindowComponent).result.then(
+            (fulfilled) => {
+                console.log(">>> fulfilled: " + fulfilled );
+            },
+            (rejected) => {
+                console.log(">>> rejected: " + rejected );
+            });
 
-  public import() {
-    console.log( ">>> import() called" )
-    // const config = new TemplateModalConfig<IContext, string, string>(this.modalDialog);
-    //
-    // config.closeResult = "closed!";
-    // config.context = { data: "" };
-    //
-    // this.modalService
-    //     .open(config)
-    //     .onApprove(result => {})
-    //     .onDeny(result => {});
-  }
+        console.log(">>> ModalWindowComponent: " + ModalWindowComponent)
+    }
 
-  public msg(text) {
-    console.log( ">>> clicked on " + text )
-  }
+    public msg(text) {
+        console.log(">>> clicked on " + text)
+    }
 }

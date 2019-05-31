@@ -9,13 +9,15 @@ import { AppComponent } from './app.component';
 import { PageHeaderComponent } from './page-header/page-header.component';
 import { AddComponent } from './add/add.component';
 import { ManageComponent } from './manage/manage.component';
+import { ModalWindowComponent } from './modal-window/modal-window.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PageHeaderComponent,
     AddComponent,
-    ManageComponent
+    ManageComponent,
+    ModalWindowComponent
   ],
   imports: [
     BrowserModule,
@@ -24,6 +26,7 @@ import { ManageComponent } from './manage/manage.component';
     FormsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ModalWindowComponent]
 })
 export class AppModule { }
