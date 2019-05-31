@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {ModalDismissReasons, NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {ModalWindowComponent} from "../modal-window/modal-window.component";
+import { Component, OnInit } from '@angular/core';
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { ModalWindowComponent } from "../modal-window/modal-window.component";
 
 @Component({
     selector: 'app-add',
@@ -19,16 +19,15 @@ export class AddComponent implements OnInit {
     }
 
     public openImportModal() {
-        console.log(">>> openImportModal() called")
         this.modalService.open(ModalWindowComponent).result.then(
-            (fulfilled) => {
-                console.log(">>> fulfilled: " + fulfilled );
+            () => {
+                // operation completed, no-op
             },
             (rejected) => {
+                // show how we can interact with something returned by
+                // modal dialog when the user canceled an operation
                 console.log(">>> rejected: " + rejected );
             });
-
-        console.log(">>> ModalWindowComponent: " + ModalWindowComponent)
     }
 
     public msg(text) {

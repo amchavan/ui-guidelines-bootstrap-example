@@ -1,20 +1,19 @@
 <div class="modal-header">
     <h5>Import Target List</h5>
-    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <button *ngIf="!complete" type="button" class="close" aria-label="Close" (click)="activeModal.dismiss((progress))">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
 <div class="modal-body">
-        <span>
-            Importing...
-            <!--            <sui-progress [value]="37"></sui-progress>-->
-        </span>
+    Importing...<br>
+    <ngb-progressbar type="info" showValue="true" [value]="(progress)"></ngb-progressbar>
+
 </div>
 <div class="modal-footer">
-    <button class="btn btn-primary btn-sm" type="submit" (click)="activeModal.close('Import')">
-        <i class="fas fa-file-import has-text"></i> Import
+    <button *ngIf="complete" class="btn btn-primary btn-sm" type="submit" (click)="activeModal.close()">
+        <i class="fas fa-check has-text"></i> Ok
     </button>
-    <button class="btn btn-secondary btn-sm" (click)="activeModal.dismiss('Cancel')">
+    <button *ngIf="!complete" class="btn btn-secondary btn-sm" (click)="activeModal.dismiss((progress))">
         Cancel
     </button>
 </div>
