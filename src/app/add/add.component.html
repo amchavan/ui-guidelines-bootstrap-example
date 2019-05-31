@@ -1,63 +1,48 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col">
-        <div class="btn-group" role="group">
-            <button type="button" class="btn btn-primary btn-sm"
-                    data-tooltip="Explanation of Primary Action goes here"
-                    data-position="bottom left">
-                <i class="fas fa-file-upload has-text"></i>
-                Primary action
-            </button>
-            <button  type="button" class="btn btn-secondary btn-sm">
-                <i class="fas fa-file-download has-text"></i>
-                Secondary action
-            </button>
-            <button  type="button" class="btn btn-secondary btn-sm">
-                <i class="fas fa-cogs has-text"></i>
-                Another secondary action
-            </button>
-            <button ngbDropdown class="btn btn-secondary btn-sm tab-head">
-                <a ngbDropdownToggle>
-                    <i class="fas fa-pencil has-text"></i> Edit
-                </a>
-                <div ngbDropdownMenu>
-                    <a (click)="msg('Copy')" ngbDropdownItem>
-                        <i class="fas fa-copy has-text"></i> Copy
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-primary btn-sm"
+                        data-tooltip="Explanation of Primary Action goes here"
+                        data-position="bottom left">
+                    <i class="fas fa-file-upload has-text"></i>
+                    Primary action
+                </button>
+                <button type="button" class="btn btn-secondary btn-sm">
+                    <i class="fas fa-file-download has-text"></i>
+                    Secondary action
+                </button>
+                <button type="button" class="btn btn-secondary btn-sm">
+                    <i class="fas fa-cogs has-text"></i>
+                    Another secondary action
+                </button>
+                <button ngbDropdown class="btn btn-secondary btn-sm tab-head">
+                    <a ngbDropdownToggle>
+                        <i class="fas fa-pencil has-text"></i> Edit
                     </a>
+                    <div ngbDropdownMenu>
+                        <a (click)="msg('Copy')" ngbDropdownItem>
+                            <i class="fas fa-copy has-text"></i> Copy
+                        </a>
 
-                    <a (click)="msg('Paste')" ngbDropdownItem>
-                        <i class="fas fa-paste has-text"></i> Paste
-                    </a>
+                        <a (click)="msg('Paste')" ngbDropdownItem>
+                            <i class="fas fa-paste has-text"></i> Paste
+                        </a>
 
-                    <a (click)="msg('Cut')" ngbDropdownItem>
-                        <i class="fas fa-cut has-text"></i> Cut
-                    </a>
-                </div>
-            </button>
-
-            <!-- <div class="ui basic tiny compact dropdown blue button" suiDropdown>
-                <div class="text">Edit</div>
-                <i class="dropdown icon"></i>
-                <div class="menu" suiDropdownMenu>
-                    <div class="item" (click)="f()">
-                        <i class="clone icon"></i> Duplicate
+                        <a (click)="msg('Cut')" ngbDropdownItem>
+                            <i class="fas fa-cut has-text"></i> Cut
+                        </a>
                     </div>
-                    <div class="item" (click)="f()">
-                        <i class="copy icon"></i> Copy (CTRL+C)
-                    </div>
-                    <div class="item" (click)="f()">
-                        <i class="cut icon"></i> Cut (CTRL+X)
-                    </div>
-                </div>-->
+                </button>
             </div>
         </div>
 
-    <div class="col">
-        <button class="btn btn-primary btn-sm" (click)="import()">
-            <i class="fas fa-file-import has-text"></i>
-            Import
-        </button>
-    </div>
+        <div class="col">
+            <button class="btn btn-primary btn-sm" (click)="import()">
+                <i class="fas fa-file-import has-text"></i>
+                Import
+            </button>
+        </div>
     </div>
 </div>
 
@@ -70,16 +55,16 @@
     <div class="content">
         <span>
             Importing...
-<!--            <sui-progress [value]="37"></sui-progress>-->
+            <!--            <sui-progress [value]="37"></sui-progress>-->
         </span>
     </div>
     <div class="actions">
-    <button class="ui blue basic button" (click)="modal.deny()">
-        Cancel
-    </button>
-    <button class="ui blue button" [disabled]="true"><i class="upload icon"></i>
-        Import
-    </button>
+        <button class="ui blue basic button" (click)="modal.deny()">
+            Cancel
+        </button>
+        <button class="ui blue button" [disabled]="true"><i class="upload icon"></i>
+            Import
+        </button>
     </div>
 
 </ng-template>
