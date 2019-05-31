@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { ModalWindowComponent } from "../modal-window/modal-window.component";
+import { ModalProgressBarComponent } from "../modal-progress-bar/modal-progress-bar.component";
 
 @Component({
     selector: 'app-add',
@@ -19,7 +19,7 @@ export class AddComponent implements OnInit {
     }
 
     public openImportModal() {
-        this.modalService.open(ModalWindowComponent).result.then(
+        this.modalService.open(ModalProgressBarComponent).result.then(
             () => {
                 // operation completed, no-op
             },

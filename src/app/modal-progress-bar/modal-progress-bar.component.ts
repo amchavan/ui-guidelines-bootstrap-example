@@ -1,12 +1,13 @@
+
 import { Component, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-    selector: 'modal-window',
-    templateUrl: './modal-window.component.html',
-    styleUrls: ['./modal-window.component.css']
+    selector: 'modal-progress-bar',
+    templateUrl: './modal-progress-bar.component.html',
+    styleUrls: ['./modal-progress-bar.component.css']
 })
-export class ModalWindowComponent {
+export class ModalProgressBarComponent {
 
     complete = false;
     progress : number;
