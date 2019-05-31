@@ -1,7 +1,9 @@
-
 import { Component, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
+/*
+ * An animated progress bar in a modal window
+ */
 @Component({
     selector: 'modal-progress-bar',
     templateUrl: './modal-progress-bar.component.html',
