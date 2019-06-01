@@ -24,6 +24,10 @@ button {
   background: #25386f;
   background: linear-gradient(to bottom, #25386f 0%, #0f4f87 100%);
 }
+.btn.btn-primary:hover {
+  /* remove background when hovering */
+  background: #0f4f87;
+}
 
 /* No ugly button shadow */
 .btn:focus,.btn:active {
@@ -55,4 +59,22 @@ button {
 /* Add some space between image and text when Font Awesome icons are used together with text labels  */
 i.has-text {
   padding: 0 2px 0 0;
+}
+
+/* Tooltips should be black on light gray */
+.bs-tooltip-top .arrow::before {
+  border-top-color: #f1f1f1;
+}
+.bs-tooltip-right .arrow::before {
+  border-right-color: #f1f1f1;
+}
+.bs-tooltip-bottom .arrow::before {
+  border-bottom-color: #f1f1f1;
+}
+.bs-tooltip-left .arrow::before {
+  border-left-color: #f1f1f1;
+}
+.tooltip-inner, arrow {
+  background-color: #f1f1f1;
+  color: #000000;
 }
