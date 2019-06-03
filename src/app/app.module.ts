@@ -10,6 +10,7 @@ import { PageHeaderComponent } from './page-header/page-header.component';
 import { AddComponent } from './add/add.component';
 import { ManageComponent } from './manage/manage.component';
 import { ModalProgressBarComponent } from './modal-progress-bar/modal-progress-bar.component';
+import { DataReducerSearchFormComponent } from './data-reducer-search-form/data-reducer-search-form.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ModalProgressBarComponent } from './modal-progress-bar/modal-progress-b
     PageHeaderComponent,
     AddComponent,
     ManageComponent,
-    ModalProgressBarComponent
+    ModalProgressBarComponent,
+    DataReducerSearchFormComponent
   ],
   imports: [
     BrowserModule,
