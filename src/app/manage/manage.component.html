@@ -2,14 +2,52 @@
     <div class="row">
         <div class="col">
             <button class="btn btn-primary btn-sm"
-                    ngbTooltip="Pop up a modal search form"
-                    placement="bottom-left"
                     (click)="openDataReducerSearchModal()">
                 <i class="fas fa-search has-text"></i>
                 Data Reducers search
             </button>
         </div>
     </div>
+
+
+    <div class="row">
+        <div class="col">
+            <table class="table table-sm table-compact">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>ALMA ID</th>
+                    <th>Name</th>
+                    <th>E-mail</th>
+                    <th>ARC</th>
+                    <th>Institution</th>
+                    <th>Manual Cal</th>
+                    <th>Manual Img</th>
+                    <th>Weblog Review</th>
+                    <th>QA2 Approval</th>
+                </tr>
+                </thead>
+                <tbody style=" height: 300px;overflow-y: scroll;">
+
+                <tr *ngFor="let dr of dataReducers" (click)="open(dr)">
+                    <td><i class="fas {{(!dr.active) ? 'fa-cross' : ''}}"></i></td>
+                    <td>{{dr.userId}}</td>
+                    <td style="white-space: nowrap;">{{dr.firstName}} {{dr.lastName}}</td>
+                    <td>{{dr.email}}</td>
+                    <td>{{(dr.arc != undefined) ? dr.arc : ''}}</td>
+                    <td>{{(dr.institution != undefined) ? dr.institution : ''}}</td>
+                    <td><i class="fas {{(dr.manualCalibration) ? 'fa-check' : ''}}"></i></td>
+                    <td><i class="fas {{(dr.manualImaging) ? 'fa-check' : ''}}"></i></td>
+                    <td><i class="fas {{(dr.weblogReview) ? 'fa-check' : ''}}"></i></td>
+                    <td><i class="fas {{(dr.qa2Approval) ? 'fa-check' : ''}}"></i></td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
 </div>
 
 <!--<data-reducer-search-form></data-reducer-search-form>-->

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataReducerSearchFormComponent } from "../data-reducer-search-form/data-reducer-search-form.component";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { DataReducer, allDataReducers } from "../data-reducer";
 
 @Component({
   selector: 'app-manage',
@@ -9,7 +10,10 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 })
 export class ManageComponent implements OnInit {
 
-  constructor( private modalService: NgbModal ) { }
+  dataReducers : DataReducer[];
+
+  constructor( private modalService: NgbModal ) {
+  }
 
   ngOnInit() {
   }
@@ -17,15 +21,10 @@ export class ManageComponent implements OnInit {
   openDataReducerSearchModal() {
     this.modalService.open( DataReducerSearchFormComponent, { size: 'lg' } ).result.then(
         () => {
-          // operation completed, no-op
+          this.dataReducers = allDataReducers;
         },
-        (progress) => {
-          // show how we can use the information returned by
-          // the modal dialog when the user canceled an operation
-          console.log(">>> rejected: progress: " + progress );
-          // this.importCanceledAlertMessage = "Import canceled at " + progress + "%";
-          // this.showAlert = true;
+        () => {
+          this.dataReducers = [];
         });
-
   }
 }
