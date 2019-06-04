@@ -1,11 +1,11 @@
 /*
   Application-wide style definitions, based on Bootstrap
-  Implement the ALMA Web UI Guidelines
+  They implement the ALMA Web UI Guidelines
 */
-
 @import "~bootstrap/dist/css/bootstrap.css";
 
-/* Make Lato 14px the default font, everywhere */
+/* Make Lato 14px the default font */
+
 body {
   font-family: Lato, sans-serif;
   font-size: 14px;
@@ -15,19 +15,22 @@ button {
   font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
 }
 
-.dropdown-item {
-  font-size: 14px;
-}
+/* Primary and secondary buttons should be ALMA blue */
 
-/* Primary buttons should be ALMA blue */
 .btn.btn-primary {
-  background: #25386f;
+  background: #1f4f83;
 }
 .btn.btn-primary:hover {
-  background: #0f4f87;
+  background: #19316f;
+}
+.btn.btn-secondary {
+  border-color: #1f4f83;
+  background: white;
+  color: #1f4f83;
 }
 
 /* No ugly button shadow */
+
 .btn:focus, .btn.focus, .btn:active {
   box-shadow: none;
 }
@@ -39,27 +42,41 @@ button {
 }
 
 /* ALMA blue definition */
+
 .almacolor {
-  background: #25386f;
-  background: linear-gradient(to bottom, #25386f 0%, #0f4f87 100%);
+
+  /* #223370 */
+  /* #005084 */
+
+  /*background: #19316f;*/
+  /*background: linear-gradient(to bottom, #19316f 0%, #1f4f83 100%);*/
+  background: linear-gradient(to bottom, #19316f 0%, #1f4f83 100%);
 }
 
-/* Add some space between image and text when Font Awesome icons are used together with text labels  */
+/* Add some space between image and text when icons are used together with text labels  */
+
 i.has-text {
   padding: 0 2px 0 0;
 }
 
 /* Radio buttons */
+
 label.btn {
   padding: 0 16px 0 0;
 }
 
 /* Checkboxes */
+
 label.checkbox {
   padding: 0 16px 0 0;
 }
 
 /* Dropdown */
+
+.dropdown-item {
+  font-size: 14px;
+}
+
 form .dropdown-toggle {
   text-align: left;
   border: 1px solid #ced4da;
@@ -89,6 +106,7 @@ form .dropdown-toggle {
 }
 
 /* Forms and modals */
+
 .modal-header, .form-header {
   font-size: 20px;
   font-weight: bold;
