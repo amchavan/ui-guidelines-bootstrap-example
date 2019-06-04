@@ -22,10 +22,8 @@ button {
 /* Primary buttons should be ALMA blue */
 .btn.btn-primary {
   background: #25386f;
-  background: linear-gradient(to bottom, #25386f 0%, #0f4f87 100%);
 }
 .btn.btn-primary:hover {
-  /* remove background when hovering */
   background: #0f4f87;
 }
 
@@ -62,8 +60,8 @@ label.checkbox {
 }
 
 /* Dropdown */
-.dropdown-toggle {
-  /*padding: 0;*/
+form .dropdown-toggle {
+  text-align: left;
   border: 1px solid #ced4da;
 }
 

@@ -6,6 +6,8 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
+
 import { PageHeaderComponent } from './page-header/page-header.component';
 import { AddComponent } from './add/add.component';
 import { ManageComponent } from './manage/manage.component';
@@ -27,10 +29,11 @@ import { DataReducerSearchFormComponent } from './data-reducer-search-form/data-
     NgbModule,
     FormsModule
   ],
-  providers: [],
+  providers: [NgbActiveModal],
   bootstrap: [AppComponent],
   entryComponents: [
-    ModalProgressBarComponent
+    ModalProgressBarComponent,
+    DataReducerSearchFormComponent
   ]
 })
 export class AppModule { }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 interface AlmaRegionalCenter {
   name: string,
@@ -43,7 +44,9 @@ export class DataReducerSearchFormComponent implements OnInit {
   qWeblog : boolean = false;
   qQA2App : boolean = false;
 
-  constructor() { }
+  constructor( public activeModal: NgbActiveModal ) {
+    // no-op
+  }
 
   ngOnInit() {
   }
@@ -72,5 +75,6 @@ export class DataReducerSearchFormComponent implements OnInit {
         `nameId='${this.nameId}', selectedArc=${this.selectedArc}, selectedNode=${this.selectedNode}, `
         + qualifications;
     alert( message );
+    this.activeModal.close()
   }
 }

@@ -13,7 +13,7 @@ export class AddComponent implements OnInit {
 
     showAlert = false;
 
-    constructor( private modalService: NgbModal  ) {
+    constructor( private modalService: NgbModal ) {
     }
 
     ngOnInit() {
