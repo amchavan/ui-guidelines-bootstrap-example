@@ -31,10 +31,17 @@ export class DataReducerSearchFormComponent implements OnInit {
     nodes:  []
   }];
 
+  nameId = "";
   selectedArc   = null;
   selectedNode  = null;
   selectedNodes = [];
   shownInNodePulldown = NO_ARC_NODES;
+
+  /* Qualifications */
+  qManCal : boolean = false;
+  qManImg : boolean = false;
+  qWeblog : boolean = false;
+  qQA2App : boolean = false;
 
   constructor() { }
 
@@ -56,5 +63,14 @@ export class DataReducerSearchFormComponent implements OnInit {
   onSelectArcNode( node ) {
     this.selectedNode = this.shownInNodePulldown = node;
     console.log( '>>> ' + node );
+  }
+
+  /** ??? */
+  search() {
+    var qualifications = `qManCal=${this.qManCal}, qManImg=${this.qManImg}, qWeblog=${this.qWeblog}, qQA2App=${this.qQA2App}`;
+    var message =
+        `nameId='${this.nameId}', selectedArc=${this.selectedArc}, selectedNode=${this.selectedNode}, `
+        + qualifications;
+    alert( message );
   }
 }

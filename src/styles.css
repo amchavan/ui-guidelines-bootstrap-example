@@ -12,7 +12,7 @@ body {
 }
 
 button {
-  font-family: Lato, sans-serif;
+  font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
 }
 
 .dropdown-item {
@@ -30,22 +30,12 @@ button {
 }
 
 /* No ugly button shadow */
-.btn:focus,.btn:active {
+.btn:focus, .btn.focus, .btn:active {
   box-shadow: none;
 }
 
 /* No padding and no margin for all containers */
-.container-fluid {
-  padding: 0;
-  margin: 0;
-}
-
-.row {
-  padding: 0;
-  margin: 0;
-}
-
-.col {
+.container-fluid, .container, .row, .col {
   padding: 0;
   margin: 0;
 }
@@ -59,6 +49,22 @@ button {
 /* Add some space between image and text when Font Awesome icons are used together with text labels  */
 i.has-text {
   padding: 0 2px 0 0;
+}
+
+/* Radio buttons */
+label.btn {
+  padding: 0 16px 0 0;
+}
+
+/* Checkboxes */
+label.checkbox {
+  padding: 0 16px 0 0;
+}
+
+/* Dropdown */
+.dropdown-toggle {
+  /*padding: 0;*/
+  border: 1px solid #ced4da;
 }
 
 /* Tooltips should be black on light gray */
@@ -77,4 +83,22 @@ i.has-text {
 .tooltip-inner, arrow {
   background-color: #f1f1f1;
   color: #000000;
+}
+
+/* Forms */
+form {
+  padding: 24px;
+}
+
+.form-header {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 24px 24px;
+  border-bottom: 1px solid rgba(34,36,38,.15)
+}
+
+form div.field > label:first-child {
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
