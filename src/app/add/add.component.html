@@ -3,20 +3,26 @@
         <div class="col">
             <div class="btn-group" role="group">
                 <button type="button" class="btn btn-primary btn-sm"
-                        ngbTooltip="Explanation of primary action goes here"
-                        placement="bottom-left">
+                        ngbPopover="Explanation of primary action goes here"
+                        triggers="mouseenter:mouseleave"
+                        placement="right"
+                        popoverClass="tooltip-default right">
                     <i class="fas fa-file-upload has-text"></i>
                     Primary action
                 </button>
                 <button type="button" class="btn btn-secondary btn-sm"
-                        ngbTooltip="Explanation of secondary action goes here"
-                        placement="bottom-left">
+                        ngbPopover="Explanation of secondary action goes here"
+                        triggers="mouseenter:mouseleave"
+                        placement="bottom"
+                        popoverClass="tooltip-default bottom">
                     <i class="fas fa-file-download has-text"></i>
                     Secondary action
                 </button>
                 <button type="button" class="btn btn-secondary btn-sm"
-                        ngbTooltip="Explanation of... you get the point"
-                        placement="bottom-left">
+                        ngbPopover="Explanation of... you get the point"
+                        triggers="mouseenter:mouseleave"
+                        placement="bottom"
+                        popoverClass="tooltip-default bottom">
                     <i class="fas fa-cogs has-text"></i>
                     Another secondary action
                 </button>
