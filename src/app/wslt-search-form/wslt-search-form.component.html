@@ -1,0 +1,126 @@
+<div class="modal-header">
+    Search criteria
+    <button class="btn close" type="button" (click)="activeModal.dismiss()">
+        <i class="fas fa-times"></i>
+    </button>
+</div>
+<div class="modal-body">
+    <form>
+
+        <div class="row">
+            <div class="col">
+
+                <!-- Query intervals pulldown menu -->
+                <div class="form-group">
+                    <label>Query interval</label>
+                    <div class="input-group">
+                        <div ngbDropdown>
+                            <button ngbDropdownToggle class="btn btn-block"
+                                    [ngClass]="{'text-muted': selectedInterval == null}">
+                                {{selectedInterval == null ? "Select query interval..." : selectedInterval.name}}
+                            </button>
+                            <div ngbDropdownMenu>
+                <span *ngFor="let interval of intervals">
+                <button ngbDropdownItem (click)="onSelectInterval(interval)">{{interval.name}}</button>
+                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <input type="text" class="form-control" placeholder="First name">
+                <input type="text" class="form-control" placeholder="First name">
+            </div>
+            <div class="col">
+
+                <!-- Max size of result set -->
+                <div class="form-group">
+                    <label>Max entries</label>
+                    <div class="input-group">
+                        <input class="form-control" type="search" placeholder="Max 1000"
+                               name="maxEntries"
+                               [(ngModel)]="maxEntries"
+                               (change)="onMaxEntriesChange()">
+                        &nbsp;&nbsp;
+                        <label *ngIf="!isValidMaxEntries" class="alert alert-danger" type="danger">
+                            Invalid value, should be 1-1000 <i class="fas fa-exclamation-triangle has-text"></i>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Name or ID</label>
+            <div class="input-group">
+                <input class="form-control border-right-0" type="search" placeholder="Name/ID..."
+                       name="nameId" [(ngModel)]="nameId">
+                <span class="input-group-append">
+                <div class="input-group-text bg-transparent"><i class="fa fa-search"></i></div>
+            </span>
+            </div>
+            <small id="emailHelp" class="form-text text-muted">Optional help text — or you can use a tooltip instead
+            </small>
+        </div>
+
+        <div class="form-group">
+            <label>ARC</label>
+            <div ngbRadioGroup name="arcsRadioGroup" [(ngModel)]="selectedArc">
+            <span *ngFor="let arc of arcs">
+                <label ngbButtonLabel>
+                    <input ngbButton type="radio" [value]="arc.name" (click)="onSelectArc(arc.name)"> {{arc.name}}
+                </label>
+            </span>
+            </div>
+        </div>
+
+        <div class="field">
+            <label>Qualifications</label>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="column">
+                        <label class="checkbox">
+                            <input type="checkbox" [(ngModel)]="qManCal" name="qManImg"> Manual Calibration
+                        </label>
+                    </div>
+                    <div class="column">
+                        <label class="checkbox">
+                            <input type="checkbox" [(ngModel)]="qManImg" name="qManImg"> Manual Imaging
+                        </label>
+                    </div>
+                    <div class="column">
+                        <label class="checkbox">
+                            <input type="checkbox" [(ngModel)]="qWeblog" name="weblog"> WebLog Review
+                        </label>
+                    </div>
+                    <div class="column">
+                        <label class="checkbox">
+                            <input type="checkbox" [(ngModel)]="qQA2App" name="qa2"> QA2 Approval
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--    qManCal={{qManCal}}, qManImg={{qManImg}}, qWeblog={{qWeblog}}, qQA2App={{qQA2App}}-->
+        <div>
+
+            <button type="button" class="btn btn-primary"
+                    (click)="search()" tabindex="0">
+                <i class="fas fa-search has-text"></i>
+                Search
+            </button>
+
+            <!--
+                Reset buttons are discouraged, see for instance item 48 at
+                https://www.ventureharbour.com/form-design-best-practices/
+
+            <button type="button" class="btn btn-secondary"
+                    (click)="reset()">
+              <i class="delete icon"></i>
+              Reset
+            </button>
+            -->
+        </div>
+    </form>
+</div>

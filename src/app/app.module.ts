@@ -14,6 +14,7 @@ import { ManageComponent } from './manage/manage.component';
 import { ModalProgressBarComponent } from './modal-progress-bar/modal-progress-bar.component';
 import { DataReducerSearchFormComponent } from './data-reducer-search-form/data-reducer-search-form.component';
 import { BookingComponent } from './booking/booking.component';
+import { WsltSearchFormComponent } from './wslt-search-form/wslt-search-form.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { BookingComponent } from './booking/booking.component';
     ManageComponent,
     ModalProgressBarComponent,
     DataReducerSearchFormComponent,
-    BookingComponent
+    BookingComponent,
+    WsltSearchFormComponent
   ],
   imports: [
     BrowserModule,
