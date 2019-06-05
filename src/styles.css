@@ -21,7 +21,7 @@ button {
   background: #1f4f83;
 }
 .btn.btn-primary:hover {
-  background: #19316f;
+  background: #18316f;
 }
 .btn.btn-secondary {
   border-color: #1f4f83;
@@ -48,9 +48,9 @@ button {
   /* #1e4e82 */
   /* #005084 */
 
-  /*background: #19316f;*/
-  /*background: linear-gradient(to bottom, #19316f 0%, #1f4f83 100%);*/
-  background: linear-gradient(to bottom, #16326e 0%, #1e4e82 100%);
+  /*background: #18316f;*/
+  /*background: linear-gradient(to bottom, #18316f 0%, #1f4f83 100%);*/
+  background: linear-gradient(to bottom, #18316f 0%, #1f4f83 100%);
 }
 
 /* Add some space between image and text when icons are used together with text labels  */
