@@ -81,7 +81,7 @@ form .dropdown-toggle {
   border: 1px solid #ced4da;
 }
 
-/* Tooltips */
+/* Tooltips and popovers */
 
 .bs-tooltip-top .arrow::before {
   border-top-color: #e1e1e1;
@@ -102,6 +102,51 @@ form .dropdown-toggle {
 .tooltip-inner, arrow {
   background-color: #e1e1e1;
   color: #000000;
+}
+
+.popover.tooltip-error {
+    border-color: #db2828;
+}
+.popover.tooltip-error .popover-body {
+    color: #db2828;
+}
+.popover.tooltip-error.left .arrow::before {
+    border-left-color: #db2828;
+}
+.popover.tooltip-error.top .arrow::before {
+    border-top-color: #db2828;
+}
+.popover.tooltip-error.right .arrow::before {
+    border-right-color: #db2828;
+}
+.popover.tooltip-error.bottom .arrow::before {
+    border-bottom-color: #db2828;
+}
+.popover.tooltip-error.right .arrow::before {
+    border-right-color: #db2828;
+}
+
+
+.popover.tooltip-default {
+    border-color: gray;
+}
+.popover.tooltip-default .popover-body {
+    color: black;
+}
+.popover.tooltip-default.left .arrow::before {
+    border-left-color: gray;
+}
+.popover.tooltip-default.top .arrow::before {
+    border-top-color: gray;
+}
+.popover.tooltip-default.right .arrow::before {
+    border-right-color: gray;
+}
+.popover.tooltip-default.bottom .arrow::before {
+    border-bottom-color: gray;
+}
+.popover.tooltip-default.right .arrow::before {
+    border-right-color: gray;
 }
 
 /* Forms and modals */
