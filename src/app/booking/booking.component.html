@@ -1,3 +1,52 @@
-<p>
-  BookingComponent
-</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-2">
+            <button class="btn btn-primary" type="button" (click)="openNewPeriodModalForm('Test')">
+                <i class="fas fa-plus has-text"></i>
+                Period
+            </button>
+        </div>
+        <div class="col-sm-10">
+            <div>
+                <ngb-alert *ngIf="isVisibleWarning" type="warning" (close)="isVisibleWarning=false"
+                           ngbTooltip="This alert can be dismissed by clicking on the x button"
+                           placement="left">
+                    alert-warning (dismissable) <i class="fas fa-exclamation-triangle has-text"></i>
+                </ngb-alert>
+                <ngb-alert *ngIf="isVisibleInfo" type="info" (close)="isVisibleInfo=false"
+                           ngbTooltip="This alert can be dismissed by clicking on the x button"
+                           placement="left">
+                    alert-info (dismissable) <i class="fas fa-info-circle has-text"></i>
+                </ngb-alert>
+            </div>
+            <div>
+                <label class="alert alert-danger" type="danger"
+                       ngbTooltip="Something went wrong!"
+                       placement="left">
+                    alert-danger <i class="fas fa-exclamation-triangle has-text"></i>
+                </label>
+                <label class="alert alert-primary" role="alert">
+                    alert-primary <i class="fas fa-info-circle has-text"></i>
+                </label>
+                <label class="alert alert-secondary" role="alert">
+                    alert-secondary <i class="fas fa-info-circle has-text"></i>
+                </label>
+                <label class="alert alert-success" role="alert">
+                    alert-success <i class="fas fa-exclamation-circle has-text"></i>
+                </label>
+                <label class="alert alert-warning" role="alert">
+                    alert-warning <i class="fas fa-exclamation-triangle has-text"></i>
+                </label>
+                <label class="alert alert-info" role="alert">
+                    alert-info <i class="fas fa-info-circle has-text"></i>
+                </label>
+                <label class="alert alert-light" role="alert">
+                    alert-light <i class="fas fa-exclamation-circle has-text"></i>
+                </label>
+                <label class="alert alert-dark" role="alert">
+                    alert-dark <i class="fas fa-exclamation-circle has-text"></i>
+                </label>
+            </div>
+        </div>
+    </div>
+</div>

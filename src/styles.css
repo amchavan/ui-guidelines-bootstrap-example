@@ -41,22 +41,21 @@ button {
   margin: 0;
 }
 
-/* ALMA blue definition */
+/* "ALMA blue" definition */
 
 .almacolor {
-
-  /* #1e4e82 */
-  /* #005084 */
-
-  /*background: #18316f;*/
-  /*background: linear-gradient(to bottom, #18316f 0%, #1f4f83 100%);*/
   background: linear-gradient(to bottom, #18316f 0%, #1f4f83 100%);
 }
 
 /* Add some space between image and text when icons are used together with text labels  */
-
 i.has-text {
-  padding: 0 2px 0 0;
+    padding: 0 2px 0 2px;
+}
+i.has-text-left {
+    padding: 0 0 0 2px;
+}
+i.has-text-right {
+    padding: 0 2px 0 0;
 }
 
 /* Radio buttons */
@@ -121,10 +120,65 @@ form div.field > label:first-child {
 }
 
 /* Tables */
+
 .table td {
   border-top: 0;
 }
 
-.table-compact td {
+.table-compact td { /* use this class for a more compact-looking table (less whitespace) */
   padding: 0;
+}
+
+/* Alerts */
+/* To-do: styling for  */
+
+.alert {
+    padding: 6px;
+    margin: 0;
+}
+
+.alert-primary {
+    color: white;
+    border-color: #1f4f83;
+    background-color: #1f4f83;
+}
+
+.alert-secondary, .alert-info {
+    color: #1f4f83;
+    border-color: #1f4f83;
+    background-color: transparent;
+}
+
+.alert-success {
+    color: #185927;
+    border-color: #185927;
+    background-color: transparent;
+}
+
+.alert-danger {
+    color: #db2828;
+    border-color: #db2828;
+    background-color: transparent;
+}
+
+.alert-warning {
+    color: #856404;
+    border-color: #856404;
+    background-color: transparent;
+}
+
+.alert-light {
+    color: #818182;
+    border-color: #818182;
+    background-color: transparent;
+}
+
+.alert-dark {
+    color: #212529;
+    border-color: #212529;
+    background-color: transparent;
+}
+
+.alert-dismissible .close {
+    padding: 6px;
 }
