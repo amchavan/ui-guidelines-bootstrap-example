@@ -7,13 +7,15 @@
 <div class="modal-body">
     <form>
 
+        <!-- Query parameters -->
+        <div>
         <div class="row">
 
             <!-- Left column -->
             <div class="col">
 
                 <!-- Query intervals pulldown menu -->
-                <div class="form-group">
+                <div class="form-group field">
                     <label>Query interval</label>
                     <div class="input-group">
                         <div ngbDropdown>
@@ -31,7 +33,7 @@
                 </div>
 
                 <!-- Query interval start -->
-                <div *ngIf="enableIntervalStart" class="form-group">
+                <div *ngIf="enableIntervalStart" class="form-group field">
                     <label>Start datetime</label>
                     <div class="input-group">
                         <input ngbDatepicker
@@ -62,7 +64,7 @@
             <div class="col">
 
                 <!-- Max size of result set -->
-                <div class="form-group">
+                <div class="form-group field">
                     <label>Max entries</label>
                     <div class="input-group">
                         <input class="form-control"
@@ -87,7 +89,7 @@
 
 
                 <!-- Query interval end -->
-                <div *ngIf="enableIntervalEnd" class="form-group">
+                <div *ngIf="enableIntervalEnd" class="form-group field">
                     <label>End datetime</label>
                     <div class="input-group">
                         <input ngbDatepicker
@@ -110,54 +112,88 @@
                 </div>
             </div>
         </div>
-
-        <div class="form-group">
-            <label>Name or ID</label>
-            <div class="input-group">
-                <input class="form-control border-right-0" type="search" placeholder="Name/ID..."
-                       name="nameId" [(ngModel)]="nameId">
-                <span class="input-group-append">
-                <div class="input-group-text bg-transparent"><i class="fa fa-search"></i></div>
-            </span>
-            </div>
-            <small id="emailHelp" class="form-text text-muted">Optional help text — or you can use a tooltip instead
-            </small>
         </div>
 
-        <div class="form-group">
-            <label>ARC</label>
-            <div ngbRadioGroup name="arcsRadioGroup" [(ngModel)]="selectedArc">
-            <span *ngFor="let arc of arcs">
-                <label ngbButtonLabel>
-                    <input ngbButton type="radio" [value]="arc.name" (click)="onSelectArc(arc.name)"> {{arc.name}}
-                </label>
-            </span>
-            </div>
-        </div>
+        <!-- General information -->
+        <div>
 
-        <div class="field">
-            <label>Qualifications</label>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="column">
-                        <label class="checkbox">
-                            <input type="checkbox" [(ngModel)]="qManCal" name="qManImg"> Manual Calibration
-                        </label>
+            <!-- 4x3 table of entry types -->
+            <div class="field">
+                <label>Types</label>
+                <div class="container-fluid">
+
+                    <!-- Entry types row 1 -->
+                    <div class="row">
+                        <div class="col col-md-2 anten">
+                            <label class="checkbox">
+                                <input type="checkbox" [(ngModel)]="qManCal" name="qManImg"> ANTEN
+                            </label>
+                        </div>
+                        <div class="col col-md-2 aog">
+                            <label class="checkbox">
+                                <input type="checkbox" [(ngModel)]="qManImg" name="qManImg"> AOG
+                            </label>
+                        </div>
+                        <div class="col col-md-2 array">
+                            <label class="checkbox">
+                                <input type="checkbox" [(ngModel)]="qWeblog" name="weblog"> ARRAY
+                            </label>
+                        </div>
                     </div>
-                    <div class="column">
-                        <label class="checkbox">
-                            <input type="checkbox" [(ngModel)]="qManImg" name="qManImg"> Manual Imaging
-                        </label>
+
+                    <!-- Entry types row 2 -->
+                    <div class="row">
+                        <div class="col col-md-2 cmdln">
+                            <label class="checkbox ">
+                                <input type="checkbox" [(ngModel)]="qManCal" name="qManImg"> CMDLN
+                            </label>
+                        </div>
+                        <div class="col col-md-2 down">
+                            <label class="checkbox">
+                                <input type="checkbox" [(ngModel)]="qManImg" name="qManImg"> DOWN
+                            </label>
+                        </div>
+                        <div class="col col-md-2 engin">
+                            <label class="checkbox ">
+                                <input type="checkbox" [(ngModel)]="qWeblog" name="weblog"> ENGIN
+                            </label>
+                        </div>
                     </div>
-                    <div class="column">
-                        <label class="checkbox">
-                            <input type="checkbox" [(ngModel)]="qWeblog" name="weblog"> WebLog Review
-                        </label>
+
+                    <!-- Entry types row 3 -->
+                    <div class="row">
+                        <div class="col col-md-2 entry">
+                            <label class="checkbox">
+                                <input type="checkbox" [(ngModel)]="qManCal" name="qManImg"> ENTRY
+                            </label>
+                        </div>
+                        <div class="col col-md-2 mmex">
+                            <label class="checkbox">
+                                <input type="checkbox" [(ngModel)]="qManImg" name="qManImg"> MMEX
+                            </label>
+                        </div>
+                        <div class="col col-md-2 sbex">
+                            <label class="checkbox">
+                                <input type="checkbox" [(ngModel)]="qWeblog" name="weblog"> SBEX
+                            </label>
+                        </div>
                     </div>
-                    <div class="column">
-                        <label class="checkbox">
-                            <input type="checkbox" [(ngModel)]="qQA2App" name="qa2"> QA2 Approval
-                        </label>
+
+                    <!-- Entry types row 4 -->
+                    <div class="row">
+                        <div class="col col-md-2 shift">
+                            <label class="checkbox">
+                                <input type="checkbox" [(ngModel)]="qManCal" name="qManImg"> SHIFT
+                            </label>
+                        </div>
+                        <div class="col col-md-2 weath">
+                            <label class="checkbox">
+                                <input type="checkbox" [(ngModel)]="qManImg" name="qManImg"> WEATH
+                            </label>
+                        </div>
+                        <div>
+                            <!-- EMPTY -->
+                        </div>
                     </div>
                 </div>
             </div>
