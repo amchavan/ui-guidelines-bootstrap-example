@@ -22,7 +22,21 @@ export class WsltSearchFormComponent implements OnInit {
   iShift = 9;
   iWeath = 10;
   selectedEntryTypes : boolean[];
+
+
+  iAntInt     = 0;
+  iFeatures   = 1;
+  iHandover   = 2;
+  iHwTesting  = 3;
+  iRegression = 4;
+  iSciVer     = 5;
+  iSystEng    = 6;
+  iSwTesting  = 7;
   allEntryTypesSelected : boolean;
+
+
+  selectedEntryKeywords : boolean[];
+  allEntryKeywordsSelected : boolean;
 
   private QUERY_INTERVALS : any = [
     {value: 'LAST2', name: 'Last 2 hours'},
@@ -36,10 +50,19 @@ export class WsltSearchFormComponent implements OnInit {
     {value: 'INDEF', name: 'Indefinite'},
   ];
 
+  private SHIFT_ACTIVITIES : any = [
+      "EOC",
+      "Engineering",
+      "SciOps",
+      "AIV",
+      "CSV",
+      "Operations",
+      "SYST"
+  ];
+
   maxEntries = "";
   isValidMaxEntries = true;
 
-  selectedInterval = null;
 
   // By default we don't show the interval start and end selectors
   intervalStart = null;
@@ -49,6 +72,10 @@ export class WsltSearchFormComponent implements OnInit {
   isValidInterval = true; // TODO: form validation, see https://getbootstrap.com/docs/4.1/components/forms/#validation
 
   intervals = this.QUERY_INTERVALS;
+  selectedInterval = null;
+
+  shiftActivities = this.SHIFT_ACTIVITIES;
+  selectedShiftActivity= null;
 
   queryIntervalStartDate: Date;
   queryIntervalStartTime = null;
@@ -79,10 +106,15 @@ export class WsltSearchFormComponent implements OnInit {
 
     // Init entry type selection
     // --------------------------------------
-
     this.allEntryTypesSelected = false;
     this.selectedEntryTypes = [];
     this.selectDeselectAllEntryTypes( this.allEntryTypesSelected );
+
+    // Init keyword selection
+    // --------------------------------------
+    this.allEntryKeywordsSelected = false;
+    this.selectedEntryKeywords = [];
+    this.selectDeselectAllEntryKeywords( this.allEntryKeywordsSelected );
   }
 
   private selectDeselectAllEntryTypes( select : boolean ) {
@@ -91,11 +123,21 @@ export class WsltSearchFormComponent implements OnInit {
     }
   }
 
-  onSelectAllEntryTypesChange(select ) {
+  private selectDeselectAllEntryKeywords( select : boolean ) {
+    for (let i = 0; i < 11; i++) {
+      this.selectedEntryKeywords[i] = select;
+    }
+  }
+
+  onSelectAllEntryTypesChange( select ) {
     this.selectDeselectAllEntryTypes( select );
   }
 
-  onSelectInterval(interval) {
+  onSelectAllEntryKeywordsChange( select ) {
+    this.selectDeselectAllEntryKeywords( select );
+  }
+
+  onSelectInterval( interval ) {
     this.enableIntervalStart = false;
     this.enableIntervalEnd = false;
     this.selectedInterval = interval;
@@ -112,6 +154,11 @@ export class WsltSearchFormComponent implements OnInit {
     console.log( ">>> selected interval: " + interval.value );
   }
 
+
+  onSelectShiftActivity( activity ) {
+    this.selectedShiftActivity = activity;
+    console.log( ">>> selected interval: " + activity );
+  }
 
   // Max entries validator
   onMaxEntriesChange() {
@@ -155,5 +202,9 @@ export class WsltSearchFormComponent implements OnInit {
 
   onEntriesTypeChange(index) {
     console.log(">>> type " + index + ": " + this.selectedEntryTypes[index])
+  }
+
+  onEntriesKeywordChange(index) {
+    console.log(">>> keyword " + index + ": " + this.selectedEntryKeywords[index])
   }
 }

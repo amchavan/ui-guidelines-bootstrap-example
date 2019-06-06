@@ -5,248 +5,456 @@
     </button>
 </div>
 <div class="modal-body">
-    <form>
+    <!-- TODO: style accordeon panel headers -->
+    <ngb-accordion [closeOthers]="true" activeIds="basic">
+        <ngb-panel id="basic" title="Query parameters">
+            <ng-template ngbPanelContent>
 
-        <!-- Query parameters -->
-        <div>
-        <div class="row">
+                <form>
+                    <!-- Query parameters -->
+                    <div>
+                        <div class="row">
 
-            <!-- Left column -->
-            <div class="col">
+                            <!--
+                            TODO: UGLY HACK!
+                            This form row is dynamic, but we need it to have a known height
+                            otherwise the accordeon feature won't work.
+                            So we introduce a very thin left-hand column of fixed height.
+                            Must find a lesser hack, no time right now.
+                            mchavan, 06-Jun-2019
+                            -->
+                            <div class="col-1" style="max-width: 1px; padding: 0">
+                                <p>&nbsp;</p>
+                                <p>&nbsp;</p>
+                                <p>&nbsp;</p>
+                                <p>&nbsp;</p>
+                                <p>&nbsp;</p>
+                                <p>&nbsp;</p>
+                                <p>&nbsp;</p>
+                                <p>&nbsp;</p>
+                                <p>&nbsp;</p>
+                            </div>
+                            <!-- Left column -->
+                            <div class="col">
 
-                <!-- Query intervals pulldown menu -->
-                <div class="form-group field">
-                    <label>Query interval</label>
-                    <div class="input-group">
-                        <div ngbDropdown>
-                            <button ngbDropdownToggle class="btn btn-block"
-                                    [ngClass]="{'text-muted': selectedInterval == null}">
-                                {{selectedInterval == null ? "Select query interval..." : selectedInterval.name}}
-                            </button>
-                            <div ngbDropdownMenu>
+                                <!-- Query intervals pulldown menu -->
+                                <div class="form-group field">
+                                    <label>Query interval</label>
+                                    <div class="input-group">
+                                        <div ngbDropdown>
+                                            <button ngbDropdownToggle class="btn btn-block"
+                                                    [ngClass]="{'text-muted': selectedInterval == null}">
+                                                {{selectedInterval == null ? "Select query interval..." : selectedInterval.name}}
+                                            </button>
+                                            <div ngbDropdownMenu>
                                 <span *ngFor="let interval of intervals">
-                                    <button ngbDropdownItem (click)="onSelectInterval(interval)">{{interval.name}}</button>
+                                    <button ngbDropdownItem
+                                            (click)="onSelectInterval(interval)">{{interval.name}}</button>
                                 </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Query interval start -->
+                                <div *ngIf="enableIntervalStart" class="form-group field">
+                                    <label>Start datetime</label>
+                                    <div class="input-group">
+                                        <input ngbDatepicker
+                                               class="form-control" placeholder="yyyy-mm-dd"
+                                               name="startDP"
+                                               [(ngModel)]="queryIntervalStartDate"
+                                               (ngModelChange)="onStartDateChange()"
+                                               #startDP="ngbDatepicker">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-secondary calendar"
+                                                    (click)="startDP.toggle()"
+                                                    type="button">
+                                                <i class="fas fa-calendar-alt"></i>
+                                            </button>
+                                        </div>
+                                        <ngb-timepicker name="startTP"
+                                                        [(ngModel)]="queryIntervalStartTime"
+                                                        (ngModelChange)="onStartTimeChange()"
+                                                        [spinners]="queryIntervalStartSpinners"></ngb-timepicker>
+                                    </div>
+
+                                    <p>{{queryIntervalStartDate.toUTCString()}}</p>
+                                </div>
+                            </div>
+
+                            <!-- Separator for the two columns -->
+                            <div class="col-sm-1"></div>
+
+                            <!-- Right column -->
+                            <div class="col">
+
+                                <!-- Max size of result set -->
+                                <div class="form-group field">
+                                    <label>Max entries</label>
+                                    <div class="input-group">
+                                        <input class="form-control"
+                                               [ngClass]="{ 'alert-danger' : !isValidMaxEntries }"
+                                               placeholder="Max 1000"
+                                               name="maxEntries"
+                                               [(ngModel)]="maxEntries"
+                                               (change)="onMaxEntriesChange()">
+                                        &nbsp;&nbsp;
+                                        <!--                        <label *ngIf="!isValidMaxEntries" class="alert alert-danger" type="danger">-->
+                                        <!--                            Invalid value, should be 1-1000 <i class="fas fa-exclamation-triangle has-text"></i>-->
+                                        <!--                        </label>-->
+                                        <label *ngIf="!isValidMaxEntries" class="alert alert-danger" type="danger">
+                                            <i class="fas fa-exclamation-triangle" style="color:red"
+                                               ngbPopover="Invalid value, should be 1-1000"
+                                               triggers="mouseenter:mouseleave"
+                                               placement="top"
+                                               popoverClass="tooltip-error top"></i>
+                                        </label>
+                                    </div>
+                                </div>
+
+
+                                <!-- Query interval end -->
+                                <div *ngIf="enableIntervalEnd" class="form-group field">
+                                    <label>End datetime</label>
+                                    <div class="input-group">
+                                        <input ngbDatepicker
+                                               class="form-control" placeholder="yyyy-mm-dd"
+                                               name="endDP"
+                                               [(ngModel)]="queryIntervalEndDate"
+                                               (ngModelChange)="onEndDateChange()"
+                                               #endDP="ngbDatepicker">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-secondary calendar" (click)="endDP.toggle()"
+                                                    type="button">
+                                                <i class="fas fa-calendar-alt"></i>
+                                            </button>
+                                        </div>
+                                        <ngb-timepicker name="endTP"
+                                                        [(ngModel)]="queryIntervalEndTime"
+                                                        (ngModelChange)="onEndTimeChange()"
+                                                        [spinners]="queryIntervalEndSpinners"></ngb-timepicker>
+                                    </div>
+                                    <p>{{queryIntervalEndDate.toUTCString()}}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
+            </ng-template>
+        </ngb-panel>
 
-                <!-- Query interval start -->
-                <div *ngIf="enableIntervalStart" class="form-group field">
-                    <label>Start datetime</label>
-                    <div class="input-group">
-                        <input ngbDatepicker
-                               class="form-control" placeholder="yyyy-mm-dd"
-                               name="startDP"
-                               [(ngModel)]="queryIntervalStartDate"
-                               (ngModelChange)="onStartDateChange()"
-                               #startDP="ngbDatepicker">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary calendar" (click)="startDP.toggle()" type="button">
-                                <i class="fas fa-calendar-alt"></i>
-                            </button>
+        <ngb-panel id="general" title="General">
+            <ng-template ngbPanelContent>
+                <form>
+                    <!-- General information -->
+                    <div>
+
+                        <!-- 4x3 table of entry types -->
+                        <div class="form-group field">
+                            <label>Types &nbsp;&nbsp;
+                                <input type="checkbox"
+                                       [(ngModel)]="allEntryTypesSelected"
+                                       (change)="onSelectAllEntryTypesChange(allEntryTypesSelected)"
+                                       name="selectAll"
+                                       ngbPopover="Click here to select/deselect all entry types"
+                                       triggers="mouseenter:mouseleave"
+                                       placement="right"
+                                       popoverClass="tooltip-default right">
+                            </label>
+                            <!-- <div class="row">
+                                <div class="col col-sm-3">
+                                    <button class="btn btn-secondary" type="button" (click)="openWsltModalsearchForm()">
+                                        Invert selection
+                                    </button>
+                                </div>
+                                <div class="col"> -->
+                            <div class="container-fluid">
+
+                                <!-- Entry types row 1 -->
+                                <div class="row">
+                                    <div class="col col-md-2 anten">
+                                        <label class="checkbox">
+                                            <input type="checkbox" [(ngModel)]="selectedEntryTypes[iAnten]"
+                                                   (change)="onEntriesTypeChange(iAnten)" name="iAnten"> ANTEN
+                                        </label>
+                                    </div>
+                                    <div class="col col-md-2 aog">
+                                        <label class="checkbox">
+                                            <input type="checkbox" [(ngModel)]="selectedEntryTypes[iAog]"
+                                                   (change)="onEntriesTypeChange(iAog)" name="iAog"> AOG
+                                        </label>
+                                    </div>
+                                    <div class="col col-md-2 array">
+                                        <label class="checkbox">
+                                            <input type="checkbox" [(ngModel)]=" selectedEntryTypes[iArray]"
+                                                   (change)="onEntriesTypeChange(iArray)" name="iArray"> ARRAY
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Entry types row 2 -->
+                                <div class="row">
+                                    <div class="col col-md-2 cmdln">
+                                        <label class="checkbox ">
+                                            <input type="checkbox" [(ngModel)]="selectedEntryTypes[iCmdln]"
+                                                   (change)="onEntriesTypeChange(iCmdln)" name="iCmdln"> CMDLN
+                                        </label>
+                                    </div>
+                                    <div class="col col-md-2 down">
+                                        <label class="checkbox">
+                                            <input type="checkbox" [(ngModel)]="selectedEntryTypes[iDown]"
+                                                   (change)="onEntriesTypeChange(iDown)" name="iDown"> DOWN
+                                        </label>
+                                    </div>
+                                    <div class="col col-md-2 engin">
+                                        <label class="checkbox ">
+                                            <input type="checkbox" [(ngModel)]="selectedEntryTypes[iEngin]"
+                                                   (change)="onEntriesTypeChange(iEngin)" name="iEngin"> ENGIN
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Entry types row 3 -->
+                                <div class="row">
+                                    <div class="col col-md-2 entry">
+                                        <label class="checkbox">
+                                            <input type="checkbox" [(ngModel)]="selectedEntryTypes[iEntry]"
+                                                   (change)="onEntriesTypeChange(iEntry)" name="iEntry"> ENTRY
+                                        </label>
+                                    </div>
+                                    <div class="col col-md-2 mmex">
+                                        <label class="checkbox">
+                                            <input type="checkbox" [(ngModel)]="selectedEntryTypes[iMmex]"
+                                                   (change)="onEntriesTypeChange(iMmex)" name="iMmex"> MMEX
+                                        </label>
+                                    </div>
+                                    <div class="col col-md-2 sbex">
+                                        <label class="checkbox">
+                                            <input type="checkbox" [(ngModel)]="selectedEntryTypes[iSbex]"
+                                                   (change)="onEntriesTypeChange(iSbex)" name="iSbex"> SBEX
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Entry types row 4 -->
+                                <div class="row">
+                                    <div class="col col-md-2 shift">
+                                        <label class="checkbox">
+                                            <input type="checkbox" [(ngModel)]="selectedEntryTypes[iShift]"
+                                                   (change)="onEntriesTypeChange(iShift)" name="iShift"> SHIFT
+                                        </label>
+                                    </div>
+                                    <div class="col col-md-2 weath">
+                                        <label class="checkbox">
+                                            <input type="checkbox" [(ngModel)]="selectedEntryTypes[iWeath]"
+                                                   (change)="onEntriesTypeChange(iWeath)" name="iWeath"> WEATH
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <!-- EMPTY -->
+                                    </div>
+                                </div>
+                            </div>
+                            <!--                    </div>
+                                            </div>-->
                         </div>
-                        <ngb-timepicker name="startTP"
-                                        [(ngModel)]="queryIntervalStartTime"
-                                        (ngModelChange)="onStartTimeChange()"
-                                        [spinners]="queryIntervalStartSpinners"></ngb-timepicker>
+
+                        <!-- Author/Subject -->
+                        <div class="form-row">
+
+                            <div class="col">
+                                <!-- Author -->
+                                <div class="form-group field">
+                                    <label>Author</label>
+                                    <div class="input-group">
+                                        <input class="form-control"
+                                               placeholder="..."
+                                               name="entryAuthor"
+                                               [(ngModel)]="entryAuthor">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Separator for the two columns -->
+                            <div class="col-sm-1"></div>
+
+                            <div class="col">
+                                <!-- Subject -->
+                                <div class="form-group field">
+                                    <label>Subject</label>
+                                    <div class="input-group">
+                                        <input class="form-control"
+                                               placeholder="..."
+                                               name="entrySubject"
+                                               [(ngModel)]="entrySubject">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Location/Comment -->
+                        <div class="form-row">
+
+                            <div class="col">
+                                <!-- Location -->
+                                <div class="form-group field">
+                                    <label>Location</label>
+                                    <div class="input-group">
+                                        <input class="form-control"
+                                               placeholder="..."
+                                               name="entryLocation"
+                                               [(ngModel)]="entryAuthor">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Separator for the two columns -->
+                            <div class="col-sm-1"></div>
+
+                            <div class="col">
+                                <!-- Comment -->
+                                <div class="form-group field">
+                                    <label>Comment</label>
+                                    <div class="input-group">
+                                        <input class="form-control"
+                                               placeholder="..."
+                                               name="entryComment"
+                                               [(ngModel)]="entrySubject">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 4x2 table of entry keywords -->
+                        <div class="form-group field">
+                            <label>Keywords &nbsp;&nbsp;
+                                <input type="checkbox"
+                                       [(ngModel)]="allEntryKeywordsSelected"
+                                       (change)="onSelectAllEntryKeywordsChange(allEntryKeywordsSelected)"
+                                       name="selectAll"
+                                       ngbPopover="Click here to select/deselect all entry keywords"
+                                       triggers="mouseenter:mouseleave"
+                                       placement="right"
+                                       popoverClass="tooltip-default right">
+                            </label>
+                            <!-- <div class="row">
+                                <div class="col col-sm-3">
+                                    <button class="btn btn-secondary" type="button" (click)="openWsltModalsearchForm()">
+                                        Invert selection
+                                    </button>
+                                </div>
+                                <div class="col"> -->
+                            <div class="container-fluid">
+
+                                <!-- Entry keywords row 1 -->
+                                <div class="row">
+                                    <div class="col col-md-3">
+                                        <label class="checkbox">
+                                            <input type="checkbox" [(ngModel)]="selectedEntryKeywords[iAntInt]"
+                                                   (change)="onEntriesTypeChange(iAntInt)" name="iAntInt">
+                                            ANT_INTEGRATION
+                                        </label>
+                                    </div>
+                                    <div class="col col-md-2">
+                                        <label class="checkbox">
+                                            <input type="checkbox" [(ngModel)]="selectedEntryKeywords[iFeatures]"
+                                                   (change)="onEntriesTypeChange(iFeatures)" name="iFeatures"> FEATURES
+                                        </label>
+                                    </div>
+                                    <div class="col col-md-2">
+                                        <label class="checkbox">
+                                            <input type="checkbox" [(ngModel)]=" selectedEntryKeywords[iHandover]"
+                                                   (change)="onEntriesTypeChange(iHandover)" name="iHandover"> HANDOVER
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Entry keywords row 2 -->
+                                <div class="row">
+                                    <div class="col col-md-3">
+                                        <label class="checkbox">
+                                            <input type="checkbox" [(ngModel)]=" selectedEntryKeywords[iHwTesting]"
+                                                   (change)="onEntriesTypeChange(iHwTesting)" name="iHwTesting">
+                                            HW_TESTING
+                                        </label>
+                                    </div>
+                                    <div class="col col-md-2">
+                                        <label class="checkbox ">
+                                            <input type="checkbox" [(ngModel)]="selectedEntryKeywords[iRegression]"
+                                                   (change)="onEntriesTypeChange(iRegression)" name="iRegression">
+                                            REGRESSION
+                                        </label>
+                                    </div>
+                                    <div class="col col-md-2">
+                                        <label class="checkbox">
+                                            <input type="checkbox" [(ngModel)]="selectedEntryKeywords[iSciVer]"
+                                                   (change)="onEntriesTypeChange(iSciVer)" name="iSciVer"> SCIVER
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Entry keywords row 3 -->
+                                <div class="row">
+                                    <div class="col col-md-3">
+                                        <label class="checkbox ">
+                                            <input type="checkbox" [(ngModel)]="selectedEntryKeywords[iSystEng]"
+                                                   (change)="onEntriesTypeChange(iSystEng)" name="iSystEng"> SYST_ENG
+                                        </label>
+                                    </div>
+                                    <div class="col col-md-2">
+                                        <label class="checkbox ">
+                                            <input type="checkbox" [(ngModel)]="selectedEntryKeywords[iSwTesting]"
+                                                   (change)="onEntriesTypeChange(iSwTesting)" name="iSwTesting">
+                                            SW_TESTING
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--                    </div>
+                                            </div>-->
+                        </div>
+
+                        <!-- Shift activity pulldown menu -->
+                        <div class="form-group field">
+                            <label>Shift activity</label>
+                            <div class="input-group">
+                                <div ngbDropdown>
+                                    <button ngbDropdownToggle class="btn btn-block"
+                                            [ngClass]="{'text-muted': selectedShiftActivity == null}">
+                                        {{selectedShiftActivity == null ? "Select shift activity..." : selectedShiftActivity}}
+                                    </button>
+                                    <div ngbDropdownMenu>
+                                <span *ngFor="let shiftActivity of shiftActivities">
+                                    <button ngbDropdownItem
+                                            (click)="onSelectShiftActivity(shiftActivity)">{{shiftActivity}}</button>
+                                </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                </form>
+            </ng-template>
+        </ngb-panel>
 
-                    <p>{{queryIntervalStartDate.toUTCString()}}</p>
-                </div>
-            </div>
+    </ngb-accordion>
+    <div>
+        <button type="button" class="btn btn-primary"
+                (click)="search()" tabindex="0">
+            <i class="fas fa-search has-text"></i>
+            Search
+        </button>
 
-            <!-- Separator for the two columns -->
-            <div class="col-sm-1"></div>
+        <!--
+            Reset buttons are discouraged, see for instance item 48 at
+            https://www.ventureharbour.com/form-design-best-practices/
 
-            <!-- Right column -->
-            <div class="col">
-
-                <!-- Max size of result set -->
-                <div class="form-group field">
-                    <label>Max entries</label>
-                    <div class="input-group">
-                        <input class="form-control"
-                               [ngClass]="{ 'alert-danger' : !isValidMaxEntries }"
-                               placeholder="Max 1000"
-                               name="maxEntries"
-                               [(ngModel)]="maxEntries"
-                               (change)="onMaxEntriesChange()">
-                        &nbsp;&nbsp;
-                        <!--                        <label *ngIf="!isValidMaxEntries" class="alert alert-danger" type="danger">-->
-                        <!--                            Invalid value, should be 1-1000 <i class="fas fa-exclamation-triangle has-text"></i>-->
-                        <!--                        </label>-->
-                        <label *ngIf="!isValidMaxEntries" class="alert alert-danger" type="danger">
-                            <i class="fas fa-exclamation-triangle" style="color:red"
-                               ngbPopover="Invalid value, should be 1-1000"
-                               triggers="mouseenter:mouseleave"
-                               placement="top"
-                               popoverClass="tooltip-error top"></i>
-                        </label>
-                    </div>
-                </div>
-
-
-                <!-- Query interval end -->
-                <div *ngIf="enableIntervalEnd" class="form-group field">
-                    <label>End datetime</label>
-                    <div class="input-group">
-                        <input ngbDatepicker
-                               class="form-control" placeholder="yyyy-mm-dd"
-                               name="endDP"
-                               [(ngModel)]="queryIntervalEndDate"
-                               (ngModelChange)="onEndDateChange()"
-                               #endDP="ngbDatepicker">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary calendar" (click)="endDP.toggle()" type="button">
-                                <i class="fas fa-calendar-alt"></i>
-                            </button>
-                        </div>
-                        <ngb-timepicker name="endTP"
-                                        [(ngModel)]="queryIntervalEndTime"
-                                        (ngModelChange)="onEndTimeChange()"
-                                        [spinners]="queryIntervalEndSpinners"></ngb-timepicker>
-                    </div>
-                    <p>{{queryIntervalEndDate.toUTCString()}}</p>
-                </div>
-            </div>
-        </div>
-        </div>
-
-        <!-- General information -->
-        <div>
-
-            <!-- 4x3 table of entry types -->
-            <div class="field">
-                <label>Types &nbsp;&nbsp;
-                    <input type="checkbox"
-                           [(ngModel)]="allEntryTypesSelected"
-                           (change)="onSelectAllEntryTypesChange(allEntryTypesSelected)"
-                           name="selectAll"
-                           ngbPopover="Click here to select/deselect all entry types"
-                           triggers="mouseenter:mouseleave"
-                           placement="right"
-                           popoverClass="tooltip-default right">
-                </label>
-                <!-- <div class="row">
-                    <div class="col col-sm-3">
-                        <button class="btn btn-secondary" type="button" (click)="openWsltModalsearchForm()">
-                            Invert selection
-                        </button>
-                    </div>
-                    <div class="col"> -->
-                <div class="container-fluid">
-
-                    <!-- Entry types row 1 -->
-                    <div class="row">
-                        <div class="col col-md-2 anten">
-                            <label class="checkbox">
-                                <input type="checkbox" [(ngModel)]="selectedEntryTypes[iAnten]"
-                                       (change)="onEntriesTypeChange(iAnten)" name="iAnten"> ANTEN
-                            </label>
-                        </div>
-                        <div class="col col-md-2 aog">
-                            <label class="checkbox">
-                                <input type="checkbox" [(ngModel)]="selectedEntryTypes[iAog]"
-                                       (change)="onEntriesTypeChange(iAog)" name="iAog"> AOG
-                            </label>
-                        </div>
-                        <div class="col col-md-2 array">
-                            <label class="checkbox">
-                                <input type="checkbox" [(ngModel)]=" selectedEntryTypes[iArray]"
-                                       (change)="onEntriesTypeChange(iArray)" name="iArray"> ARRAY
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Entry types row 2 -->
-                    <div class="row">
-                        <div class="col col-md-2 cmdln">
-                            <label class="checkbox ">
-                                <input type="checkbox" [(ngModel)]="selectedEntryTypes[iCmdln]"
-                                       (change)="onEntriesTypeChange(iCmdln)" name="iCmdln"> CMDLN
-                            </label>
-                        </div>
-                        <div class="col col-md-2 down">
-                            <label class="checkbox">
-                                <input type="checkbox" [(ngModel)]="selectedEntryTypes[iDown]"
-                                       (change)="onEntriesTypeChange(iDown)" name="iDown"> DOWN
-                            </label>
-                        </div>
-                        <div class="col col-md-2 engin">
-                            <label class="checkbox ">
-                                <input type="checkbox" [(ngModel)]="selectedEntryTypes[iEngin]"
-                                       (change)="onEntriesTypeChange(iEngin)" name="iEngin"> ENGIN
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Entry types row 3 -->
-                    <div class="row">
-                        <div class="col col-md-2 entry">
-                            <label class="checkbox">
-                                <input type="checkbox" [(ngModel)]="selectedEntryTypes[iEntry]"
-                                       (change)="onEntriesTypeChange(iEntry)" name="iEntry"> ENTRY
-                            </label>
-                        </div>
-                        <div class="col col-md-2 mmex">
-                            <label class="checkbox">
-                                <input type="checkbox" [(ngModel)]="selectedEntryTypes[iMmex]"
-                                       (change)="onEntriesTypeChange(iMmex)" name="iMmex"> MMEX
-                            </label>
-                        </div>
-                        <div class="col col-md-2 sbex">
-                            <label class="checkbox">
-                                <input type="checkbox" [(ngModel)]="selectedEntryTypes[iSbex]"
-                                       (change)="onEntriesTypeChange(iSbex)" name="iSbex"> SBEX
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Entry types row 4 -->
-                    <div class="row">
-                        <div class="col col-md-2 shift">
-                            <label class="checkbox">
-                                <input type="checkbox" [(ngModel)]="selectedEntryTypes[iShift]"
-                                       (change)="onEntriesTypeChange(iShift)" name="iShift"> SHIFT
-                            </label>
-                        </div>
-                        <div class="col col-md-2 weath">
-                            <label class="checkbox">
-                                <input type="checkbox" [(ngModel)]="selectedEntryTypes[iWeath]"
-                                       (change)="onEntriesTypeChange(iWeath)" name="iWeath"> WEATH
-                            </label>
-                        </div>
-                        <div>
-                            <!-- EMPTY -->
-                        </div>
-                    </div>
-                </div>
-<!--                    </div>-->
-<!--                </div>-->
-            </div>
-        </div>
-
-        <!--    qManCal={{qManCal}}, qManImg={{qManImg}}, qWeblog={{qWeblog}}, qQA2App={{qQA2App}}-->
-        <div>
-
-            <button type="button" class="btn btn-primary"
-                    (click)="search()" tabindex="0">
-                <i class="fas fa-search has-text"></i>
-                Search
-            </button>
-
-            <!--
-                Reset buttons are discouraged, see for instance item 48 at
-                https://www.ventureharbour.com/form-design-best-practices/
-
-            <button type="button" class="btn btn-secondary"
-                    (click)="reset()">
-              <i class="delete icon"></i>
-              Reset
-            </button>
-            -->
-        </div>
-    </form>
+        <button type="button" class="btn btn-secondary"
+                (click)="reset()">
+          <i class="delete icon"></i>
+          Reset
+        </button>
+        -->
+    </div>
 </div>
