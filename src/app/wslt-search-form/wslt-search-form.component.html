@@ -119,24 +119,43 @@
 
             <!-- 4x3 table of entry types -->
             <div class="field">
-                <label>Types</label>
+                <label>Types &nbsp;&nbsp;
+                    <input type="checkbox"
+                           [(ngModel)]="allEntryTypesSelected"
+                           (change)="onSelectAllEntryTypesChange(allEntryTypesSelected)"
+                           name="selectAll"
+                           ngbPopover="Click here to select/deselect all entry types"
+                           triggers="mouseenter:mouseleave"
+                           placement="right"
+                           popoverClass="tooltip-default right">
+                </label>
+                <!-- <div class="row">
+                    <div class="col col-sm-3">
+                        <button class="btn btn-secondary" type="button" (click)="openWsltModalsearchForm()">
+                            Invert selection
+                        </button>
+                    </div>
+                    <div class="col"> -->
                 <div class="container-fluid">
 
                     <!-- Entry types row 1 -->
                     <div class="row">
                         <div class="col col-md-2 anten">
                             <label class="checkbox">
-                                <input type="checkbox" [(ngModel)]="qManCal" name="qManImg"> ANTEN
+                                <input type="checkbox" [(ngModel)]="selectedEntryTypes[iAnten]"
+                                       (change)="onEntriesTypeChange(iAnten)" name="iAnten"> ANTEN
                             </label>
                         </div>
                         <div class="col col-md-2 aog">
                             <label class="checkbox">
-                                <input type="checkbox" [(ngModel)]="qManImg" name="qManImg"> AOG
+                                <input type="checkbox" [(ngModel)]="selectedEntryTypes[iAog]"
+                                       (change)="onEntriesTypeChange(iAog)" name="iAog"> AOG
                             </label>
                         </div>
                         <div class="col col-md-2 array">
                             <label class="checkbox">
-                                <input type="checkbox" [(ngModel)]="qWeblog" name="weblog"> ARRAY
+                                <input type="checkbox" [(ngModel)]=" selectedEntryTypes[iArray]"
+                                       (change)="onEntriesTypeChange(iArray)" name="iArray"> ARRAY
                             </label>
                         </div>
                     </div>
@@ -145,17 +164,20 @@
                     <div class="row">
                         <div class="col col-md-2 cmdln">
                             <label class="checkbox ">
-                                <input type="checkbox" [(ngModel)]="qManCal" name="qManImg"> CMDLN
+                                <input type="checkbox" [(ngModel)]="selectedEntryTypes[iCmdln]"
+                                       (change)="onEntriesTypeChange(iCmdln)" name="iCmdln"> CMDLN
                             </label>
                         </div>
                         <div class="col col-md-2 down">
                             <label class="checkbox">
-                                <input type="checkbox" [(ngModel)]="qManImg" name="qManImg"> DOWN
+                                <input type="checkbox" [(ngModel)]="selectedEntryTypes[iDown]"
+                                       (change)="onEntriesTypeChange(iDown)" name="iDown"> DOWN
                             </label>
                         </div>
                         <div class="col col-md-2 engin">
                             <label class="checkbox ">
-                                <input type="checkbox" [(ngModel)]="qWeblog" name="weblog"> ENGIN
+                                <input type="checkbox" [(ngModel)]="selectedEntryTypes[iEngin]"
+                                       (change)="onEntriesTypeChange(iEngin)" name="iEngin"> ENGIN
                             </label>
                         </div>
                     </div>
@@ -164,17 +186,20 @@
                     <div class="row">
                         <div class="col col-md-2 entry">
                             <label class="checkbox">
-                                <input type="checkbox" [(ngModel)]="qManCal" name="qManImg"> ENTRY
+                                <input type="checkbox" [(ngModel)]="selectedEntryTypes[iEntry]"
+                                       (change)="onEntriesTypeChange(iEntry)" name="iEntry"> ENTRY
                             </label>
                         </div>
                         <div class="col col-md-2 mmex">
                             <label class="checkbox">
-                                <input type="checkbox" [(ngModel)]="qManImg" name="qManImg"> MMEX
+                                <input type="checkbox" [(ngModel)]="selectedEntryTypes[iMmex]"
+                                       (change)="onEntriesTypeChange(iMmex)" name="iMmex"> MMEX
                             </label>
                         </div>
                         <div class="col col-md-2 sbex">
                             <label class="checkbox">
-                                <input type="checkbox" [(ngModel)]="qWeblog" name="weblog"> SBEX
+                                <input type="checkbox" [(ngModel)]="selectedEntryTypes[iSbex]"
+                                       (change)="onEntriesTypeChange(iSbex)" name="iSbex"> SBEX
                             </label>
                         </div>
                     </div>
@@ -183,12 +208,14 @@
                     <div class="row">
                         <div class="col col-md-2 shift">
                             <label class="checkbox">
-                                <input type="checkbox" [(ngModel)]="qManCal" name="qManImg"> SHIFT
+                                <input type="checkbox" [(ngModel)]="selectedEntryTypes[iShift]"
+                                       (change)="onEntriesTypeChange(iShift)" name="iShift"> SHIFT
                             </label>
                         </div>
                         <div class="col col-md-2 weath">
                             <label class="checkbox">
-                                <input type="checkbox" [(ngModel)]="qManImg" name="qManImg"> WEATH
+                                <input type="checkbox" [(ngModel)]="selectedEntryTypes[iWeath]"
+                                       (change)="onEntriesTypeChange(iWeath)" name="iWeath"> WEATH
                             </label>
                         </div>
                         <div>
@@ -196,6 +223,8 @@
                         </div>
                     </div>
                 </div>
+<!--                    </div>-->
+<!--                </div>-->
             </div>
         </div>
 

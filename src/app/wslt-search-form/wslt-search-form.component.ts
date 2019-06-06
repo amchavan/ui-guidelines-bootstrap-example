@@ -9,6 +9,21 @@ import { NgbActiveModal, NgbDateAdapter, NgbDateNativeAdapter } from '@ng-bootst
 })
 export class WsltSearchFormComponent implements OnInit {
 
+
+  iAnten = 0;
+  iAog   = 1;
+  iArray = 2;
+  iCmdln = 3;
+  iDown  = 4;
+  iEngin = 5;
+  iEntry = 6;
+  iMmex  = 7;
+  iSbex  = 8;
+  iShift = 9;
+  iWeath = 10;
+  selectedEntryTypes : boolean[];
+  allEntryTypesSelected : boolean;
+
   private QUERY_INTERVALS : any = [
     {value: 'LAST2', name: 'Last 2 hours'},
     {value: 'LAST4', name: 'Last 4 hours'},
@@ -61,6 +76,23 @@ export class WsltSearchFormComponent implements OnInit {
 
     this.queryIntervalStartTime = { hour: currentStartDate.getUTCHours(), minute: currentStartDate.getMinutes() };
     this.queryIntervalEndTime   = { hour: currentEndDate.getUTCHours(),   minute: currentEndDate.getMinutes() }
+
+    // Init entry type selection
+    // --------------------------------------
+
+    this.allEntryTypesSelected = false;
+    this.selectedEntryTypes = [];
+    this.selectDeselectAllEntryTypes( this.allEntryTypesSelected );
+  }
+
+  private selectDeselectAllEntryTypes( select : boolean ) {
+    for (let i = 0; i < 11; i++) {
+      this.selectedEntryTypes[i] = select;
+    }
+  }
+
+  onSelectAllEntryTypesChange(select ) {
+    this.selectDeselectAllEntryTypes( select );
   }
 
   onSelectInterval(interval) {
@@ -119,5 +151,9 @@ export class WsltSearchFormComponent implements OnInit {
       // TODO: form validation, see https://getbootstrap.com/docs/4.1/components/forms/#validation
       console.log(">>> interval: INVALID");
     }
+  }
+
+  onEntriesTypeChange(index) {
+    console.log(">>> type " + index + ": " + this.selectedEntryTypes[index])
   }
 }
