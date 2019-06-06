@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
+import { NgbActiveModal, NgbDateAdapter, NgbDateNativeAdapter } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'wslt-search-form',
   templateUrl: './wslt-search-form.component.html',
-  styleUrls: ['./wslt-search-form.component.css']
+  styleUrls: ['./wslt-search-form.component.css'],
+  providers: [{provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}]
 })
 export class WsltSearchFormComponent implements OnInit {
 
@@ -20,6 +21,9 @@ export class WsltSearchFormComponent implements OnInit {
     {value: 'INDEF', name: 'Indefinite'},
   ];
 
+  maxEntries = "";
+  isValidMaxEntries = true;
+
   selectedInterval = null;
 
   // By default we don't show the interval start and end selectors
@@ -27,16 +31,36 @@ export class WsltSearchFormComponent implements OnInit {
   intervalEnd = null;
   enableIntervalStart = false;
   enableIntervalEnd = false;
-  isValidInterval = true;
-  maxEntries = "";
-  isValidMaxEntries = true;
+  isValidInterval = true; // TODO: form validation, see https://getbootstrap.com/docs/4.1/components/forms/#validation
 
   intervals = this.QUERY_INTERVALS;
 
+  queryIntervalStartDate: Date;
+  queryIntervalStartTime = null;
+  queryIntervalStartSpinners = false;
 
-  constructor( public activeModal: NgbActiveModal ) { }
+  queryIntervalEndDate: Date;
+  queryIntervalEndTime = null;
+  queryIntervalEndSpinners = false;
+
+  constructor( public activeModal: NgbActiveModal ) {
+  }
 
   ngOnInit() {
+
+    // Initialize query interval start and end datetimes
+    //--------------------------------------------------
+    const currentStartDate = new Date();
+    const currentEndDate = new Date();
+
+    currentStartDate.setUTCHours( 0, 0, 0, 0  );
+    this.queryIntervalStartDate = currentStartDate;
+
+    currentEndDate.setUTCHours( currentEndDate.getUTCHours(), currentEndDate.getMinutes(), 0, 0  );
+    this.queryIntervalEndDate = currentEndDate;
+
+    this.queryIntervalStartTime = { hour: currentStartDate.getUTCHours(), minute: currentStartDate.getMinutes() };
+    this.queryIntervalEndTime   = { hour: currentEndDate.getUTCHours(),   minute: currentEndDate.getMinutes() }
   }
 
   onSelectInterval(interval) {
@@ -68,6 +92,32 @@ export class WsltSearchFormComponent implements OnInit {
     else {
       this.maxEntries = emax.toString();
       console.log( ">>> selected interval: " + this.maxEntries );
+    }
+  }
+
+  onStartTimeChange() {
+    this.queryIntervalStartDate.setUTCHours( this.queryIntervalStartTime.hour, this.queryIntervalStartTime.minute );
+    this.checkQueryInterval();
+  }
+
+  onStartDateChange() {
+    this.checkQueryInterval();
+  }
+
+  onEndTimeChange() {
+    this.queryIntervalEndDate.setUTCHours( this.queryIntervalEndTime.hour, this.queryIntervalEndTime.minute );
+    this.checkQueryInterval();
+  }
+
+  onEndDateChange() {
+    this.checkQueryInterval();
+  }
+
+  checkQueryInterval(){
+    this.isValidInterval = this.queryIntervalEndDate.getTime() > this.queryIntervalStartDate.getTime();
+    if( ! this.isValidInterval ) {
+      // TODO: form validation, see https://getbootstrap.com/docs/4.1/components/forms/#validation
+      console.log(">>> interval: INVALID");
     }
   }
 }

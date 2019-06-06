@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { WsltSearchFormComponent } from "../wslt-search-form/wslt-search-form.component";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-booking',
@@ -10,9 +12,19 @@ export class BookingComponent implements OnInit {
   isVisibleWarning = true;
   isVisibleInfo = true;
 
-  constructor() { }
+  constructor( private modalService: NgbModal ) { }
 
   ngOnInit() {
+  }
+
+  openWsltModalsearchForm() {
+    this.modalService.open( WsltSearchFormComponent, { size: 'lg' } ).result.then(
+        () => {
+          // suceess -- no-op
+        },
+        () => {
+          // failure -- no-op
+        });
   }
 
 }

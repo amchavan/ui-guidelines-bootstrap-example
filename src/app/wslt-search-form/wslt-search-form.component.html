@@ -8,6 +8,8 @@
     <form>
 
         <div class="row">
+
+            <!-- Left column -->
             <div class="col">
 
                 <!-- Query intervals pulldown menu -->
@@ -20,17 +22,43 @@
                                 {{selectedInterval == null ? "Select query interval..." : selectedInterval.name}}
                             </button>
                             <div ngbDropdownMenu>
-                <span *ngFor="let interval of intervals">
-                <button ngbDropdownItem (click)="onSelectInterval(interval)">{{interval.name}}</button>
-                </span>
+                                <span *ngFor="let interval of intervals">
+                                    <button ngbDropdownItem (click)="onSelectInterval(interval)">{{interval.name}}</button>
+                                </span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <input type="text" class="form-control" placeholder="First name">
-                <input type="text" class="form-control" placeholder="First name">
+                <!-- Query interval start -->
+                <div *ngIf="enableIntervalStart" class="form-group">
+                    <label>Start datetime</label>
+                    <div class="input-group">
+                        <input ngbDatepicker
+                               class="form-control" placeholder="yyyy-mm-dd"
+                               name="startDP"
+                               [(ngModel)]="queryIntervalStartDate"
+                               (ngModelChange)="onStartDateChange()"
+                               #startDP="ngbDatepicker">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary calendar" (click)="startDP.toggle()" type="button">
+                                <i class="fas fa-calendar-alt"></i>
+                            </button>
+                        </div>
+                        <ngb-timepicker name="startTP"
+                                        [(ngModel)]="queryIntervalStartTime"
+                                        (ngModelChange)="onStartTimeChange()"
+                                        [spinners]="queryIntervalStartSpinners"></ngb-timepicker>
+                    </div>
+
+                    <p>{{queryIntervalStartDate.toUTCString()}}</p>
+                </div>
             </div>
+
+            <!-- Separator for the two columns -->
+            <div class="col-sm-1"></div>
+
+            <!-- Right column -->
             <div class="col">
 
                 <!-- Max size of result set -->
@@ -44,17 +72,41 @@
                                [(ngModel)]="maxEntries"
                                (change)="onMaxEntriesChange()">
                         &nbsp;&nbsp;
-<!--                        <label *ngIf="!isValidMaxEntries" class="alert alert-danger" type="danger">-->
-<!--                            Invalid value, should be 1-1000 <i class="fas fa-exclamation-triangle has-text"></i>-->
-<!--                        </label>-->
+                        <!--                        <label *ngIf="!isValidMaxEntries" class="alert alert-danger" type="danger">-->
+                        <!--                            Invalid value, should be 1-1000 <i class="fas fa-exclamation-triangle has-text"></i>-->
+                        <!--                        </label>-->
                         <label *ngIf="!isValidMaxEntries" class="alert alert-danger" type="danger">
-                        <i class="fas fa-exclamation-triangle" style="color:red"
-                           ngbPopover="Invalid value, should be 1-1000"
-                           triggers="mouseenter:mouseleave"
-                           placement="left"
-                           popoverClass="tooltip-error left"></i>
+                            <i class="fas fa-exclamation-triangle" style="color:red"
+                               ngbPopover="Invalid value, should be 1-1000"
+                               triggers="mouseenter:mouseleave"
+                               placement="top"
+                               popoverClass="tooltip-error top"></i>
                         </label>
                     </div>
+                </div>
+
+
+                <!-- Query interval end -->
+                <div *ngIf="enableIntervalEnd" class="form-group">
+                    <label>End datetime</label>
+                    <div class="input-group">
+                        <input ngbDatepicker
+                               class="form-control" placeholder="yyyy-mm-dd"
+                               name="endDP"
+                               [(ngModel)]="queryIntervalEndDate"
+                               (ngModelChange)="onEndDateChange()"
+                               #endDP="ngbDatepicker">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary calendar" (click)="endDP.toggle()" type="button">
+                                <i class="fas fa-calendar-alt"></i>
+                            </button>
+                        </div>
+                        <ngb-timepicker name="endTP"
+                                        [(ngModel)]="queryIntervalEndTime"
+                                        (ngModelChange)="onEndTimeChange()"
+                                        [spinners]="queryIntervalEndSpinners"></ngb-timepicker>
+                    </div>
+                    <p>{{queryIntervalEndDate.toUTCString()}}</p>
                 </div>
             </div>
         </div>

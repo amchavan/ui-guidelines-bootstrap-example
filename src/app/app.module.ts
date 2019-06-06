@@ -37,7 +37,7 @@ import { WsltSearchFormComponent } from './wslt-search-form/wslt-search-form.com
   bootstrap: [AppComponent],
   entryComponents: [
     ModalProgressBarComponent,
-    DataReducerSearchFormComponent
-  ]
+    DataReducerSearchFormComponent,
+    WsltSearchFormComponent  ]
 })
 export class AppModule { }
