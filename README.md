@@ -1,27 +1,51 @@
-# NgBootstrapSandbox
+# ALMA UI Guidelines Example — Bootstrap
+
+This project...
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.9.
 
-## Development server
+## Development environment
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+To build and run this example you need to set up an Angular 
+development environment.
 
-## Code scaffolding
+### Node.js
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Node,js is the server-side Javascript runtime, it's used to power JS 
+development tools. Verify if you have a working installation by running
+`node --version` — you'll need version 10.9.0 or later.
 
-## Build
+See your environment's specific instructions for  installing Node 
+on https://nodejs.org/en/download  
+The Node installation will include `npm`, the Node package manager.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+### Angular CLI
 
-## Running unit tests
+To install the CLI globally using _npm_, enter
+```$sh
+npm install -g @angular/cli
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Clone the Git repository
 
-## Running end-to-end tests
+Clone the Git source code repository:
+```$sh
+git clone https://github.com/amchavan/ui-guidelines-bootstrap-example.git
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+```
 
-## Further help
+### Node dependencies
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Change into the _ui-guidelines-bootstrap-example_ directory and install all needed dependencies:
+```$sh
+npm install @angular-devkit/build-angular
+
+```
+
+### Launch the example 
+
+You can start the example with `ng serve --open` from the _ui-guidelines-bootstrap-example_ 
+directory.  The `--open` (or just `-o`) option automatically opens your browser to 
+http://localhost:4200 and refreshes the UI when you update the source code.
+
+
