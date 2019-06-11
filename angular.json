@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ng-bootstrap-sandbox": {
+    "ui-guidelines-bootstrap-example": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ng-bootstrap-sandbox",
+            "outputPath": "dist/ui-guidelines-bootstrap-example",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -58,18 +58,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ng-bootstrap-sandbox:build"
+            "browserTarget": "ui-guidelines-bootstrap-example:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ng-bootstrap-sandbox:build:production"
+              "browserTarget": "ui-guidelines-bootstrap-example:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ng-bootstrap-sandbox:build"
+            "browserTarget": "ui-guidelines-bootstrap-example:build"
           }
         },
         "test": {
@@ -105,7 +105,7 @@
         }
       }
     },
-    "ng-bootstrap-sandbox-e2e": {
+    "ui-guidelines-bootstrap-example-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -114,11 +114,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ng-bootstrap-sandbox:serve"
+            "devServerTarget": "ui-guidelines-bootstrap-example:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ng-bootstrap-sandbox:serve:production"
+              "devServerTarget": "ui-guidelines-bootstrap-example:serve:production"
             }
           }
         },
@@ -134,5 +134,5 @@
       }
     }
   },
-  "defaultProject": "ng-bootstrap-sandbox"
+  "defaultProject": "ui-guidelines-bootstrap-example"
 }
