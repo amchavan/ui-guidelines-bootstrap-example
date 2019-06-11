@@ -1,8 +1,12 @@
 # ALMA UI Guidelines Example — Bootstrap
 
-This project...
+This project is an example Angular 7 application showing how the 
+[ALMA Web UI Guidelines](https://confluence.alma.cl/x/mwLoAQ) 
+can be implemented using the Bootstrap CSS+JS front-end framework.  
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.9.
+It was generated with 
+[Angular CLI](https://github.com/angular/angular-cli)
+version 7.3.9.
 
 ## Development environment
 
