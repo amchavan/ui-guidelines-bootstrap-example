@@ -5,7 +5,6 @@
     </button>
 </div>
 <div class="modal-body">
-    <!-- TODO: style accordeon panel headers -->
     <ngb-accordion [closeOthers]="true" activeIds="basic">
         <ngb-panel id="basic" title="Query parameters">
             <ng-template ngbPanelContent>
@@ -18,7 +17,7 @@
                             <!--
                             TODO: UGLY HACK!
                             This form row is dynamic, but we need it to have a known height
-                            otherwise the accordeon feature won't work.
+                            otherwise the accordion feature won't work.
                             So we introduce a very thin left-hand column of fixed height.
                             Must find a lesser hack, no time right now.
                             mchavan, 06-Jun-2019

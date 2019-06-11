@@ -154,7 +154,7 @@ form .dropdown-toggle {
 .modal-header, .form-header {
   font-size: 20px;
   font-weight: bold;
-  padding: 24px 24px;
+  padding: 12px 12px;
   border-bottom: 1px solid rgba(34,36,38,.15)
 }
 
@@ -226,4 +226,15 @@ form div.field > label:first-child {
 
 .alert-dismissible .close {
     padding: 6px;
+}
+
+/* Accordion */
+
+.accordion > .card .card-header {
+    padding: 0;
+    background-color: transparent;
+}
+.card-header .btn.btn-link {
+    font-size: small;
+    color: black;
 }
