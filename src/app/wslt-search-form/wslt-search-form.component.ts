@@ -9,7 +9,7 @@ import { NgbActiveModal, NgbDateAdapter, NgbDateNativeAdapter } from '@ng-bootst
 })
 export class WsltSearchFormComponent implements OnInit {
 
-
+  /* Entry types */
   iAnten = 0;
   iAog   = 1;
   iArray = 2;
@@ -21,9 +21,9 @@ export class WsltSearchFormComponent implements OnInit {
   iSbex  = 8;
   iShift = 9;
   iWeath = 10;
-  selectedEntryTypes : boolean[];
+  selectedEntryTypes: boolean[];
 
-
+  /* Keywords */
   iAntInt     = 0;
   iFeatures   = 1;
   iHandover   = 2;
@@ -32,13 +32,22 @@ export class WsltSearchFormComponent implements OnInit {
   iSciVer     = 5;
   iSystEng    = 6;
   iSwTesting  = 7;
-  allEntryTypesSelected : boolean;
+  allEntryTypesSelected: boolean;
 
+  /* EngineeringGroups */
+  iAntCont  = 0;
+  iBackend  = 1;
+  iCorr     = 2;
+  iFrontEnd = 3;
+  iSoftware = 4;
 
-  selectedEntryKeywords : boolean[];
-  allEntryKeywordsSelected : boolean;
+  selectedEntryKeywords: boolean[];
+  allEntryKeywordsSelected: boolean;
 
-  private QUERY_INTERVALS : any = [
+  selectedEngGroups: boolean[];
+  allEngGroupsSelected: boolean;
+
+  private QUERY_INTERVALS: any = [
     {value: 'LAST2', name: 'Last 2 hours'},
     {value: 'LAST4', name: 'Last 4 hours'},
     {value: 'LAST8', name: 'Last 8 hours'},
@@ -50,23 +59,34 @@ export class WsltSearchFormComponent implements OnInit {
     {value: 'INDEF', name: 'Indefinite'},
   ];
 
-  private SHIFT_ACTIVITIES : any = [
-      "EOC",
-      "Engineering",
-      "SciOps",
-      "AIV",
-      "CSV",
-      "Operations",
-      "SYST"
+  private AFFECTED_FAMILIES: any = [
+    {value: '12m', name: '12 [m]'},
+    {value: '7m', name: '7 [m]'},
+    {value: 'TP', name: 'Total Power'},
+    {value: 'MIX', name: 'Mixed'},
   ];
 
-  maxEntries = "";
+  private SHIFT_ACTIVITIES: any = [
+    'EOC',
+    'Engineering',
+    'SciOps',
+    'AIV',
+    'CSV',
+    'Operations',
+    'SYST'
+  ];
+
+  private DOWNTIME_TYPE: any = [
+    'Technical',
+    'Weather',
+    'Scheduling'
+  ];
+
+  maxEntries = '';
   isValidMaxEntries = true;
 
 
   // By default we don't show the interval start and end selectors
-  intervalStart = null;
-  intervalEnd = null;
   enableIntervalStart = false;
   enableIntervalEnd = false;
   isValidInterval = true; // TODO: form validation, see https://getbootstrap.com/docs/4.1/components/forms/#validation
@@ -75,7 +95,13 @@ export class WsltSearchFormComponent implements OnInit {
   selectedInterval = null;
 
   shiftActivities = this.SHIFT_ACTIVITIES;
-  selectedShiftActivity= null;
+  selectedShiftActivity = null;
+
+  affectedFamilies = this.AFFECTED_FAMILIES;
+  selectedAffectedFamily = null;
+
+  downtimeTypes = this.DOWNTIME_TYPE;
+  selectedDowntimeType = null;
 
   queryIntervalStartDate: Date;
   queryIntervalStartTime = null;
@@ -96,7 +122,7 @@ export class WsltSearchFormComponent implements OnInit {
   ngOnInit() {
 
     // Initialize query interval start and end datetimes
-    //--------------------------------------------------
+    // --------------------------------------------------
     const currentStartDate = new Date();
     const currentEndDate = new Date();
 
@@ -107,7 +133,7 @@ export class WsltSearchFormComponent implements OnInit {
     this.queryIntervalEndDate = currentEndDate;
 
     this.queryIntervalStartTime = { hour: currentStartDate.getUTCHours(), minute: currentStartDate.getMinutes() };
-    this.queryIntervalEndTime   = { hour: currentEndDate.getUTCHours(),   minute: currentEndDate.getMinutes() }
+    this.queryIntervalEndTime   = { hour: currentEndDate.getUTCHours(),   minute: currentEndDate.getMinutes() };
 
     // Init entry type selection
     // --------------------------------------
@@ -120,17 +146,29 @@ export class WsltSearchFormComponent implements OnInit {
     this.allEntryKeywordsSelected = false;
     this.selectedEntryKeywords = [];
     this.selectDeselectAllEntryKeywords( this.allEntryKeywordsSelected );
+
+    // Init groups selection
+    // --------------------------------------
+    this.allEngGroupsSelected = false;
+    this.selectedEngGroups = [];
+    this.selectDeselectAllEngGroups( this.allEngGroupsSelected );
   }
 
-  private selectDeselectAllEntryTypes( select : boolean ) {
+  private selectDeselectAllEntryTypes( select: boolean ) {
     for (let i = 0; i < 11; i++) {
       this.selectedEntryTypes[i] = select;
     }
   }
 
-  private selectDeselectAllEntryKeywords( select : boolean ) {
+  private selectDeselectAllEntryKeywords( select: boolean ) {
     for (let i = 0; i < 11; i++) {
       this.selectedEntryKeywords[i] = select;
+    }
+  }
+
+  private selectDeselectAllEngGroups( select: boolean ) {
+    for (let i = 0; i < 11; i++) {
+      this.selectedEngGroups[i] = select;
     }
   }
 
@@ -142,40 +180,54 @@ export class WsltSearchFormComponent implements OnInit {
     this.selectDeselectAllEntryKeywords( select );
   }
 
+  onSelectAllEngGroupsChange( select ) {
+    this.selectDeselectAllEngGroups( select );
+  }
+
   onSelectInterval( interval ) {
     this.enableIntervalStart = false;
     this.enableIntervalEnd = false;
     this.selectedInterval = interval;
 
-    if( this.selectedInterval.value == "OTHER") {
+    if ( this.selectedInterval.value === 'OTHER') {
       this.enableIntervalStart = true;
       this.enableIntervalEnd = true;
-    }
-    else if( this.selectedInterval.value == "INDEF" ) {
+    } else if ( this.selectedInterval.value === 'INDEF' ) {
       this.enableIntervalStart = false;
       this.enableIntervalEnd = true;
     }
 
-    console.log( ">>> selected interval: " + interval.value );
+    console.log( '>>> selected interval: ' + interval.value );
   }
 
 
   onSelectShiftActivity( activity ) {
     this.selectedShiftActivity = activity;
-    console.log( ">>> selected interval: " + activity );
+    console.log( '>>> selected activity: ' + activity );
+  }
+
+
+  onSelectDowntimeType( type ) {
+    this.selectedDowntimeType = type;
+    console.log( '>>> selected downtime type: ' + type );
+  }
+
+
+  onSelectAffectedFamily( family ) {
+    this.selectedAffectedFamily = family;
+    console.log( '>>> selected family: ' + family );
   }
 
   // Max entries validator
   onMaxEntriesChange() {
     this.isValidMaxEntries = true;
-    let emax = parseInt( this.maxEntries );
-    if( isNaN(emax) || 1 > emax || emax > 1000 ) {
+    const emax = parseInt( this.maxEntries, 10 );
+    if ( isNaN(emax) || 1 > emax || emax > 1000 ) {
       this.isValidMaxEntries = false;
-      console.log( ">>> max entries: INVALID" );
-    }
-    else {
+      console.log( '>>> max entries: INVALID' );
+    } else {
       this.maxEntries = emax.toString();
-      console.log( ">>> selected interval: " + this.maxEntries );
+      console.log( '>>> selected interval: ' + this.maxEntries );
     }
   }
 
@@ -197,19 +249,15 @@ export class WsltSearchFormComponent implements OnInit {
     this.checkQueryInterval();
   }
 
-  checkQueryInterval(){
+  checkQueryInterval() {
     this.isValidInterval = this.queryIntervalEndDate.getTime() > this.queryIntervalStartDate.getTime();
-    if( ! this.isValidInterval ) {
+    if ( ! this.isValidInterval ) {
       // TODO: form validation, see https://getbootstrap.com/docs/4.1/components/forms/#validation
-      console.log(">>> interval: INVALID");
+      console.log('>>> interval: INVALID');
     }
   }
 
   onEntriesTypeChange(index) {
-    console.log(">>> type " + index + ": " + this.selectedEntryTypes[index])
-  }
-
-  onEntriesKeywordChange(index) {
-    console.log(">>> keyword " + index + ": " + this.selectedEntryKeywords[index])
+    console.log('>>> type ' + index + ': ' + this.selectedEntryTypes[index]);
   }
 }

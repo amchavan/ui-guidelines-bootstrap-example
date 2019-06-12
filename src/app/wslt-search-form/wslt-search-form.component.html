@@ -5,7 +5,10 @@
     </button>
 </div>
 <div class="modal-body">
+
     <ngb-accordion [closeOthers]="true" activeIds="basic">
+
+        <!-- Accordion panel: query parameters -->
         <ngb-panel id="basic" title="Query parameters">
             <ng-template ngbPanelContent>
 
@@ -15,24 +18,13 @@
                         <div class="row">
 
                             <!--
-                            TODO: UGLY HACK!
-                            This form row is dynamic, but we need it to have a known height
+                            This form row is dynamic but we need it to have a predefined height
                             otherwise the accordion feature won't work.
                             So we introduce a very thin left-hand column of fixed height.
-                            Must find a lesser hack, no time right now.
                             mchavan, 06-Jun-2019
                             -->
-                            <div class="col-1" style="max-width: 1px; padding: 0">
-                                <p>&nbsp;</p>
-                                <p>&nbsp;</p>
-                                <p>&nbsp;</p>
-                                <p>&nbsp;</p>
-                                <p>&nbsp;</p>
-                                <p>&nbsp;</p>
-                                <p>&nbsp;</p>
-                                <p>&nbsp;</p>
-                                <p>&nbsp;</p>
-                            </div>
+                            <div class="col-1" style="max-width: 1px; margin-bottom: 9cm"></div>
+
                             <!-- Left column -->
                             <div class="col">
 
@@ -143,6 +135,7 @@
             </ng-template>
         </ngb-panel>
 
+        <!-- Accordion panel: General -->
         <ngb-panel id="general" title="General">
             <ng-template ngbPanelContent>
 
@@ -435,6 +428,142 @@
                         </div>
                     </div>
                 </form>
+            </ng-template>
+        </ngb-panel>
+
+        <!-- Accordion panel: Execution information -->
+        <ngb-panel id="execution" title="Execution information">
+            <ng-template ngbPanelContent>
+                <strong>TODO</strong>
+            </ng-template>
+        </ngb-panel>
+
+        <!-- Accordion panel: Downtime information -->
+        <ngb-panel id="downtime" title="Downtime information">
+            <ng-template ngbPanelContent>
+                <form>
+                    <div>
+                        <div class="row">
+
+                            <!--
+                            This form row is dynamic but we need it to have a predefined height
+                            otherwise the accordion feature won't work.
+                            So we introduce a very thin left-hand column of fixed height.
+                            mchavan, 06-Jun-2019
+                            -->
+                            <div class="col-1" style="max-width: 1px; margin-bottom: 9cm"></div>
+
+                            <div class="col">
+
+                                <!-- Affected family pulldown menu -->
+                                <div class="form-group field">
+                                    <label>Affected family</label>
+                                    <div class="input-group">
+                                        <div ngbDropdown>
+                                            <button ngbDropdownToggle class="btn btn-block"
+                                                    [ngClass]="{'text-muted': selectedInterval == null}">
+                                                {{selectedAffectedFamily == null ? "Select affected family..." : selectedAffectedFamily.name}}
+                                            </button>
+                                            <div ngbDropdownMenu>
+                                <span *ngFor="let af of affectedFamilies">
+                                    <button ngbDropdownItem
+                                            (click)="onSelectAffectedFamily(af)">{{af.name}}</button>
+                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Separator for the two columns -->
+                            <div class="col-sm-1"></div>
+
+                            <!-- Right column -->
+                            <div class="col">
+
+                                <!-- Downtime type pulldown menu -->
+                                <div class="form-group field">
+                                    <label>Shift activity</label>
+                                    <div class="input-group">
+                                        <div ngbDropdown>
+                                            <button ngbDropdownToggle class="btn btn-block"
+                                                    [ngClass]="{'text-muted': selectedDowntimeType == null}">
+                                                {{selectedDowntimeType == null ? "Select downtime type..." : selectedDowntimeType}}
+                                            </button>
+                                            <div ngbDropdownMenu>
+                                <span *ngFor="let downtimeType of downtimeTypes">
+                                    <button ngbDropdownItem
+                                            (click)="onSelectDowntimeType(downtimeType)">{{downtimeType}}</button>
+                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </ng-template>
+        </ngb-panel>
+
+        <!-- Accordion panel: Engineering -->
+        <ngb-panel id="engineering" title="Engineering">
+            <ng-template ngbPanelContent>
+
+                <!-- 3x2 table of engineering groups -->
+                <div class="form-group field">
+                    <label>Groups &nbsp;&nbsp;
+                        <input type="checkbox"
+                               [(ngModel)]="allEngGroupsSelected"
+                               (change)="onSelectAllEngGroupsChange(allEngGroupsSelected)"
+                               name="selectAll"
+                               ngbPopover="Click here to select/deselect all engineering groups"
+                               triggers="mouseenter:mouseleave"
+                               placement="right"
+                               popoverClass="tooltip-default right">
+                    </label>
+
+                    <div class="container-fluid">
+
+                        <!-- Entry keywords row 1 -->
+                        <div class="row">
+                            <div class="col col-md-3">
+                                <label class="checkbox">
+                                    <input type="checkbox" [(ngModel)]="selectedEngGroups[iAntCont]"
+                                           (change)="onEntriesTypeChange(iAntCont)" name="iAntCont">  Antenna control
+                                </label>
+                            </div>
+
+                            <div class="col col-md-2">
+                                <label class="checkbox">
+                                    <input type="checkbox" [(ngModel)]="selectedEngGroups[iBackend]"
+                                           (change)="onEntriesTypeChange(iBackend)" name="iBackend"> BackEnd
+                                </label>
+                            </div>
+
+                            <div class="col col-md-2">
+                                <label class="checkbox">
+                                    <input type="checkbox" [(ngModel)]=" selectedEngGroups[iCorr]"
+                                           (change)="onEntriesTypeChange(iCorr)" name="iCorr"> Correlator
+                                </label>
+                            </div>
+
+                            <div class="col col-md-2">
+                                <label class="checkbox">
+                                    <input type="checkbox" [(ngModel)]=" selectedEngGroups[iFrontEnd]"
+                                           (change)="onEntriesTypeChange(iFrontEnd)" name="iFrontEnd"> FrontEnd
+                                </label>
+                            </div>
+
+                            <div class="col col-md-2">
+                                <label class="checkbox ">
+                                    <input type="checkbox" [(ngModel)]="selectedEngGroups[iSoftware]"
+                                           (change)="onEntriesTypeChange(iSoftware)" name="iSoftware"> Software
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </ng-template>
         </ngb-panel>
 
