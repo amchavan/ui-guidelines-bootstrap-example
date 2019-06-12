@@ -590,21 +590,38 @@
 
     <div>
         <p></p>
-        <button type="button" class="btn btn-primary"
-                (click)="search()" tabindex="0">
-            <i class="fas fa-search has-text"></i>
-            Search
-        </button>
+        <div class="form-buttons">
+            <button type="button" class="btn btn-secondary"
+                    (click)="loadDefaults()" tabindex="0">
+                <i class="fas fa-redo-alt has-text"></i> Load defaults
+            </button>
+            &nbsp;
+            <button type="button" class="btn btn-secondary"
+                    (click)="saveCurrent()" tabindex="0">
+                <i class="fas fa-save has-text"></i> Save current
+            </button>
+            &nbsp;
+            <button type="button" class="btn btn-danger"
+                    (click)="cancel()" tabindex="0">
+                <i class="fas fa-window-close has-text"></i> Cancel
+            </button>
+            <!--
+                Reset buttons are discouraged, see for instance item 48 at
+                https://www.ventureharbour.com/form-design-best-practices/
 
-        <!--
-            Reset buttons are discouraged, see for instance item 48 at
-            https://www.ventureharbour.com/form-design-best-practices/
-
-        <button type="button" class="btn btn-secondary"
-                (click)="reset()">
-          <i class="delete icon"></i>
-          Reset
-        </button>
-        -->
+            <button type="button" class="btn btn-secondary"
+                    (click)="reset()">
+              <i class="fas fa-redo-alt"></i>
+              Reset
+            </button>
+            &nbsp;
+            -->
+            &nbsp;
+            <button type="button" class="btn btn-primary"
+                    (click)="search()" tabindex="0">
+                <i class="fas fa-search has-text"></i>
+                Search
+            </button>
+        </div>
     </div>
 </div>

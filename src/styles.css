@@ -238,3 +238,11 @@ form div.field > label:first-child {
     font-size: small;
     color: black;
 }
+
+
+/* Forms */
+
+.form-buttons {
+    float: right;
+    padding: 0 0 12px 0;
+}
