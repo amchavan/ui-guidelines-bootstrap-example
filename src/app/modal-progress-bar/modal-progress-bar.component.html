@@ -1,12 +1,12 @@
 <div class="modal-header">
-    <h5>Import Target List</h5>
+    <h5> <i class="fas fa-upload has-text"></i> Import Target List </h5>
     <button *ngIf="!complete" class="btn close" type="button" (click)="activeModal.dismiss((progress))">
         <i class="fas fa-times"></i>
     </button>
 </div>
 <div class="modal-body">
     Importing...<br>
-    <ngb-progressbar type="info" showValue="true" [value]="(progress)"></ngb-progressbar>
+    <ngb-progressbar type="secondary" showValue="true" [value]="(progress)"></ngb-progressbar>
 
 </div>
 <div class="modal-footer">

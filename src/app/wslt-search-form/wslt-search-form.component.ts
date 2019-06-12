@@ -85,6 +85,11 @@ export class WsltSearchFormComponent implements OnInit {
   queryIntervalEndTime = null;
   queryIntervalEndSpinners = false;
 
+  entryAuthor = null;
+  entrySubject = null;
+  entryLocation = null;
+  entryComment = null;
+
   constructor( public activeModal: NgbActiveModal ) {
   }
 

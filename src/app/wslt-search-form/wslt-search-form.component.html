@@ -145,6 +145,7 @@
 
         <ngb-panel id="general" title="General">
             <ng-template ngbPanelContent>
+
                 <form>
                     <!-- General information -->
                     <div>
@@ -303,7 +304,7 @@
                                         <input class="form-control"
                                                placeholder="..."
                                                name="entryLocation"
-                                               [(ngModel)]="entryAuthor">
+                                               [(ngModel)]="entryLocation">
                                     </div>
                                 </div>
                             </div>
@@ -319,7 +320,7 @@
                                         <input class="form-control"
                                                placeholder="..."
                                                name="entryComment"
-                                               [(ngModel)]="entrySubject">
+                                               [(ngModel)]="entryComment">
                                     </div>
                                 </div>
                             </div>
@@ -439,6 +440,7 @@
 
     </ngb-accordion>
     <div>
+        <p></p>
         <button type="button" class="btn btn-primary"
                 (click)="search()" tabindex="0">
             <i class="fas fa-search has-text"></i>
