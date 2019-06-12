@@ -143,7 +143,7 @@
                     <!-- General information -->
                     <div>
 
-                        <!-- 4x3 table of entry types -->
+                        <!-- Table of entry types -->
                         <div class="form-group field">
                             <label>Types &nbsp;&nbsp;
                                 <input type="checkbox"
@@ -319,109 +319,128 @@
                             </div>
                         </div>
 
-                        <!-- 4x2 table of entry keywords -->
-                        <div class="form-group field">
-                            <label>Keywords &nbsp;&nbsp;
-                                <input type="checkbox"
-                                       [(ngModel)]="allEntryKeywordsSelected"
-                                       (change)="onSelectAllEntryKeywordsChange(allEntryKeywordsSelected)"
-                                       name="selectAll"
-                                       ngbPopover="Click here to select/deselect all entry keywords"
-                                       triggers="mouseenter:mouseleave"
-                                       placement="right"
-                                       popoverClass="tooltip-default right">
-                            </label>
-                            <!-- <div class="row">
-                                <div class="col col-sm-3">
-                                    <button class="btn btn-secondary" type="button" (click)="openWsltModalsearchForm()">
-                                        Invert selection
-                                    </button>
-                                </div>
-                                <div class="col"> -->
-                            <div class="container-fluid">
+                        <!-- Keywords/Shift activity -->
+                        <div class="form-row">
 
-                                <!-- Entry keywords row 1 -->
-                                <div class="row">
-                                    <div class="col col-md-3">
-                                        <label class="checkbox">
-                                            <input type="checkbox" [(ngModel)]="selectedEntryKeywords[iAntInt]"
-                                                   (change)="onEntriesTypeChange(iAntInt)" name="iAntInt">
-                                            ANT_INTEGRATION
-                                        </label>
-                                    </div>
-                                    <div class="col col-md-2">
-                                        <label class="checkbox">
-                                            <input type="checkbox" [(ngModel)]="selectedEntryKeywords[iFeatures]"
-                                                   (change)="onEntriesTypeChange(iFeatures)" name="iFeatures"> FEATURES
-                                        </label>
-                                    </div>
-                                    <div class="col col-md-2">
-                                        <label class="checkbox">
-                                            <input type="checkbox" [(ngModel)]=" selectedEntryKeywords[iHandover]"
-                                                   (change)="onEntriesTypeChange(iHandover)" name="iHandover"> HANDOVER
-                                        </label>
-                                    </div>
-                                </div>
+                            <div class="col">
+                        <!-- Table of entry keywords -->
+                                <div class="form-group field">
+                                    <label>Keywords &nbsp;&nbsp;
+                                        <input type="checkbox"
+                                               [(ngModel)]="allEntryKeywordsSelected"
+                                               (change)="onSelectAllEntryKeywordsChange(allEntryKeywordsSelected)"
+                                               name="selectAll"
+                                               ngbPopover="Click here to select/deselect all entry keywords"
+                                               triggers="mouseenter:mouseleave"
+                                               placement="right"
+                                               popoverClass="tooltip-default right">
+                                    </label>
 
-                                <!-- Entry keywords row 2 -->
-                                <div class="row">
-                                    <div class="col col-md-3">
-                                        <label class="checkbox">
-                                            <input type="checkbox" [(ngModel)]=" selectedEntryKeywords[iHwTesting]"
-                                                   (change)="onEntriesTypeChange(iHwTesting)" name="iHwTesting">
-                                            HW_TESTING
-                                        </label>
-                                    </div>
-                                    <div class="col col-md-2">
-                                        <label class="checkbox ">
-                                            <input type="checkbox" [(ngModel)]="selectedEntryKeywords[iRegression]"
-                                                   (change)="onEntriesTypeChange(iRegression)" name="iRegression">
-                                            REGRESSION
-                                        </label>
-                                    </div>
-                                    <div class="col col-md-2">
-                                        <label class="checkbox">
-                                            <input type="checkbox" [(ngModel)]="selectedEntryKeywords[iSciVer]"
-                                                   (change)="onEntriesTypeChange(iSciVer)" name="iSciVer"> SCIVER
-                                        </label>
-                                    </div>
-                                </div>
+                                    <div class="container-fluid">
 
-                                <!-- Entry keywords row 3 -->
-                                <div class="row">
-                                    <div class="col col-md-3">
-                                        <label class="checkbox ">
-                                            <input type="checkbox" [(ngModel)]="selectedEntryKeywords[iSystEng]"
-                                                   (change)="onEntriesTypeChange(iSystEng)" name="iSystEng"> SYST_ENG
-                                        </label>
+                                        <!-- Entry keywords row 1 -->
+                                        <div class="row">
+                                            <div class="col col-md-6">
+                                                <label class="checkbox">
+                                                    <input type="checkbox" [(ngModel)]="selectedEntryKeywords[iAntInt]"
+                                                           (change)="onEntriesTypeChange(iAntInt)" name="iAntInt">
+                                                    ANT_INTEGRATION
+                                                </label>
+                                            </div>
+                                            <div class="col col-md-6">
+                                                <label class="checkbox">
+                                                    <input type="checkbox"
+                                                           [(ngModel)]="selectedEntryKeywords[iFeatures]"
+                                                           (change)="onEntriesTypeChange(iFeatures)" name="iFeatures">
+                                                    FEATURES
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <!-- Entry keywords row 2 -->
+                                        <div class="row">
+                                            <div class="col col-md-6">
+                                                <label class="checkbox">
+                                                    <input type="checkbox"
+                                                           [(ngModel)]=" selectedEntryKeywords[iHandover]"
+                                                           (change)="onEntriesTypeChange(iHandover)" name="iHandover">
+                                                    HANDOVER
+                                                </label>
+                                            </div>
+                                            <div class="col col-md-6">
+                                                <label class="checkbox">
+                                                    <input type="checkbox"
+                                                           [(ngModel)]=" selectedEntryKeywords[iHwTesting]"
+                                                           (change)="onEntriesTypeChange(iHwTesting)" name="iHwTesting">
+                                                    HW_TESTING
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <!-- Entry keywords row 3 -->
+                                        <div class="row">
+                                            <div class="col col-md-26">
+                                                <label class="checkbox ">
+                                                    <input type="checkbox"
+                                                           [(ngModel)]="selectedEntryKeywords[iRegression]"
+                                                           (change)="onEntriesTypeChange(iRegression)"
+                                                           name="iRegression">
+                                                    REGRESSION
+                                                </label>
+                                            </div>
+                                            <div class="col col-md-6">
+                                                <label class="checkbox">
+                                                    <input type="checkbox" [(ngModel)]="selectedEntryKeywords[iSciVer]"
+                                                           (change)="onEntriesTypeChange(iSciVer)" name="iSciVer">
+                                                    SCIVER
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <!-- Entry keywords row 4 -->
+                                        <div class="row">
+                                            <div class="col col-md-6">
+                                                <label class="checkbox ">
+                                                    <input type="checkbox" [(ngModel)]="selectedEntryKeywords[iSystEng]"
+                                                           (change)="onEntriesTypeChange(iSystEng)" name="iSystEng">
+                                                    SYST_ENG
+                                                </label>
+                                            </div>
+                                            <div class="col col-md-6">
+                                                <label class="checkbox ">
+                                                    <input type="checkbox"
+                                                           [(ngModel)]="selectedEntryKeywords[iSwTesting]"
+                                                           (change)="onEntriesTypeChange(iSwTesting)" name="iSwTesting">
+                                                    SW_TESTING
+                                                </label>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col col-md-2">
-                                        <label class="checkbox ">
-                                            <input type="checkbox" [(ngModel)]="selectedEntryKeywords[iSwTesting]"
-                                                   (change)="onEntriesTypeChange(iSwTesting)" name="iSwTesting">
-                                            SW_TESTING
-                                        </label>
-                                    </div>
+                                    <!--                    </div>
+                                                    </div>-->
                                 </div>
                             </div>
-                            <!--                    </div>
-                                            </div>-->
-                        </div>
 
-                        <!-- Shift activity pulldown menu -->
-                        <div class="form-group field">
-                            <label>Shift activity</label>
-                            <div class="input-group">
-                                <div ngbDropdown>
-                                    <button ngbDropdownToggle class="btn btn-block"
-                                            [ngClass]="{'text-muted': selectedShiftActivity == null}">
-                                        {{selectedShiftActivity == null ? "Select shift activity..." : selectedShiftActivity}}
-                                    </button>
-                                    <div ngbDropdownMenu>
-                                <span *ngFor="let shiftActivity of shiftActivities">
-                                    <button ngbDropdownItem
-                                            (click)="onSelectShiftActivity(shiftActivity)">{{shiftActivity}}</button>
-                                </span>
+                            <!-- Separator for the two columns -->
+                            <div class="col-sm-1"></div>
+
+                            <div class="col">
+                                <!-- Shift activity pulldown menu -->
+                                <div class="form-group field">
+                                    <label>Shift activity</label>
+                                    <div class="input-group">
+                                        <div ngbDropdown placement="top-right">
+                                            <button ngbDropdownToggle class="btn btn-block"
+                                                    [ngClass]="{'text-muted': selectedShiftActivity == null}">
+                                                {{selectedShiftActivity == null ? "Select shift activity..." : selectedShiftActivity}}
+                                            </button>
+                                            <div ngbDropdownMenu>
+                                                <span *ngFor="let shiftActivity of shiftActivities">
+                                                    <button ngbDropdownItem
+                                                            (click)="onSelectShiftActivity(shiftActivity)">{{shiftActivity}}</button>
+                                                </span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -568,6 +587,7 @@
         </ngb-panel>
 
     </ngb-accordion>
+
     <div>
         <p></p>
         <button type="button" class="btn btn-primary"
