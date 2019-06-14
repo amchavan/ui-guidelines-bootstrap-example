@@ -11,11 +11,12 @@ body {
   font-size: 14px;
 }
 
+/* Buttons */
 button {
   font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
 }
 
-/* Primary and secondary buttons should be ALMA blue */
+/* Buttons: primary and secondary buttons should be ALMA blue */
 
 .btn.btn-primary {
   background: #004f87;
@@ -24,15 +25,28 @@ button {
   background: #103073;
 }
 .btn.btn-secondary {
-  border-color: #004f87;
-  background: white;
-  color: #004f87;
+    border-color: #004f87;
+    background: white;
+    color: #004f87;
+}
+.btn.btn-danger.btn-secondary {
+    border-color: #dc3545;
+    background: white;
+    color: #dc3545;
 }
 
-/* No ugly button shadow */
+/* Buttons: no ugly button shadow */
 
 .btn:focus, .btn.focus, .btn:active {
   box-shadow: none;
+}
+
+/* Buttons: add some spacing between them when they are in a row */
+.button-row .btn {
+    margin-right: 6px;
+}
+.button-row .btn:last-of-type {
+    margin-right: 0;
 }
 
 /* No padding and no margin for all containers */
@@ -164,6 +178,11 @@ form div.field > label:first-child {
   margin-bottom: 5px;
 }
 
+.form-buttons {
+    float: right;
+    padding: 0 0 12px 0;
+}
+
 /* Tables */
 
 .table td {
@@ -239,10 +258,3 @@ form div.field > label:first-child {
     color: black;
 }
 
-
-/* Forms */
-
-.form-buttons {
-    float: right;
-    padding: 0 0 12px 0;
-}

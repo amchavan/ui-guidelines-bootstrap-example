@@ -1,56 +1,97 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col">
-            <div class="btn-group" role="group">
-                <button type="button" class="btn btn-primary btn-sm"
-                        ngbPopover="Explanation of primary action goes here"
-                        triggers="mouseenter:mouseleave"
-                        placement="right"
-                        popoverClass="tooltip-default right">
-                    <i class="fas fa-upload has-text"></i>
-                    Primary action
-                </button>
-                <button type="button" class="btn btn-secondary btn-sm"
-                        ngbPopover="Explanation of secondary action goes here"
-                        triggers="mouseenter:mouseleave"
-                        placement="bottom"
-                        popoverClass="tooltip-default bottom">
-                    <i class="fas fa-download has-text"></i>
-                    Secondary action
-                </button>
-                <button type="button" class="btn btn-secondary btn-sm"
-                        ngbPopover="Explanation of... you get the point"
-                        triggers="mouseenter:mouseleave"
-                        placement="bottom"
-                        popoverClass="tooltip-default bottom">
-                    <i class="fas fa-cog has-text"></i>
-                    Another secondary action
-                </button>
-                <button ngbDropdown class="btn btn-secondary btn-sm tab-head">
-                    <a ngbDropdownToggle>
-                        <i class="fas fa-pencil has-text"></i> Edit
+<div class="container">
+
+    <div class="row button-row">
+            <button type="button" class="btn btn-primary btn-sm"
+                    ngbPopover="Explanation of primary action goes here"
+                    triggers="mouseenter:mouseleave"
+                    placement="right"
+                    popoverClass="tooltip-default right">
+                <i class="fas fa-upload has-text"></i>
+                Primary Action
+            </button>
+            <button type="button" class="btn btn-danger btn-sm"
+                    ngbPopover="Explanation of primary destructive action goes here"
+                    triggers="mouseenter:mouseleave"
+                    placement="right"
+                    popoverClass="tooltip-default right">
+                <i class="fas fa-trash-alt has-text"></i>
+                Primary Destructive Action
+            </button>
+            <button type="button" class="btn btn-secondary btn-sm"
+                    ngbPopover="Explanation of secondary action goes here"
+                    triggers="mouseenter:mouseleave"
+                    placement="bottom"
+                    popoverClass="tooltip-default bottom">
+                <i class="fas fa-download has-text"></i>
+                Secondary Action
+            </button>
+            <button type="button" class="btn btn-danger btn-secondary btn-sm"
+                    ngbPopover="Explanation of... you get the point"
+                    triggers="mouseenter:mouseleave"
+                    placement="bottom"
+                    popoverClass="tooltip-default bottom">
+                <i class="fas fa-fire has-text"></i>
+                Secondary Destructive Action
+            </button>
+            <button ngbDropdown class="btn btn-secondary btn-sm">
+                <a ngbDropdownToggle>
+                    <i class="fas fa-pencil has-text"></i> Edit
+                </a>
+                <div ngbDropdownMenu>
+                    <a (click)="msg('Copy')" ngbDropdownItem>
+                        <i class="fas fa-copy has-text"></i> Copy (Ctrl-C)
                     </a>
-                    <div ngbDropdownMenu>
-                        <a (click)="msg('Copy')" ngbDropdownItem>
-                            <i class="fas fa-copy has-text"></i> Copy (Ctrl-C)
-                        </a>
 
-                        <a (click)="msg('Paste')" ngbDropdownItem>
-                            <i class="fas fa-clipboard has-text"></i> Paste (Ctrl-V)
-                        </a>
+                    <a (click)="msg('Paste')" ngbDropdownItem>
+                        <i class="fas fa-clipboard has-text"></i> Paste (Ctrl-V)
+                    </a>
 
-                        <a (click)="msg('Cut')" ngbDropdownItem>
-                            <i class="fas fa-cut has-text"></i> Cut (Ctrl-X)
-                        </a>
-                    </div>
-                </button>
-            </div>
-        </div>
+                    <a (click)="msg('Cut')" ngbDropdownItem>
+                        <i class="fas fa-cut has-text"></i> Cut (Ctrl-X)
+                    </a>
+                </div>
+            </button>
 
-        <div class="col">
             <button class="btn btn-primary btn-sm" (click)="openImportModal()">
                 <i class="fas fa-file-import has-text"></i>
                 Import
+            </button>
+    </div>
+
+    <div class="row">
+        &nbsp;
+    </div>
+
+    <div class="row">
+
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-primary btn-sm"
+                    ngbPopover="Delete"
+                    triggers="mouseenter:mouseleave">
+                <i class="fas fa-trash-alt"></i>
+            </button>
+            <button type="button" class="btn btn-primary btn-sm"
+                    ngbPopover="Mark as junk mail"
+                    triggers="mouseenter:mouseleave">
+                <i class="fas fa-fire"></i>
+            </button>
+        </div>
+        &nbsp;
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-primary btn-sm"
+                    ngbPopover="Reply"
+                    triggers="mouseenter:mouseleave">
+                <i class="fas fa-reply"></i>
+            </button>
+            <button type="button" class="btn btn-primary btn-sm"
+                    ngbPopover="Reply all"
+                    triggers="mouseenter:mouseleave">
+                <i class="fas fa-reply-all"></i>
+            </button>
+            <button type="button" class="btn btn-primary btn-sm"
+                    ngbPopover="Forward"
+                    triggers="mouseenter:mouseleave">
+                <i class="fas fa-share"></i>
             </button>
         </div>
     </div>
