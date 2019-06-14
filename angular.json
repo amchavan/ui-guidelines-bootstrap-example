@@ -23,6 +23,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/alma-ui-guidelines.css",
               "src/styles.css"
             ],
             "scripts": [],
@@ -80,6 +81,7 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
+              "src/alma-ui-guidelines.css",
               "src/styles.css"
             ],
             "scripts": [
