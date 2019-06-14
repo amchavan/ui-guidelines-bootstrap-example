@@ -7,7 +7,7 @@
                         triggers="mouseenter:mouseleave"
                         placement="right"
                         popoverClass="tooltip-default right">
-                    <i class="fas fa-file-upload has-text"></i>
+                    <i class="fas fa-upload has-text"></i>
                     Primary action
                 </button>
                 <button type="button" class="btn btn-secondary btn-sm"
@@ -15,7 +15,7 @@
                         triggers="mouseenter:mouseleave"
                         placement="bottom"
                         popoverClass="tooltip-default bottom">
-                    <i class="fas fa-file-download has-text"></i>
+                    <i class="fas fa-download has-text"></i>
                     Secondary action
                 </button>
                 <button type="button" class="btn btn-secondary btn-sm"
@@ -23,7 +23,7 @@
                         triggers="mouseenter:mouseleave"
                         placement="bottom"
                         popoverClass="tooltip-default bottom">
-                    <i class="fas fa-cogs has-text"></i>
+                    <i class="fas fa-cog has-text"></i>
                     Another secondary action
                 </button>
                 <button ngbDropdown class="btn btn-secondary btn-sm tab-head">
@@ -36,7 +36,7 @@
                         </a>
 
                         <a (click)="msg('Paste')" ngbDropdownItem>
-                            <i class="fas fa-paste has-text"></i> Paste (Ctrl-V)
+                            <i class="fas fa-clipboard has-text"></i> Paste (Ctrl-V)
                         </a>
 
                         <a (click)="msg('Cut')" ngbDropdownItem>
@@ -49,7 +49,7 @@
 
         <div class="col">
             <button class="btn btn-primary btn-sm" (click)="openImportModal()">
-                <i class="fas fa-upload has-text"></i>
+                <i class="fas fa-file-import has-text"></i>
                 Import
             </button>
         </div>
