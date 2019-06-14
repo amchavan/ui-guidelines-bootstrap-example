@@ -18,15 +18,15 @@ button {
 /* Primary and secondary buttons should be ALMA blue */
 
 .btn.btn-primary {
-  background: #1f4f83;
+  background: #004f87;
 }
 .btn.btn-primary:hover {
-  background: #18316f;
+  background: #103073;
 }
 .btn.btn-secondary {
-  border-color: #1f4f83;
+  border-color: #004f87;
   background: white;
-  color: #1f4f83;
+  color: #004f87;
 }
 
 /* No ugly button shadow */
@@ -44,7 +44,7 @@ button {
 /* "ALMA blue" definition */
 
 .almacolor {
-  background: linear-gradient(to bottom, #18316f 0%, #1f4f83 100%);
+    background: linear-gradient(to bottom, #103073 0%, #004f87 100%);
 }
 
 /* Add some space between image and text when icons are used together with text labels  */
@@ -184,13 +184,13 @@ form div.field > label:first-child {
 
 .alert-primary {
     color: white;
-    border-color: #1f4f83;
-    background-color: #1f4f83;
+    border-color: #004f87;
+    background-color: #004f87;
 }
 
 .alert-secondary, .alert-info {
-    color: #1f4f83;
-    border-color: #1f4f83;
+    color: #004f87;
+    border-color: #004f87;
     background-color: transparent;
 }
 
