@@ -6,7 +6,8 @@
 </div>
 <div class="modal-body">
 <form>
-    <div class="form-group">
+    <div class="form-group field">
+
         <label>Name or ID</label>
         <div class="input-group">
             <input class="form-control border-right-0" type="search" placeholder="Name/ID..."
@@ -18,7 +19,7 @@
         <small id="emailHelp" class="form-text text-muted">Optional help text — or you can use a tooltip instead</small>
     </div>
 
-    <div class="form-group">
+    <div class="form-group field">
         <label>ARC</label>
         <div ngbRadioGroup name="arcsRadioGroup" [(ngModel)]="selectedArc">
             <span *ngFor="let arc of arcs">
@@ -29,7 +30,7 @@
         </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group field">
         <label>Node</label>
         <div ngbDropdown>
             <button ngbDropdownToggle class="btn btn-block" [disabled]="selectedNodes.length == 0"
@@ -44,7 +45,7 @@
         </div>
     </div>
 
-    <div class="field">
+    <div class="form-group field">
         <label>Qualifications</label>
         <div class="container-fluid">
             <div class="row">

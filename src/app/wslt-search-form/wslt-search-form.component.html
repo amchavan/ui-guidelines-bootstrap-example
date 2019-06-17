@@ -528,9 +528,8 @@
         <!-- Accordion panel: Engineering -->
         <ngb-panel id="engineering" title="Engineering">
             <ng-template ngbPanelContent>
-
-                <!-- 3x2 table of engineering groups -->
-                <div class="form-group field">
+                <form>
+                    <div class="form-group field">
                     <label>Groups &nbsp;&nbsp;
                         <input type="checkbox"
                                [(ngModel)]="allEngGroupsSelected"
@@ -583,6 +582,7 @@
                         </div>
                     </div>
                 </div>
+                </form>
             </ng-template>
         </ngb-panel>
 
