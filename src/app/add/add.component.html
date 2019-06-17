@@ -114,7 +114,9 @@
     <div class="row">
         <div class="col-sm"></div>
         <div class="col-sm">
-            &nbsp; <!-- quick and dirty, some vertical spacing -->
+            
+            <div style="padding-bottom: 5px"></div>            <!-- Vertical space -->
+
             <ngb-alert *ngIf="showAlert" type="warning" (close)="closeAlert()">
                 <i class="fas fa-exclamation has-text"></i>
                 {{ importCanceledAlertMessage }}
