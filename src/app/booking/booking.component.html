@@ -1,9 +1,13 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-2">
-            <button class="btn btn-primary btn-sm" type="button" (click)="openWsltModalsearchForm()">
+            <button class="btn btn-primary btn-sm" type="button" (click)="openWsltModalsearchForm()"
+                    ngbPopover="Click here for the Web Shift Log Tool query form"
+                    triggers="mouseenter:mouseleave"
+                    placement="bottom-left"
+                    popoverClass="tooltip-default bottom">
                 <i class="fas fa-search has-text"></i>
-                WebSLT search
+                WebSLT query
             </button>
         </div>
         <div class="col-sm-10">
@@ -13,9 +17,9 @@
                 triggers="mouseenter:mouseleave"
             -->
             <ngb-alert *ngIf="isVisibleWarning" type="warning" (close)="isVisibleWarning=false"
-                       ngbPopover="(Tooltip implemented with ngbPopover, placed bottom) This alert can be dismissed by clicking on the x button"
+                       ngbPopover="(Tooltip implemented with ngbPopover, placed 'bottom-left') This alert can be dismissed by clicking on the x button"
                        triggers="mouseenter:mouseleave"
-                       placement="bottom"
+                       placement="bottom-left"
                        popoverClass="tooltip-default bottom">
                 alert-warning (dismissable) <i class="fas fa-exclamation-triangle has-text"></i>
             </ngb-alert>
