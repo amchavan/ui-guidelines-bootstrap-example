@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +14,13 @@ import { ModalProgressBarComponent } from './modal-progress-bar/modal-progress-b
 import { DataReducerSearchFormComponent } from './data-reducer-search-form/data-reducer-search-form.component';
 import { BookingComponent } from './booking/booking.component';
 import { WsltSearchFormComponent } from './wslt-search-form/wslt-search-form.component';
+import { FormValidationExampleComponent } from './form-validation-example/form-validation-example.component';
+import {
+  FormsModule,
+  ReactiveFormsModule,
+  FormBuilder,
+  FormGroup
+} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,19 +31,24 @@ import { WsltSearchFormComponent } from './wslt-search-form/wslt-search-form.com
     ModalProgressBarComponent,
     DataReducerSearchFormComponent,
     BookingComponent,
-    WsltSearchFormComponent
+    WsltSearchFormComponent,
+    FormValidationExampleComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    FormsModule
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [NgbActiveModal],
   bootstrap: [AppComponent],
   entryComponents: [
     ModalProgressBarComponent,
     DataReducerSearchFormComponent,
-    WsltSearchFormComponent  ]
+    WsltSearchFormComponent,
+    FormValidationExampleComponent
+  ]
 })
 export class AppModule { }

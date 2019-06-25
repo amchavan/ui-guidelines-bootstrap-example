@@ -7,14 +7,13 @@
 <div class="modal-body">
 
     <ngb-accordion [closeOthers]="true" activeIds="basic">
-
         <!-- Accordion panel: query parameters -->
         <ngb-panel id="basic" title="Query parameters">
             <ng-template ngbPanelContent>
 
                 <form>
                     <!-- Query parameters -->
-                    <div>
+                    <div class="wslt-query-accordion-panel">
                         <div class="row">
 
                             <!--
@@ -23,7 +22,7 @@
                             So we introduce a very thin left-hand column of fixed height.
                             mchavan, 06-Jun-2019
                             -->
-                            <div class="col-1" style="max-width: 1px; margin-bottom: 9cm"></div>
+<!--                            <div class="col-1" style="max-width: 1px; margin-bottom: 9cm"></div>-->
 
                             <!-- Left column -->
                             <div class="col">
@@ -141,7 +140,7 @@
 
                 <form>
                     <!-- General information -->
-                    <div>
+                    <div class="wslt-query-accordion-panel">
 
                         <!-- Table of entry types -->
                         <div class="form-group field">
@@ -249,8 +248,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--                    </div>
-                                            </div>-->
                         </div>
 
                         <!-- Author/Subject -->
@@ -453,7 +450,9 @@
         <!-- Accordion panel: Execution information -->
         <ngb-panel id="execution" title="Execution information">
             <ng-template ngbPanelContent>
-                <strong>TODO</strong>
+                <div class="wslt-query-accordion-panel">
+                    <strong>TODO</strong>
+                </div>
             </ng-template>
         </ngb-panel>
 
@@ -461,7 +460,7 @@
         <ngb-panel id="downtime" title="Downtime information">
             <ng-template ngbPanelContent>
                 <form>
-                    <div>
+                    <div class="wslt-query-accordion-panel">
                         <div class="row">
 
                             <!--
@@ -528,61 +527,64 @@
         <!-- Accordion panel: Engineering -->
         <ngb-panel id="engineering" title="Engineering">
             <ng-template ngbPanelContent>
-                <form>
-                    <div class="form-group field">
-                    <label>Groups &nbsp;&nbsp;
-                        <input type="checkbox"
-                               [(ngModel)]="allEngGroupsSelected"
-                               (change)="onSelectAllEngGroupsChange(allEngGroupsSelected)"
-                               name="selectAll"
-                               ngbPopover="Click here to select/deselect all engineering groups"
-                               triggers="mouseenter:mouseleave"
-                               placement="right"
-                               popoverClass="tooltip-default right">
-                    </label>
+                <div class="wslt-query-accordion-panel">
+                    <form>
+                        <div class="form-group field">
+                            <label>Groups &nbsp;&nbsp;
+                                <input type="checkbox"
+                                       [(ngModel)]="allEngGroupsSelected"
+                                       (change)="onSelectAllEngGroupsChange(allEngGroupsSelected)"
+                                       name="selectAll"
+                                       ngbPopover="Click here to select/deselect all engineering groups"
+                                       triggers="mouseenter:mouseleave"
+                                       placement="right"
+                                       popoverClass="tooltip-default right">
+                            </label>
 
-                    <div class="container-fluid">
+                            <div class="container-fluid">
 
-                        <!-- Entry keywords row 1 -->
-                        <div class="row">
-                            <div class="col col-md-3">
-                                <label class="checkbox">
-                                    <input type="checkbox" [(ngModel)]="selectedEngGroups[iAntCont]"
-                                           (change)="onEntriesTypeChange(iAntCont)" name="iAntCont">  Antenna control
-                                </label>
-                            </div>
+                                <!-- Entry keywords row 1 -->
+                                <div class="row">
+                                    <div class="col col-md-3">
+                                        <label class="checkbox">
+                                            <input type="checkbox" [(ngModel)]="selectedEngGroups[iAntCont]"
+                                                   (change)="onEntriesTypeChange(iAntCont)" name="iAntCont"> Antenna
+                                            control
+                                        </label>
+                                    </div>
 
-                            <div class="col col-md-2">
-                                <label class="checkbox">
-                                    <input type="checkbox" [(ngModel)]="selectedEngGroups[iBackend]"
-                                           (change)="onEntriesTypeChange(iBackend)" name="iBackend"> BackEnd
-                                </label>
-                            </div>
+                                    <div class="col col-md-2">
+                                        <label class="checkbox">
+                                            <input type="checkbox" [(ngModel)]="selectedEngGroups[iBackend]"
+                                                   (change)="onEntriesTypeChange(iBackend)" name="iBackend"> BackEnd
+                                        </label>
+                                    </div>
 
-                            <div class="col col-md-2">
-                                <label class="checkbox">
-                                    <input type="checkbox" [(ngModel)]=" selectedEngGroups[iCorr]"
-                                           (change)="onEntriesTypeChange(iCorr)" name="iCorr"> Correlator
-                                </label>
-                            </div>
+                                    <div class="col col-md-2">
+                                        <label class="checkbox">
+                                            <input type="checkbox" [(ngModel)]=" selectedEngGroups[iCorr]"
+                                                   (change)="onEntriesTypeChange(iCorr)" name="iCorr"> Correlator
+                                        </label>
+                                    </div>
 
-                            <div class="col col-md-2">
-                                <label class="checkbox">
-                                    <input type="checkbox" [(ngModel)]=" selectedEngGroups[iFrontEnd]"
-                                           (change)="onEntriesTypeChange(iFrontEnd)" name="iFrontEnd"> FrontEnd
-                                </label>
-                            </div>
+                                    <div class="col col-md-2">
+                                        <label class="checkbox">
+                                            <input type="checkbox" [(ngModel)]=" selectedEngGroups[iFrontEnd]"
+                                                   (change)="onEntriesTypeChange(iFrontEnd)" name="iFrontEnd"> FrontEnd
+                                        </label>
+                                    </div>
 
-                            <div class="col col-md-2">
-                                <label class="checkbox ">
-                                    <input type="checkbox" [(ngModel)]="selectedEngGroups[iSoftware]"
-                                           (change)="onEntriesTypeChange(iSoftware)" name="iSoftware"> Software
-                                </label>
+                                    <div class="col col-md-2">
+                                        <label class="checkbox ">
+                                            <input type="checkbox" [(ngModel)]="selectedEngGroups[iSoftware]"
+                                                   (change)="onEntriesTypeChange(iSoftware)" name="iSoftware"> Software
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
-                </form>
             </ng-template>
         </ngb-panel>
 

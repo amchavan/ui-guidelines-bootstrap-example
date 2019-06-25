@@ -1,145 +1,154 @@
-<div class="container">
+<div class="container-fluid">
 
-    <div class="row button-row">
-            <button type="button" class="btn btn-primary btn-sm"
-                    ngbPopover="Explanation of primary action goes here"
-                    triggers="mouseenter:mouseleave"
-                    placement="right"
-                    popoverClass="tooltip-default right">
-                <i class="fas fa-upload has-text"></i>
-                Primary Action
-            </button>
-            <button type="button" class="btn btn-danger btn-sm"
-                    ngbPopover="Explanation of primary destructive action goes here"
-                    triggers="mouseenter:mouseleave"
-                    placement="right"
-                    popoverClass="tooltip-default right">
-                <i class="fas fa-trash-alt has-text"></i>
-                Primary Destructive Action
-            </button>
-            <button type="button" class="btn btn-secondary btn-sm"
-                    ngbPopover="Explanation of secondary action goes here"
-                    triggers="mouseenter:mouseleave"
-                    placement="bottom"
-                    popoverClass="tooltip-default bottom">
-                <i class="fas fa-download has-text"></i>
-                Secondary Action
-            </button>
-            <button type="button" class="btn btn-danger btn-secondary btn-sm"
-                    ngbPopover="Explanation of... you get the point"
-                    triggers="mouseenter:mouseleave"
-                    placement="bottom"
-                    popoverClass="tooltip-default bottom">
-                <i class="fas fa-fire has-text"></i>
-                Secondary Destructive Action
-            </button>
-            <button ngbDropdown class="btn btn-secondary btn-sm">
-                <a ngbDropdownToggle>
-                    <i class="fas fa-pencil has-text"></i> Edit
-                </a>
-                <div ngbDropdownMenu>
+    <!-- Button styles -->
+    <div class="row">
+        <div class="col-sm-10">
+            <h5>Button styles</h5>
+            <div class="row button-row">
+                <button type="button" class="btn btn-primary btn-sm"
+                        ngbPopover="Explanation of primary action goes here"
+                        triggers="mouseenter:mouseleave"
+                        placement="right"
+                        popoverClass="tooltip-default right">
+                    <i class="fas fa-upload has-text"></i>
+                    Primary Action
+                </button>
+                <button type="button" class="btn btn-danger btn-sm"
+                        ngbPopover="Explanation of primary destructive action goes here"
+                        triggers="mouseenter:mouseleave"
+                        placement="right"
+                        popoverClass="tooltip-default right">
+                    <i class="fas fa-trash-alt has-text"></i>
+                    Primary Destructive Action
+                </button>
+                <button type="button" class="btn btn-secondary btn-sm"
+                        ngbPopover="Explanation of secondary action goes here"
+                        triggers="mouseenter:mouseleave"
+                        placement="bottom"
+                        popoverClass="tooltip-default bottom">
+                    <i class="fas fa-download has-text"></i>
+                    Secondary Action
+                </button>
+                <button type="button" class="btn btn-danger btn-secondary btn-sm"
+                        ngbPopover="Explanation of... you get the point"
+                        triggers="mouseenter:mouseleave"
+                        placement="bottom"
+                        popoverClass="tooltip-default bottom">
+                    <i class="fas fa-fire has-text"></i>
+                    Secondary Destructive Action
+                </button>
+            </div>
+        </div>
+    </div>
 
-                    <a (click)="msg('Cut')" ngbDropdownItem>
-                        <i class="fas fa-cut has-text"></i> Cut (Ctrl-X)
+    <!-- Active buttons -->
+    <div class="row" style="padding-top: 18px">
+        <div class="col-sm-8">
+            <h5>Active buttons</h5>
+            <div class="row button-row">
+                <button ngbDropdown class="btn btn-secondary btn-sm">
+                    <a ngbDropdownToggle>
+                        <i class="fas fa-pencil has-text"></i> Edit
                     </a>
+                    <div ngbDropdownMenu>
 
-                    <a (click)="msg('Copy')" ngbDropdownItem>
-                        <i class="fas fa-copy has-text"></i> Copy (Ctrl-C)
-                    </a>
+                        <a (click)="msg('Cut')" ngbDropdownItem>
+                            <i class="fas fa-cut has-text"></i> Cut (Ctrl-X)
+                        </a>
 
-                    <a (click)="msg('Paste')" ngbDropdownItem>
-                        <i class="fas fa-clipboard has-text"></i> Paste (Ctrl-V)
-                    </a>
+                        <a (click)="msg('Copy')" ngbDropdownItem>
+                            <i class="fas fa-copy has-text"></i> Copy (Ctrl-C)
+                        </a>
 
-                    <div class="dropdown-divider"></div>
+                        <a (click)="msg('Paste')" ngbDropdownItem>
+                            <i class="fas fa-clipboard has-text"></i> Paste (Ctrl-V)
+                        </a>
 
-                    <a (click)="msg('Find')" ngbDropdownItem>
-                        Find (Ctrl-F)
-                    </a>
+                        <div class="dropdown-divider"></div>
 
-                    <a (click)="msg('Replace')" ngbDropdownItem>
-                        Replace (Ctrl-R)
-                    </a>
+                        <a (click)="msg('Find')" ngbDropdownItem>
+                            Find (Ctrl-F)
+                        </a>
 
+                        <a (click)="msg('Replace')" ngbDropdownItem>
+                            Replace (Ctrl-R)
+                        </a>
+
+                    </div>
+                </button>
+                <button class="btn btn-primary btn-sm" (click)="openImportModal()">
+                    <i class="fas fa-file-import has-text"></i>
+                    Import
+                </button>
+                <button class="btn btn-primary btn-sm" (click)="openFormValidationExample()">
+                    <i class="far fa-check-circle has-text"></i>
+                    Validating Form
+                </button>
+
+                <!-- Display a warning if user canceled import operation -->
+                <div class="col-sm-4">
+                    <ngb-alert *ngIf="showAlert" type="warning" (close)="closeAlert()">
+                        <i class="fas fa-exclamation has-text"></i>
+                        {{ importCanceledAlertMessage }}
+                    </ngb-alert>
                 </div>
-            </button>
-
-            <button class="btn btn-primary btn-sm" (click)="openImportModal()">
-                <i class="fas fa-file-import has-text"></i>
-                Import
-            </button>
-    </div>
-
-    <div class="row">
-        &nbsp;
-    </div>
-
-    <div class="row">
-
-        <div class="btn-group" role="group">
-            <button type="button" class="btn btn-primary btn-sm"
-                    ngbPopover="Delete"
-                    triggers="mouseenter:mouseleave">
-                <i class="fas fa-trash-alt"></i>
-            </button>
-            <button type="button" class="btn btn-primary btn-sm"
-                    ngbPopover="Mark as junk mail"
-                    triggers="mouseenter:mouseleave">
-                <i class="fas fa-fire"></i>
-            </button>
-        </div>
-        &nbsp;
-        <div class="btn-group" role="group">
-            <button type="button" class="btn btn-primary btn-sm"
-                    ngbPopover="Reply"
-                    triggers="mouseenter:mouseleave">
-                <i class="fas fa-reply"></i>
-            </button>
-            <button type="button" class="btn btn-primary btn-sm"
-                    ngbPopover="Reply all"
-                    triggers="mouseenter:mouseleave">
-                <i class="fas fa-reply-all"></i>
-            </button>
-            <button type="button" class="btn btn-primary btn-sm"
-                    ngbPopover="Forward"
-                    triggers="mouseenter:mouseleave">
-                <i class="fas fa-share"></i>
-            </button>
+            </div>
         </div>
     </div>
-</div>
 
-<!-- Display a warning if user canceled import operation -->
-<div class="container">
-    <div class="row">
-        <div class="col-sm"></div>
-        <div class="col-sm">
-            
-            <div style="padding-bottom: 5px"></div>            <!-- Vertical space -->
+    <!-- Button group -->
+    <div class="row" style="padding-top: 18px">
+        <div class="col-sm-10">
+            <h5>Button group</h5>
+            <div class="row">
 
-            <ngb-alert *ngIf="showAlert" type="warning" (close)="closeAlert()">
-                <i class="fas fa-exclamation has-text"></i>
-                {{ importCanceledAlertMessage }}
-            </ngb-alert>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-primary btn-sm"
+                            ngbPopover="Delete"
+                            triggers="mouseenter:mouseleave">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                    <button type="button" class="btn btn-primary btn-sm"
+                            ngbPopover="Junk"
+                            triggers="mouseenter:mouseleave">
+                        <i class="fas fa-fire"></i>
+                    </button>
+                </div>
+                &nbsp;
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-primary btn-sm"
+                            ngbPopover="Reply"
+                            triggers="mouseenter:mouseleave">
+                        <i class="fas fa-reply"></i>
+                    </button>
+                    <button type="button" class="btn btn-primary btn-sm"
+                            ngbPopover="Reply all"
+                            triggers="mouseenter:mouseleave">
+                        <i class="fas fa-reply-all"></i>
+                    </button>
+                    <button type="button" class="btn btn-primary btn-sm"
+                            ngbPopover="Forward"
+                            triggers="mouseenter:mouseleave">
+                        <i class="fas fa-share"></i>
+                    </button>
+                </div>
+            </div>
         </div>
-        <div class="col-sm"></div>
     </div>
-</div>
 
-<!-- "ALMA blue" definitions -->
-<div class="container">
-    <div class="row">
-        <h5><em style="margin-left: 15px">ALMA blue</em> definitions</h5>
-    </div>
-    <div class="row">
-        <div class="col-sm-2">
-            <label style="background: #004f87; color: whitesmoke; padding: 12px 20px; font-family: monospace">#004f87</label>
-        </div>
-        <div class="col-sm-2">
-            <label style="background: #103073; color: whitesmoke; padding: 12px 20px; font-family: monospace">#103073</label>
-        </div>
-        <div class="col-sm-4">
-            <label style="background: linear-gradient(to bottom, #103073 0%, #004f87 100%); color: whitesmoke; padding: 12px 40px; font-family: monospace">linear-gradient</label>
+    <!-- "ALMA blue" definitions -->
+    <div class="container" style="padding-top: 18px">
+        <div class="col-sm-10">
+            <h5><em>ALMA blue</em> definitions</h5>
+
+            <div class="row">
+                    <label class="alma-blue-def" style="background: #004f87;">#004f87</label>
+                    <label class="alma-blue-def" style="background: #103073;">#103073</label>
+                    <label class="alma-blue-def"
+                           style="background: linear-gradient(to bottom, #103073 0%, #004f87 100%);">linear-gradient</label>
+            </div>
         </div>
     </div>
 </div>
+
+            <!--<app-form-validation-example></app-form-validation-example>-->

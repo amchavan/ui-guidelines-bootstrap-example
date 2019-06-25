@@ -140,7 +140,6 @@ form .dropdown-toggle {
     border-right-color: #db2828;
 }
 
-
 .popover.tooltip-default {
     border-color: gray;
 }
@@ -194,7 +193,6 @@ form div.field > label:first-child {
 }
 
 /* Alerts */
-/* To-do: styling for  */
 
 .alert {
     padding: 6px;
@@ -258,3 +256,9 @@ form div.field > label:first-child {
     color: black;
 }
 
+/* Form validation */
+
+.error-marker {
+    transform: translate(-40px);
+    padding-top: 10px
+}

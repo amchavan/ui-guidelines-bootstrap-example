@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { ModalProgressBarComponent } from "../modal-progress-bar/modal-progress-bar.component";
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalProgressBarComponent } from '../modal-progress-bar/modal-progress-bar.component';
+import { FormValidationExampleComponent } from '../form-validation-example/form-validation-example.component';
 
 @Component({
     selector: 'app-add',
@@ -28,14 +29,23 @@ export class AddComponent implements OnInit {
             (progress) => {
                 // show how we can use the information returned by
                 // the modal dialog when the user canceled an operation
-                console.log(">>> rejected: progress: " + progress );
-                this.importCanceledAlertMessage = "Import canceled at " + progress + "%";
+                console.log('>>> rejected: progress: ' + progress );
+                this.importCanceledAlertMessage = 'Import canceled at ' + progress + '%';
                 this.showAlert = true;
             });
     }
 
+
+    public openFormValidationExample() {
+        this.modalService.open( FormValidationExampleComponent, { size: 'lg' } ).result.then(
+            () => {
+            },
+            () => {
+            });
+    }
+
     public msg(text) {
-        console.log(">>> clicked on " + text)
+        console.log( '>>> clicked on ' + text);
     }
 
     public closeAlert() {
