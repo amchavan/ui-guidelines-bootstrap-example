@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbDateAdapter, NgbDateNativeAdapter } from '@ng-bootstrap/ng-bootstrap';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'wslt-search-form',
@@ -116,7 +117,21 @@ export class WsltSearchFormComponent implements OnInit {
   entryLocation = null;
   entryComment = null;
 
-  constructor( public activeModal: NgbActiveModal ) {
+  wsltQueryParamForm: FormGroup;
+  submitted = false;
+
+  constructor( fb: FormBuilder, public activeModal: NgbActiveModal ) {
+
+    // We only validate the maxEntries field here
+    this.wsltQueryParamForm = fb.group({
+      maxEntries:  ['100', [Validators.required, Validators.min(1 ), Validators.max( 1000 )]]
+    });
+  }
+
+
+  // convenience getter for easy access to form fields
+  get f() {
+    return this.wsltQueryParamForm.controls;
   }
 
   ngOnInit() {
@@ -220,15 +235,16 @@ export class WsltSearchFormComponent implements OnInit {
 
   // Max entries validator
   onMaxEntriesChange() {
-    this.isValidMaxEntries = true;
-    const emax = parseInt( this.maxEntries, 10 );
-    if ( isNaN(emax) || 1 > emax || emax > 1000 ) {
-      this.isValidMaxEntries = false;
-      console.log( '>>> max entries: INVALID' );
-    } else {
-      this.maxEntries = emax.toString();
-      console.log( '>>> selected interval: ' + this.maxEntries );
-    }
+    this.submitted = true;
+    // this.isValidMaxEntries = true;
+    // const emax = parseInt( this.maxEntries, 10 );
+    // if ( isNaN(emax) || 1 > emax || emax > 1000 ) {
+    //   this.isValidMaxEntries = false;
+    //   console.log( '>>> max entries: INVALID' );
+    // } else {
+    //   this.maxEntries = emax.toString();
+    //   console.log( '>>> selected interval: ' + this.maxEntries );
+    // }
   }
 
   onStartTimeChange() {

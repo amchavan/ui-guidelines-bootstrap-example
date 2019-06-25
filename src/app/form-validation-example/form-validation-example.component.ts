@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-form-validation-example',
@@ -12,7 +12,7 @@ export class FormValidationExampleComponent implements OnInit {
   regForm: FormGroup;
   submitted = false;
 
-  constructor(fb: FormBuilder,  public activeModal: NgbActiveModal ) {
+  constructor( fb: FormBuilder,  public activeModal: NgbActiveModal ) {
     this.regForm = fb.group({
       email:    ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],

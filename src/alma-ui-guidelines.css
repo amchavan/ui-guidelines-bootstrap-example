@@ -255,10 +255,3 @@ form div.field > label:first-child {
     font-size: small;
     color: black;
 }
-
-/* Form validation */
-
-.error-marker {
-    transform: translate(-40px);
-    padding-top: 10px
-}
