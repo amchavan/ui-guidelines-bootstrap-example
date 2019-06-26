@@ -15,7 +15,7 @@ development environment.
 
 ### Node.js
 
-Node,js is the server-side Javascript runtime, it's used to power JS 
+Node.js is the server-side Javascript runtime, it's used to power JS 
 development tools. Verify if you have a working installation by running
 `node --version` — you'll need version 10.9.0 or later.
 
