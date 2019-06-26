@@ -1,11 +1,11 @@
 <div class="modal-header">
-    Form Validation Example
+    New user registration
+    <i *ngIf="isDirty" class="fas fa-asterisk dirty"></i>
     <button class="btn close" type="button" (click)="activeModal.dismiss()">
         <i class="fas fa-times"></i>
     </button>
 </div>
 <div class="modal-body">
-    <div class="card-body">
         <form [formGroup]="regForm" (ngSubmit)="onSubmit()">
 
             <div class="form-group">
@@ -32,8 +32,8 @@
                 <p></p>
                 <div class="form-buttons button-row">
                     <button class="btn btn-primary mr-1">Register</button>
-                    <button class="btn btn-secondary" type="reset" (click)="onReset()">Reset</button>
+                    <button class="btn btn-secondary" (click)="onReset()">Reset</button>
                 </div>
             </div>
         </form>
-    </div>
+</div>

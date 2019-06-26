@@ -171,6 +171,13 @@ form .dropdown-toggle {
   border-bottom: 1px solid rgba(34,36,38,.15)
 }
 
+.dirty {
+    font-size: 10px;
+    color: #db2828;
+    padding-top: 12px;
+    padding-left: 6px
+}
+
 form div.field > label:first-child {
   font-size: 13px;
   font-weight: bold;
