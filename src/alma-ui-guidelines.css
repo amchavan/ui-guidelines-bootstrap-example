@@ -164,7 +164,7 @@ form .dropdown-toggle {
 
 /* Forms and modals */
 
-.modal-header, .form-header {
+.modal-header {
   font-size: 20px;
   font-weight: bold;
   padding: 12px 12px;
