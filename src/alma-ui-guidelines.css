@@ -199,6 +199,19 @@ form div.field > label:first-child {
   padding: 0;
 }
 
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.table thead tr:first-child>th:first-child {
+    border-left: 1px solid #dee2e6;
+}
+
+.table thead tr:first-child>th:last-child {
+    border-right: 1px solid #dee2e6;
+}
+
 /* Alerts */
 
 .alert {
