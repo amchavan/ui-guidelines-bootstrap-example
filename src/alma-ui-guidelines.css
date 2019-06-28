@@ -225,28 +225,44 @@ form div.field > label:first-child {
     background-color: #004f87;
 }
 
-.alert-secondary, .alert-info {
+.alert-secondary {
     color: #004f87;
     border-color: #004f87;
     background-color: transparent;
 }
 
+.alert-info {
+    color: #2f748a;
+    border-color: #a9d5de;
+    background-color: #f8ffff;
+}
+
 .alert-success {
-    color: #185927;
-    border-color: #185927;
-    background-color: transparent;
+    /*color: #21ba45;
+    border-color: #21ba45;
+    background-color: transparent;*/
+    color: white;
+    border-color: #21ba45;
+    background-color: #21ba45;
 }
 
 .alert-danger {
-    color: #db2828;
+    /* color: #db2828;
     border-color: #db2828;
-    background-color: transparent;
+    background-color: transparent; */
+    color: white;
+    border-color: #db2828;
+    background-color: #db2828;
 }
 
 .alert-warning {
-    color: #856404;
+    /*color: #856404;
     border-color: #856404;
-    background-color: transparent;
+    background-color: transparent;*/
+
+    color: #573a08;
+    border-color: #c9ba9b;
+    background-color: #fffaf3;
 }
 
 .alert-light {
@@ -264,6 +280,13 @@ form div.field > label:first-child {
 .alert-dismissible .close {
     padding: 6px;
 }
+
+.toast-alert {
+    /* Make an alert behave like a "toast" */
+    position:absolute;
+    z-index: 10;
+}
+
 
 /* Accordion */
 

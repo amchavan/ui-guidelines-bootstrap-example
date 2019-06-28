@@ -3,7 +3,8 @@
     <!-- Button styles -->
     <div class="row">
         <div class="col-sm-10">
-            <h5>Button styles</h5>
+            <h5>Button styles
+            </h5>
             <div class="row button-row">
                 <button type="button" class="btn btn-primary btn-sm"
                         ngbPopover="Explanation of primary action goes here"
@@ -39,13 +40,20 @@
                 </button>
             </div>
         </div>
+        <div class="col-sm-2">
+            <!-- Display a self-closing warning "toast" if user canceled import operation -->
+            <ngb-alert *ngIf="showAlert" type="warning" (close)="closeAlert()" class="toast-alert">
+                <i class="fas fa-exclamation has-text"></i>
+                {{ importCanceledAlertMessage }}
+            </ngb-alert>
+        </div>
     </div>
 
     <!-- Active buttons -->
     <div class="row" style="padding-top: 18px">
         <div class="col-sm-8">
             <h5>Active buttons</h5>
-            <div class="row button-row">
+            <span class="row button-row">
                 <button ngbDropdown class="btn btn-secondary btn-sm">
                     <a ngbDropdownToggle>
                         Edit
@@ -84,15 +92,7 @@
                     <i class="far fa-check-circle has-text"></i>
                     Validating Form
                 </button>
-
-                <!-- Display a warning if user canceled import operation -->
-                <div class="col-sm-4">
-                    <ngb-alert *ngIf="showAlert" type="warning" (close)="closeAlert()">
-                        <i class="fas fa-exclamation has-text"></i>
-                        {{ importCanceledAlertMessage }}
-                    </ngb-alert>
-                </div>
-            </div>
+            </span>
         </div>
     </div>
 

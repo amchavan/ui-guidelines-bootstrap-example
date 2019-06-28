@@ -32,6 +32,7 @@ export class AddComponent implements OnInit {
                 console.log('>>> rejected: progress: ' + progress );
                 this.importCanceledAlertMessage = 'Import canceled at ' + progress + '%';
                 this.showAlert = true;
+                setTimeout(() => this.showAlert = false, 3000);
             });
     }
 
