@@ -1,0 +1,8 @@
+.alert-sm {
+    max-width: 150px;
+    margin-bottom: 10px;
+}
+.alert-lg {
+    max-width: 300px;
+    margin-bottom: 10px;
+}
