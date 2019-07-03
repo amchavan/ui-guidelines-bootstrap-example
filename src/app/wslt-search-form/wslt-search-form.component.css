@@ -1,3 +1,8 @@
+.wslt-query-accordion-panel {
+    display: block;
+    height: 500px
+}
+
 .anten {
     color: white;
     background-color: #808080;
