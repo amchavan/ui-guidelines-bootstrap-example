@@ -6,7 +6,7 @@
 </div>
 <div class="modal-body">
 
-    <ngb-accordion [closeOthers]="true" activeIds="basic">
+    <ngb-accordion [closeOthers]="true" activeIds="basic" (panelChange)="preventPanelClosing($event)">
         <!-- Accordion panel: query parameters -->
         <ngb-panel id="basic" title="Query parameters">
             <ng-template ngbPanelContent>
