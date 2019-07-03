@@ -126,18 +126,19 @@ export class WsltSearchFormComponent implements OnInit {
 
     /*
      * Prevent a panel from being closed, resulting in all panels being
-     * closed at the same time -- one of the panels should always be open
+     * closed at the same time -- exactly one of the panels should  be
+     * open at all times
      */
     public preventPanelClosing( $event: NgbPanelChangeEvent ) {
         /*
-         * $event.nextState         true  ==> panel is toggling to an open state
-         *                          false ==> panel is toggling to a closed state
-         * $event.panelId           ID of the panel that was clicked
-         * $event.preventDefault()  Don't toggle the state of the selected panel
+         * $event.nextState         true  ==> panel opening
+         *                          false ==> panel closing
+         * $event.panelId           ID of the panel
+         * $event.preventDefault()  Don't toggle the state of selected panel
          */
         console.log( $event );
 
-        if ( $event.nextState === false ) {     // are we trying to close some panel?
+        if ( $event.nextState === false ) {     // trying to close some panel?
             $event.preventDefault();            // YES, prevent that
         }
     }
