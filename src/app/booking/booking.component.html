@@ -37,7 +37,7 @@
                 Dismissable info alert
             </ngb-alert>
 
-            <ngb-alert type="danger" class="alert-sm"
+            <ngb-alert type="danger" class="alert-sm" [dismissible]="false"
                    ngbPopover="Alert type 'danger' is for error messages"
                    triggers="mouseenter:mouseleave"
                    placement="bottom"
@@ -45,32 +45,32 @@
                  <i class="fas fa-exclamation-triangle has-text"></i> danger
             </ngb-alert>
 
-            <ngb-alert class="alert-sm" type="primary">
+            <ngb-alert class="alert-sm" type="primary" [dismissible]="false">
                  <i class="fas fa-info-circle has-text"></i> primary
             </ngb-alert>
 
-            <ngb-alert class="alert-sm" type="secondary">
+            <ngb-alert class="alert-sm" type="secondary" [dismissible]="false">
                 <i class="fas fa-info-circle has-text"></i> secondary
             </ngb-alert>
 
-            <ngb-alert class="alert-sm" type="success">
+            <ngb-alert class="alert-sm" type="success" [dismissible]="false">
                  <i class="fas fa-exclamation-circle has-text"></i> success
             </ngb-alert>
 
-            <ngb-alert class="alert-sm" type="warning">
+            <ngb-alert class="alert-sm" type="warning" [dismissible]="false">
                  <i class="fas fa-exclamation-triangle has-text"></i> warning
             </ngb-alert>
 
-            <ngb-alert class="alert-sm" type="info">
+            <ngb-alert class="alert-sm" type="info" [dismissible]="false">
                 <i class="fas fa-info-circle has-text"></i> info
             </ngb-alert>
 
-            <ngb-alert class="alert-sm" type="light">
-                light <i class="fas fa-exclamation-circle has-text"></i>
+            <ngb-alert class="alert-sm" type="light" [dismissible]="false">
+                <i class="fas fa-exclamation-circle has-text"></i> light
             </ngb-alert>
 
-            <ngb-alert class="alert-sm" type="dark">
-                dark <i class="fas fa-exclamation-circle has-text"></i>
+            <ngb-alert class="alert-sm" type="dark" [dismissible]="false">
+                <i class="fas fa-exclamation-circle has-text"></i> dark
             </ngb-alert>
 
         </div>

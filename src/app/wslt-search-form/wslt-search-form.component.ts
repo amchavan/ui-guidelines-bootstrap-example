@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbDateAdapter, NgbDateNativeAdapter, NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
     selector: 'wslt-search-form',
@@ -86,7 +86,6 @@ export class WsltSearchFormComponent implements OnInit {
     // By default we don't show the interval start and end selectors
     enableIntervalStart = false;
     enableIntervalEnd = false;
-    isValidInterval = true; // TODO: form validation, see https://getbootstrap.com/docs/4.1/components/forms/#validation
 
     intervals = this.QUERY_INTERVALS;
     selectedInterval = null;
@@ -100,12 +99,7 @@ export class WsltSearchFormComponent implements OnInit {
     downtimeTypes = this.DOWNTIME_TYPE;
     selectedDowntimeType = null;
 
-    queryIntervalStartDate: Date;
-    queryIntervalStartTime = null;
     queryIntervalStartSpinners = false;
-
-    queryIntervalEndDate: Date;
-    queryIntervalEndTime = null;
     queryIntervalEndSpinners = false;
 
     entryAuthor = null;
@@ -114,14 +108,71 @@ export class WsltSearchFormComponent implements OnInit {
     entryComment = null;
 
     wsltQueryParamForm: FormGroup;
-    submitted = false;
+    fb: FormBuilder;
 
     constructor( fb: FormBuilder, public activeModal: NgbActiveModal ) {
+        this.fb = fb;
+    }
 
-        // We only validate the maxEntries field here
-        this.wsltQueryParamForm = fb.group({
-            maxEntries:  ['100', [Validators.required, Validators.min(1 ), Validators.max( 1000 )]]
-        });
+    // convenience getter for easy access to form fields
+    get f() {
+        return this.wsltQueryParamForm.controls;
+    }
+
+    ngOnInit() {
+
+        // Initialize query interval start and end datetimes
+        // --------------------------------------------------
+        const currentStartDate = new Date();
+        const currentEndDate = new Date();
+
+        // clear hour, min, sec, msec
+        currentStartDate.setUTCHours( 0, 0, 0, 0  );
+
+        // clear sec, msec
+        currentEndDate.setUTCHours( currentEndDate.getUTCHours(), currentEndDate.getMinutes(), 0, 0  );
+
+        const currentStartTime = {
+            hour: currentStartDate.getUTCHours(),
+            minute: currentStartDate.getMinutes()
+        };
+
+        const currentEndTime = {
+            hour: currentEndDate.getUTCHours(),
+            minute: currentEndDate.getMinutes()
+        };
+
+        this.wsltQueryParamForm = this.fb.group({
+            maxEntries:             ['100',            [Validators.required,
+                                                        Validators.min( 1 ),
+                                                        Validators.max( 1000 )]],
+            queryIntervalStartDate: [currentStartDate, []],
+            queryIntervalStartTime: [currentStartTime, []],
+            queryIntervalEndDate:   [currentEndDate,   []],
+            queryIntervalEndTime:   [currentEndTime,   []]
+            },
+            {
+                validator: checkIfEndDateAfterStartDate
+            }
+        );
+
+        // Init entry type selection
+        // --------------------------------------
+        this.allEntryTypesSelected = false;
+        this.selectedEntryTypes = [];
+        this.selectDeselectAllEntryTypes( this.allEntryTypesSelected );
+
+        // Init keyword selection
+        // --------------------------------------
+        this.allEntryKeywordsSelected = false;
+        this.selectedEntryKeywords = [];
+        this.selectDeselectAllEntryKeywords( this.allEntryKeywordsSelected );
+
+        // Init groups selection
+        // --------------------------------------
+        this.allEngGroupsSelected = false;
+        this.selectedEngGroups = [];
+        this.selectDeselectAllEngGroups( this.allEngGroupsSelected );
     }
 
     /*
@@ -141,46 +192,6 @@ export class WsltSearchFormComponent implements OnInit {
         if ( $event.nextState === false ) {     // trying to close some panel?
             $event.preventDefault();            // YES, prevent that
         }
-    }
-
-    // convenience getter for easy access to form fields
-    get f() {
-        return this.wsltQueryParamForm.controls;
-    }
-
-    ngOnInit() {
-
-        // Initialize query interval start and end datetimes
-        // --------------------------------------------------
-        const currentStartDate = new Date();
-        const currentEndDate = new Date();
-
-        currentStartDate.setUTCHours( 0, 0, 0, 0  );
-        this.queryIntervalStartDate = currentStartDate;
-
-        currentEndDate.setUTCHours( currentEndDate.getUTCHours(), currentEndDate.getMinutes(), 0, 0  );
-        this.queryIntervalEndDate = currentEndDate;
-
-        this.queryIntervalStartTime = { hour: currentStartDate.getUTCHours(), minute: currentStartDate.getMinutes() };
-        this.queryIntervalEndTime   = { hour: currentEndDate.getUTCHours(),   minute: currentEndDate.getMinutes() };
-
-        // Init entry type selection
-        // --------------------------------------
-        this.allEntryTypesSelected = false;
-        this.selectedEntryTypes = [];
-        this.selectDeselectAllEntryTypes( this.allEntryTypesSelected );
-
-        // Init keyword selection
-        // --------------------------------------
-        this.allEntryKeywordsSelected = false;
-        this.selectedEntryKeywords = [];
-        this.selectDeselectAllEntryKeywords( this.allEntryKeywordsSelected );
-
-        // Init groups selection
-        // --------------------------------------
-        this.allEngGroupsSelected = false;
-        this.selectedEngGroups = [];
-        this.selectDeselectAllEngGroups( this.allEngGroupsSelected );
     }
 
     private selectDeselectAllEntryTypes( select: boolean ) {
@@ -249,45 +260,55 @@ export class WsltSearchFormComponent implements OnInit {
 
     // Max entries validator
     onMaxEntriesChange() {
-        this.submitted = true;
-        // this.isValidMaxEntries = true;
-        // const emax = parseInt( this.maxEntries, 10 );
-        // if ( isNaN(emax) || 1 > emax || emax > 1000 ) {
-        //   this.isValidMaxEntries = false;
-        //   console.log( '>>> max entries: INVALID' );
-        // } else {
-        //   this.maxEntries = emax.toString();
-        //   console.log( '>>> selected interval: ' + this.maxEntries );
-        // }
     }
 
     onStartTimeChange() {
-        this.queryIntervalStartDate.setUTCHours( this.queryIntervalStartTime.hour, this.queryIntervalStartTime.minute );
-        this.checkQueryInterval();
-    }
-
-    onStartDateChange() {
-        this.checkQueryInterval();
+        this.wsltQueryParamForm.value.queryIntervalStartDate.setUTCHours(
+            this.wsltQueryParamForm.value.queryIntervalStartTime.hour,
+            this.wsltQueryParamForm.value.queryIntervalStartTime.minute );
     }
 
     onEndTimeChange() {
-        this.queryIntervalEndDate.setUTCHours( this.queryIntervalEndTime.hour, this.queryIntervalEndTime.minute );
-        this.checkQueryInterval();
-    }
-
-    onEndDateChange() {
-        this.checkQueryInterval();
-    }
-
-    checkQueryInterval() {
-        this.isValidInterval = this.queryIntervalEndDate.getTime() > this.queryIntervalStartDate.getTime();
-        if ( ! this.isValidInterval ) {
-            // TODO: form validation, see https://getbootstrap.com/docs/4.1/components/forms/#validation
-            console.log('>>> interval: INVALID');
-        }
+        this.wsltQueryParamForm.value.queryIntervalEndDate.setUTCHours(
+            this.wsltQueryParamForm.value.queryIntervalEndTime.hour,
+            this.wsltQueryParamForm.value.queryIntervalEndTime.minute );
     }
 
     onEntriesTypeChange(index) {
         console.log('>>> type ' + index + ': ' + this.selectedEntryTypes[index]);
     }
+
+    getQueryIntervalStartISO() {
+        return this.wsltQueryParamForm.value.queryIntervalStartDate.toUTCString();
+    }
+
+    getQueryIntervalEndISO() {
+        return this.wsltQueryParamForm.value.queryIntervalEndDate.toUTCString();
+    }
+}
+
+export function checkIfEndDateAfterStartDate( c: AbstractControl ) {
+    const start = c.get( 'queryIntervalStartDate' );
+    const end   = c.get( 'queryIntervalEndDate' );
+
+    if ( !start || !start.value || !end || !end.value ) {
+        return null;
+    }
+
+    const isValidInterval = end.value.getTime() > start.value.getTime();
+    if ( ! isValidInterval ) {
+        const msg = 'Invalid query interval: end datetime must be later than start datetime';
+        const error = { invalidInterval: msg };
+
+        start.setErrors( error );
+        end.setErrors( error );
+
+        console.log( '>>> check(): ' + msg );
+        return error;
+    }
+
+
+    start.setErrors( null );
+    end.setErrors( null );
+    return null;
 }

@@ -186,7 +186,11 @@ form div.field > label:first-child {
 
 .form-buttons {
     float: right;
-    padding: 0 0 12px 0;
+    padding: 12px 0 12px 0;
+}
+
+.invalid-feedback {
+    display: contents;  /* Otherwise error messages may not get displayed at all */
 }
 
 /* Tables */
