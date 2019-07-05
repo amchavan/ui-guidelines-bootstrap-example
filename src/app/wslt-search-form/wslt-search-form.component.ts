@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { NgbActiveModal, NgbDateAdapter, NgbDateNativeAdapter, NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
+import {Component, OnInit} from '@angular/core';
+import {NgbActiveModal, NgbDateAdapter, NgbDateNativeAdapter, NgbPanelChangeEvent} from '@ng-bootstrap/ng-bootstrap';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
@@ -150,10 +150,11 @@ export class WsltSearchFormComponent implements OnInit {
             queryIntervalStartTime: [currentStartTime, []],
             queryIntervalEndDate:   [currentEndDate,   []],
             queryIntervalEndTime:   [currentEndTime,   []]
-            },
-            {
-                validator: checkIfEndDateAfterStartDate
             }
+            // ,
+            // {
+            //     validator: checkIfEndDateAfterStartDate
+            // }
         );
 
         // Init entry type selection
@@ -266,12 +267,14 @@ export class WsltSearchFormComponent implements OnInit {
         this.wsltQueryParamForm.value.queryIntervalStartDate.setUTCHours(
             this.wsltQueryParamForm.value.queryIntervalStartTime.hour,
             this.wsltQueryParamForm.value.queryIntervalStartTime.minute );
+        this.checkIfEndDateAfterStartDate();
     }
 
     onEndTimeChange() {
         this.wsltQueryParamForm.value.queryIntervalEndDate.setUTCHours(
             this.wsltQueryParamForm.value.queryIntervalEndTime.hour,
             this.wsltQueryParamForm.value.queryIntervalEndTime.minute );
+        this.checkIfEndDateAfterStartDate();
     }
 
     onEntriesTypeChange(index) {
@@ -283,32 +286,42 @@ export class WsltSearchFormComponent implements OnInit {
     }
 
     getQueryIntervalEndISO() {
+        console.log( '>>> inside: ' + JSON.stringify( this.wsltQueryParamForm.value.queryIntervalEndDate ));
         return this.wsltQueryParamForm.value.queryIntervalEndDate.toUTCString();
     }
-}
 
-export function checkIfEndDateAfterStartDate( c: AbstractControl ) {
-    const start = c.get( 'queryIntervalStartDate' );
-    const end   = c.get( 'queryIntervalEndDate' );
+    /*
+     * Check if start and end dates represent a valid time interval, that is, end is later than start.
+     *
+     * We invoke this function from onChange() calls (instead of relying on Angular validators)
+     * because we're using a comnbination of date and time picker that need to be looked at
+     * as a whole.
+     */
+    checkIfEndDateAfterStartDate() {
 
-    if ( !start || !start.value || !end || !end.value ) {
+        const f        = this.wsltQueryParamForm;
+        const startVal = f.value.queryIntervalStartDate;
+        const endVal   = f.value.queryIntervalEndDate;
+        const startCtrl = f.controls.queryIntervalStartDate;
+        const endCtrl   = f.controls.queryIntervalEndDate;
+
+        // console.log( '>>> check(): comparing: start: ' + startVal.toUTCString() + ', end: ' + endVal.toUTCString() );
+        const isValidInterval = endVal > startVal;
+        if ( ! isValidInterval ) {
+            const error = {
+                invalidInterval: 'Invalid query interval: end datetime must be later than start datetime'
+            };
+
+            startCtrl.setErrors( error );
+            endCtrl.setErrors( error );
+
+            // console.log( '>>> check(): ' + JSON.stringify( error  ));
+            return error;
+        }
+
+        // console.log( '>>> check(): OK'  );
+        startCtrl.setErrors( null );
+        endCtrl.setErrors( null );
         return null;
     }
-
-    const isValidInterval = end.value.getTime() > start.value.getTime();
-    if ( ! isValidInterval ) {
-        const msg = 'Invalid query interval: end datetime must be later than start datetime';
-        const error = { invalidInterval: msg };
-
-        start.setErrors( error );
-        end.setErrors( error );
-
-        console.log( '>>> check(): ' + msg );
-        return error;
-    }
-
-
-    start.setErrors( null );
-    end.setErrors( null );
-    return null;
 }

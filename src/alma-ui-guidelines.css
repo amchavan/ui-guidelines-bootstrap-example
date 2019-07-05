@@ -190,7 +190,7 @@ form div.field > label:first-child {
 }
 
 .invalid-feedback {
-    display: contents;  /* Otherwise error messages may not get displayed at all */
+    display: block;  /* Otherwise some error messages may not get displayed at all */
 }
 
 /* Tables */
