@@ -4,8 +4,19 @@
  */
 @import "~bootstrap/dist/css/bootstrap.css";
 
-/* Make Lato 14px the default font */
+/* Global definitions */
+:root {
+    --primary-color: #004f87;
+    --alt-primary-color: #103073;
+    --danger-color: #db2828;
+    --info-color: #2f748a;
+    --info-background-color: #f8ffff;
+    --success-color: #21ba45;
+    --border-gray-color: rgba(34,36,38,.1);
+    --tooltip-gray-color: #e1e1e1;
+}
 
+/* Make Lato 14px the default font */
 body {
   font-family: Lato, sans-serif;
   font-size: 14px;
@@ -19,20 +30,20 @@ button {
 /* Buttons: primary and secondary buttons should be ALMA blue */
 
 .btn.btn-primary {
-  background: #004f87;
+  background: var(--primary-color);
 }
 .btn.btn-primary:hover {
-  background: #103073;
+  background: var(--alt-primary-color);
 }
 .btn.btn-secondary {
-    border-color: #004f87;
+    border-color: var(--primary-color);
     background: white;
-    color: #004f87;
+    color: var(--primary-color);
 }
 .btn.btn-danger.btn-secondary {
-    border-color: #dc3545;
+    border-color: var(--danger-color);
     background: white;
-    color: #dc3545;
+    color: var(--danger-color);
 }
 
 /* Buttons: no ugly button shadow */
@@ -58,7 +69,7 @@ button {
 /* "ALMA blue" definition */
 
 .almacolor {
-    background: linear-gradient(to bottom, #103073 0%, #004f87 100%);
+    background: linear-gradient(to bottom, var(--alt-primary-color) 0%, var(--primary-color) 100%);
 }
 
 /* Add some space between image and text when icons are used together with text labels  */
@@ -98,46 +109,46 @@ form .dropdown-toggle {
 /* Tooltips and popovers */
 
 .bs-tooltip-top .arrow::before {
-  border-top-color: #e1e1e1;
+  border-top-color: var(--tooltip-gray-color);
 }
 
 .bs-tooltip-right .arrow::before {
-  border-right-color: #e1e1e1;
+  border-right-color: var(--tooltip-gray-color);
 }
 
 .bs-tooltip-bottom .arrow::before {
-  border-bottom-color: #e1e1e1;
+  border-bottom-color: var(--tooltip-gray-color);
 }
 
 .bs-tooltip-left .arrow::before {
-  border-left-color: #e1e1e1;
+  border-left-color: var(--tooltip-gray-color);
 }
 
 .tooltip-inner, arrow {
-  background-color: #e1e1e1;
-  color: #000000;
+  background-color: var(--tooltip-gray-color);
+  color: black;
 }
 
 .popover.tooltip-error {
-    border-color: #db2828;
+    border-color: var(--danger-color);
 }
 .popover.tooltip-error .popover-body {
-    color: #db2828;
+    color: var(--danger-color);
 }
 .popover.tooltip-error.left .arrow::before {
-    border-left-color: #db2828;
+    border-left-color: var(--danger-color);
 }
 .popover.tooltip-error.top .arrow::before {
-    border-top-color: #db2828;
+    border-top-color: var(--danger-color);
 }
 .popover.tooltip-error.right .arrow::before {
-    border-right-color: #db2828;
+    border-right-color: var(--danger-color);
 }
 .popover.tooltip-error.bottom .arrow::before {
-    border-bottom-color: #db2828;
+    border-bottom-color: var(--danger-color);
 }
 .popover.tooltip-error.right .arrow::before {
-    border-right-color: #db2828;
+    border-right-color: var(--danger-color);
 }
 
 .popover.tooltip-default {
@@ -173,7 +184,7 @@ form .dropdown-toggle {
 
 .dirty {
     font-size: 10px;
-    color: #db2828;
+    color: var(--danger-color);
     padding-top: 12px;
     padding-left: 6px
 }
@@ -193,7 +204,12 @@ form div.field > label:first-child {
     display: block;  /* Otherwise some error messages may not get displayed at all */
 }
 
-/* Tables */
+/* Tables -- give them a TH bar with rounded corners */
+
+.table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
 
 .table td {
   border-top: 0;
@@ -205,15 +221,20 @@ form div.field > label:first-child {
 
 .table thead th {
     vertical-align: bottom;
-    border-bottom: 1px solid #dee2e6;
+    border-bottom: 1px solid var(--border-gray-color);
 }
 
-.table thead tr:first-child>th:first-child {
-    border-left: 1px solid #dee2e6;
+/* thead tr th:last-child */
+.table thead th:first-of-type {
+    border-left: 1px solid var(--border-gray-color);
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
 }
 
-.table thead tr:first-child>th:last-child {
-    border-right: 1px solid #dee2e6;
+.table thead tr th:last-child {
+    border-right: 1px solid var(--border-gray-color);
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
 }
 
 /* Alerts */
@@ -225,45 +246,35 @@ form div.field > label:first-child {
 
 .alert-primary {
     color: white;
-    border-color: #004f87;
-    background-color: #004f87;
+    border-color: var(--primary-color);
+    background-color: var(--primary-color);
 }
 
 .alert-secondary {
-    color: #004f87;
-    border-color: #004f87;
+    color: var(--primary-color);
+    border-color: var(--primary-color);
     background-color: transparent;
 }
 
 .alert-info {
-    color: #2f748a;
-    border-color: #a9d5de;
+    color: var(--info-color);
+    border-color: var(--info-color);
     background-color: #f8ffff;
 }
 
 .alert-success {
-    /*color: #21ba45;
-    border-color: #21ba45;
-    background-color: transparent;*/
     color: white;
-    border-color: #21ba45;
-    background-color: #21ba45;
+    border-color: var(--success-color);
+    background-color: var(--success-color);
 }
 
 .alert-danger {
-    /* color: #db2828;
-    border-color: #db2828;
-    background-color: transparent; */
     color: white;
-    border-color: #db2828;
-    background-color: #db2828;
+    border-color: var(--danger-color);
+    background-color: var(--danger-color);
 }
 
 .alert-warning {
-    /*color: #856404;
-    border-color: #856404;
-    background-color: transparent;*/
-
     color: #573a08;
     border-color: #c9ba9b;
     background-color: #fffaf3;
