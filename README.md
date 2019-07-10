@@ -52,4 +52,10 @@ You can start the example with `ng serve --open` from the _ui-guidelines-bootstr
 directory.  The `--open` (or just `-o`) option automatically opens your browser to 
 http://localhost:4200 and refreshes the UI when you update the source code.
 
+### External CSS definitions
+
+**NOTE** This example relies on an external CSS file to implement the ALMA 
+Web UI Guidelines. The file is part of the NPM module 
+_@almaobservatory/ui-guidelines_, included via a dependency entry in 
+_package.json_.
 

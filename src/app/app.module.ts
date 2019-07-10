@@ -5,7 +5,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { PageHeaderComponent } from './page-header/page-header.component';
 import { AddComponent } from './add/add.component';
@@ -15,12 +15,7 @@ import { DataReducerSearchFormComponent } from './data-reducer-search-form/data-
 import { BookingComponent } from './booking/booking.component';
 import { WsltSearchFormComponent } from './wslt-search-form/wslt-search-form.component';
 import { FormValidationExampleComponent } from './form-validation-example/form-validation-example.component';
-import {
-  FormsModule,
-  ReactiveFormsModule,
-  FormBuilder,
-  FormGroup
-} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [

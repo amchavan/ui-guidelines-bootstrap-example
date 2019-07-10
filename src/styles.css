@@ -1,3 +1,5 @@
 /*
  * Application-wide style definitions
  */
+
+@import "~@almaobservatory/ui-guidelines/dist/alma-ui-guidelines.css";
