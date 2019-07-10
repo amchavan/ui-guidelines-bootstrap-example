@@ -5,26 +5,38 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 
 /* Global definitions */
+
 :root {
     --primary-color: #004f87;
     --alt-primary-color: #103073;
+    --alma-blue-color: linear-gradient(to bottom, var(--alt-primary-color) 0%, var(--primary-color) 100%);
+    
+    --border-gray-color: rgba(34,36,38,.1);
+    --tooltip-gray-border-color: #e1e1e1;
+
     --danger-color: #db2828;
+    --success-color: #21ba45;
+
     --info-color: #2f748a;
     --info-background-color: #f8ffff;
-    --success-color: #21ba45;
-    --border-gray-color: rgba(34,36,38,.1);
-    --tooltip-gray-color: #e1e1e1;
+
+    --warning-color: #573a08;
+    --warning-border-color: #c9ba9b;
+    --warning-background-color: #fffaf3;
+
+    --light-color: #818182;
+    --light-border-color: #818182;
+
+    --dark-color: #212529;
+    --dark-border-color: #212529;
+
 }
 
 /* Make Lato 14px the default font */
-body {
-  font-family: Lato, sans-serif;
-  font-size: 14px;
-}
 
-/* Buttons */
-button {
+body {
   font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+  font-size: 14px;
 }
 
 /* Buttons: primary and secondary buttons should be ALMA blue */
@@ -68,8 +80,8 @@ button {
 
 /* "ALMA blue" definition */
 
-.almacolor {
-    background: linear-gradient(to bottom, var(--alt-primary-color) 0%, var(--primary-color) 100%);
+.alma-blue {
+    background: var( --alma-blue-color );
 }
 
 /* Add some space between image and text when icons are used together with text labels  */
@@ -102,30 +114,30 @@ label.checkbox {
 }
 
 form .dropdown-toggle {
-  text-align: left;
-  border: 1px solid #ced4da;
+    text-align: left;
+    border: 1px solid var(--border-gray-color);
 }
 
 /* Tooltips and popovers */
 
 .bs-tooltip-top .arrow::before {
-  border-top-color: var(--tooltip-gray-color);
+  border-top-color: var(--tooltip-gray-border-color);
 }
 
 .bs-tooltip-right .arrow::before {
-  border-right-color: var(--tooltip-gray-color);
+  border-right-color: var(--tooltip-gray-border-color);
 }
 
 .bs-tooltip-bottom .arrow::before {
-  border-bottom-color: var(--tooltip-gray-color);
+  border-bottom-color: var(--tooltip-gray-border-color);
 }
 
 .bs-tooltip-left .arrow::before {
-  border-left-color: var(--tooltip-gray-color);
+  border-left-color: var(--tooltip-gray-border-color);
 }
 
 .tooltip-inner, arrow {
-  background-color: var(--tooltip-gray-color);
+  background-color: var(--tooltip-gray-border-color);
   color: black;
 }
 
@@ -152,25 +164,25 @@ form .dropdown-toggle {
 }
 
 .popover.tooltip-default {
-    border-color: gray;
+    border-color: var(--border-gray-color);
 }
 .popover.tooltip-default .popover-body {
     color: black;
 }
 .popover.tooltip-default.left .arrow::before {
-    border-left-color: gray;
+    border-left-color: var(--border-gray-color);
 }
 .popover.tooltip-default.top .arrow::before {
-    border-top-color: gray;
+    border-top-color: var(--border-gray-color);
 }
 .popover.tooltip-default.right .arrow::before {
-    border-right-color: gray;
+    border-right-color: var(--border-gray-color);
 }
 .popover.tooltip-default.bottom .arrow::before {
-    border-bottom-color: gray;
+    border-bottom-color: var(--border-gray-color);
 }
 .popover.tooltip-default.right .arrow::before {
-    border-right-color: gray;
+    border-right-color: var(--border-gray-color);
 }
 
 /* Forms and modals */
@@ -259,7 +271,7 @@ form div.field > label:first-child {
 .alert-info {
     color: var(--info-color);
     border-color: var(--info-color);
-    background-color: #f8ffff;
+    background-color: var(--info-background-color);
 }
 
 .alert-success {
@@ -275,20 +287,20 @@ form div.field > label:first-child {
 }
 
 .alert-warning {
-    color: #573a08;
-    border-color: #c9ba9b;
-    background-color: #fffaf3;
+    color: var(--warning-color);
+    border-color: var(--warning-border-color);
+    background-color: var(--warning-background-color);
 }
 
 .alert-light {
-    color: #818182;
-    border-color: #818182;
+    color: var(--light-color);
+    border-color: var(--light-border-color);
     background-color: transparent;
 }
 
 .alert-dark {
-    color: #212529;
-    border-color: #212529;
+    color: var(--dark-color);
+    border-color: var(--dark-border-color);
     background-color: transparent;
 }
 
