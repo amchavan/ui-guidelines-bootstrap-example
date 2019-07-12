@@ -56,6 +56,8 @@ http://localhost:4200 and refreshes the UI when you update the source code.
 
 **NOTE** This example relies on an external CSS file to implement the ALMA 
 Web UI Guidelines. The file is part of the NPM module 
-_@almaobservatory/ui-guidelines_, included via a dependency entry in 
-_package.json_.
+[@almaobservatory/ui-guidelines](https://github.com/amchavan/alma-ui-guidelines), 
+included via a dependency entry in  _package.json_.  
+See [here](https://github.com/amchavan/alma-ui-guidelines/blob/master/README.md) 
+for more info.
 
