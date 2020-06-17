@@ -1,14 +1,21 @@
-# ALMA UI Guidelines Example — Bootstrap
+# ALMA UI Guidelines libraries and example
 
-This project is an example Angular 7 application showing how the 
-[ALMA Web UI Guidelines](https://confluence.alma.cl/x/mwLoAQ) 
-can be implemented using the Bootstrap CSS+JS front-end framework.  
+This project includes some libraries and other supporting
+software to aid in implementing the
+[ALMA Web UI Guidelines](https://confluence.alma.cl/x/mwLoAQ).
+It includes an example showcase application as well.
 
-It was generated with 
-[Angular CLI](https://github.com/angular/angular-cli)
-version 7.3.9.
+The implementation is based on
+[Bootstrap](https://getbootstrap.com/) 
+and 
+[ng-bootstrap](https://ng-bootstrap.github.io/#/home).  
 
-## Development environment
+## Libraries, etc.
+
+* [busy-indicator](projects/busy-indicator/README.md): Implements a simple "I'm busy" modal indicator
+* TODO
+
+## Running the example
 
 To build and run this example you need to set up an Angular 
 development environment.
@@ -30,20 +37,18 @@ To install the CLI globally using _npm_, enter
 npm install -g @angular/cli
 ```
 
-### Clone the Git repository
-
-Clone the Git source code repository:
-```$sh
-git clone https://github.com/amchavan/ui-guidelines-bootstrap-example.git
-
-```
-
 ### Node dependencies
 
 Change into the _ui-guidelines-bootstrap-example_ directory and install all needed dependencies:
 ```$sh
-npm install @angular-devkit/build-angular
+npm install
 
+```
+
+### Building the libraries
+```shell script
+ng build busy-indicator
+... TODO
 ```
 
 ### Launch the example 
@@ -51,6 +56,8 @@ npm install @angular-devkit/build-angular
 You can start the example with `ng serve --open` from the _ui-guidelines-bootstrap-example_ 
 directory.  The `--open` (or just `-o`) option automatically opens your browser to 
 http://localhost:4200 and refreshes the UI when you update the source code.
+
+### DA QUI ###
 
 ### External CSS definitions
 
