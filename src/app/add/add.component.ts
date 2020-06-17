@@ -1,23 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalProgressBarComponent } from '../modal-progress-bar/modal-progress-bar.component';
 import { FormValidationExampleComponent } from '../form-validation-example/form-validation-example.component';
+import { BusyIndicatorService } from '../busy-indicator/busy-indicator.service';
 
 @Component({
     selector: 'app-add',
     templateUrl: './add.component.html',
     styleUrls: ['./add.component.css']
 })
-export class AddComponent implements OnInit {
-
+export class AddComponent {
     importCanceledAlertMessage: string;
-
     showAlert = false;
 
-    constructor( private modalService: NgbModal ) {
-    }
-
-    ngOnInit() {
+    constructor( private modalService: NgbModal, private busyIndicatorService: BusyIndicatorService ) {
     }
 
     public openImportModal() {
@@ -43,6 +39,11 @@ export class AddComponent implements OnInit {
             },
             () => {
             });
+    }
+
+    public showBusyIndicator() {
+        this.busyIndicatorService.show( true );
+        setTimeout(() => {  this.busyIndicatorService.show( false ); }, 2000);
     }
 
     public msg(text) {

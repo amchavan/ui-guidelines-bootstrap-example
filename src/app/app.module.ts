@@ -16,34 +16,42 @@ import { BookingComponent } from './booking/booking.component';
 import { WsltSearchFormComponent } from './wslt-search-form/wslt-search-form.component';
 import { FormValidationExampleComponent } from './form-validation-example/form-validation-example.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BusyIndicatorModule } from './busy-indicator/busy-indicator.module';
+import { BusyIndicatorComponent } from './busy-indicator/busy-indicator.component';
+import { BusyIndicatorService } from './busy-indicator/busy-indicator.service';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    PageHeaderComponent,
-    AddComponent,
-    ManageComponent,
-    ModalProgressBarComponent,
-    DataReducerSearchFormComponent,
-    BookingComponent,
-    WsltSearchFormComponent,
-    FormValidationExampleComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NgbModule,
-    BrowserModule,
-    FormsModule,
-    ReactiveFormsModule
-  ],
-  providers: [NgbActiveModal],
-  bootstrap: [AppComponent],
-  entryComponents: [
-    ModalProgressBarComponent,
-    DataReducerSearchFormComponent,
-    WsltSearchFormComponent,
-    FormValidationExampleComponent
-  ]
+    declarations: [
+        AppComponent,
+        PageHeaderComponent,
+        AddComponent,
+        ManageComponent,
+        ModalProgressBarComponent,
+        DataReducerSearchFormComponent,
+        BookingComponent,
+        WsltSearchFormComponent,
+        FormValidationExampleComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        NgbModule,
+        BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
+        BusyIndicatorModule
+    ],
+    providers: [
+        NgbActiveModal,
+        BusyIndicatorService
+    ],
+    bootstrap: [AppComponent],
+    entryComponents: [
+        ModalProgressBarComponent,
+        DataReducerSearchFormComponent,
+        WsltSearchFormComponent,
+        FormValidationExampleComponent,
+        BusyIndicatorComponent
+    ]
 })
 export class AppModule { }

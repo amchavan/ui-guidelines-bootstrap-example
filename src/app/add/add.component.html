@@ -1,3 +1,4 @@
+<busy-indicator></busy-indicator>
 <div class="container-fluid">
 
     <!-- Button styles -->
@@ -91,6 +92,15 @@
                 <button class="btn btn-primary btn-sm" (click)="openFormValidationExample()">
                     <i class="far fa-check-circle has-text"></i>
                     Validating Form
+                </button>
+                <button class="btn btn-secondary btn-sm"
+                        (click)="showBusyIndicator()"
+                        ngbPopover="Busy indicator will disappear after a few seconds"
+                        triggers="mouseenter:mouseleave"
+                        placement="bottom"
+                        popoverClass="tooltip-default bottom">
+                    <i class="fas fa-redo has-text"></i>
+                    Busy indicator
                 </button>
             </span>
         </div>
