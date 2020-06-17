@@ -16,9 +16,9 @@ import { BookingComponent } from './booking/booking.component';
 import { WsltSearchFormComponent } from './wslt-search-form/wslt-search-form.component';
 import { FormValidationExampleComponent } from './form-validation-example/form-validation-example.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BusyIndicatorModule } from './busy-indicator/busy-indicator.module';
-import { BusyIndicatorComponent } from './busy-indicator/busy-indicator.component';
-import { BusyIndicatorService } from './busy-indicator/busy-indicator.service';
+import { BusyIndicatorModule } from 'busy-indicator';
+import { BusyIndicatorComponent } from 'busy-indicator';
+import { BusyIndicatorService } from 'busy-indicator';
 
 @NgModule({
     declarations: [

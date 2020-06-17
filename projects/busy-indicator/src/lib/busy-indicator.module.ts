@@ -5,6 +5,6 @@ import { BusyIndicatorComponent } from './busy-indicator.component';
 @NgModule({
   declarations: [ BusyIndicatorComponent ],
   imports: [ CommonModule ],
-  exports: [ ]
+  exports: [ BusyIndicatorComponent ]
 })
 export class BusyIndicatorModule { }

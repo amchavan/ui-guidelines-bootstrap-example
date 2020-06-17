@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalProgressBarComponent } from '../modal-progress-bar/modal-progress-bar.component';
 import { FormValidationExampleComponent } from '../form-validation-example/form-validation-example.component';
-import { BusyIndicatorService } from '../busy-indicator/busy-indicator.service';
+import { BusyIndicatorService } from 'busy-indicator';
 
 @Component({
     selector: 'app-add',

@@ -18,6 +18,10 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      // This allows to import from 'busy-indicator' directly
+      "busy-indicator": ["dist/busy-indicator"]
+    }
   }
 }
