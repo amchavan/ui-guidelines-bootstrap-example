@@ -42,8 +42,8 @@ export class AddComponent {
     }
 
     public showBusyIndicator() {
-        this.busyIndicatorService.show( true );
-        setTimeout(() => {  this.busyIndicatorService.show( false ); }, 2000);
+        this.busyIndicatorService.show();
+        setTimeout(() => {  this.busyIndicatorService.hide(); }, 2000);
     }
 
     public msg(text) {
