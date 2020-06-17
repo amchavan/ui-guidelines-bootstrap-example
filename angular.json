@@ -132,6 +132,41 @@
           }
         }
       }
+    },
+    "busy-indicator": {
+      "root": "projects/busy-indicator",
+      "sourceRoot": "projects/busy-indicator/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/busy-indicator/tsconfig.lib.json",
+            "project": "projects/busy-indicator/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/busy-indicator/src/test.ts",
+            "tsConfig": "projects/busy-indicator/tsconfig.spec.json",
+            "karmaConfig": "projects/busy-indicator/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/busy-indicator/tsconfig.lib.json",
+              "projects/busy-indicator/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "ui-guidelines-bootstrap-example"
